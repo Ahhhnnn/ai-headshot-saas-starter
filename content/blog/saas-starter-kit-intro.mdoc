@@ -1,0 +1,690 @@
+---
+title: UllrAI SaaS Starter Kit 开发者文档
+publishedDate: 2025-06-23
+author: admin
+excerpt: >-
+  本文档旨在为使用 UllrAI SaaS Starter Kit
+  的开发者提供一份全面、深入的技术参考。无论您是希望快速启动一个新项目，还是对项目进行深度定制和二次开发，本文档都将为您提供必要的指导。
+tags:
+  - Next.js
+  - SaaS Starter
+  - TypeScript
+  - Tailwind CSS
+  - shadcn/ui
+  - Drizzle ORM
+  - Creem
+  - Resend
+  - Cloudflare R2
+featured: true
+heroImage: https://images.unsplash.com/photo-1561886362-a2b38ce83470?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+---
+# UllrAI SaaS Starter Kit 开发者文档
+
+本文档旨在为使用 UllrAI SaaS Starter Kit 的开发者提供一份全面、深入的技术参考。无论您是希望快速启动一个新项目，还是对项目进行深度定制和二次开发，本文档都将为您提供必要的指导。
+
+## 1. 项目概览
+
+### 1.1. 项目简介
+
+**UllrAI SaaS Starter Kit** 是一个免费、开源、生产就绪的全栈 SaaS 入门套件。它集成了现代 Web 开发中备受推崇的技术和实践，旨在帮助开发者以前所未有的速度启动下一个 SaaS 项目，让您专注于业务逻辑而非基础架构的搭建。
+
+- **核心功能**：提供身份验证、支付订阅、数据库管理、文件上传、内容管理等 SaaS 应用的核心功能。
+- **技术栈**：基于 Next.js 16 App Router、TypeScript、PostgreSQL、Drizzle ORM，并集成了 Creem 支付、Resend 邮件服务和 Cloudflare R2 文件存储。
+- **适用场景**：
+  - 快速搭建需要用户登录和付费订阅功能的全栈 SaaS 应用。
+  - 作为学习现代全栈 Web 开发技术的实践项目。
+  - 为企业级项目提供一个稳定、可扩展的初始脚手架。
+  - 独立开发者或小型团队快速验证商业想法。
+
+### 1.2. 快速开始
+
+1.**克隆项目**
+
+   ```bash
+   git clone https://github.com/ullrai/saas-starter.git
+   cd saas-starter
+   ```
+
+2.**安装依赖**
+
+   ```bash
+   pnpm install
+   ```
+
+3.**配置环境**
+   复制 `.env.example` 为 `.env` 并填入所有必需的环境变量。
+
+   ```bash
+   cp .env.example .env
+   ```
+
+4.**同步数据库**
+   确保本地 PostgreSQL 数据库已启动，然后执行：
+
+   ```bash
+   pnpm db:push
+   ```
+
+5.**运行开发服务器**
+
+   ```bash
+   pnpm dev
+   ```
+
+   应用将在 `http://localhost:3000` 上运行。
+
+### 1.3. 特性列表
+
+- **现代框架**: Next.js 16 (App Router, RSC), React 19, TypeScript
+- **UI**: Tailwind CSS v4, shadcn/ui, Lucide Icons, Dark/Light Mode
+- **认证**: Better-Auth (魔术链接, OAuth - Google/GitHub/LinkedIn)
+- **数据库**: PostgreSQL + Drizzle ORM (类型安全查询, 迁移管理)
+- **支付订阅**: Creem 集成 (一次性支付, 订阅, 客户门户, Webhooks)
+- **文件上传**: Cloudflare R2 集成 (客户端预签名直传, 服务端代理上传, 图片压缩)
+- **内容管理**: Keystatic (Markdown/MDX 博客系统)
+- **邮件服务**: Resend + React Email (事务性邮件模板)
+- **表单处理**: React Hook Form + Zod (类型安全的表单验证)
+- **代码质量**: ESLint, Prettier
+- **管理后台**: 通用的数据管理后台，可轻松扩展以管理任何数据库表
+- **部署**: Vercel 一键部署
+
+### 1.4. 技术架构图
+
+[![技术架构图](https://mermaid.ink/img/pako:eNqNVF1rE0EU_SvD9CWFfLVpttkNCPlok7RNW5Nqwd08TLM32TW7O8vsrGkaAoJYRFAr-OiDfROEKvigRdBfs43-C2c3aUiNaId9mLlzzrl37rnsELepDljBXUZcAx2UNQeJ5flHk4CGx2_eXz37Mv7wEcWKjPY9YMsanqDCVVAngBZKJO6g4nAXjnnyoYcKrjvKT2Dg6JqzoHsfWBssFFx-Dl59mlcsCiXUANLmqAnsETBUorZLHXC4FyUpqRq-V0MxzyB620n5ZhwdENPqm44uSmvl_5Aq7NdQg_ocvNRUr9DmJnUmYmU1OHspXvfr8bef31-3_lny1buvwY8nV29fBM_P5ysuh2n2GvVIcEMtM_PkxIIwMl_MRnS9qcb2qce7DJp3d5bn7yOVgs-NqOIQW1GLwDmwRBhdgO6TgS16MkNX1RIDsBdwG7ZozgxVUxvgiectwJqcMtKFGXBLLVnU1zsWYYAaqzc6E24WuhOcPg0uLscX5-OzUxQr1Zs35mRb3YaBxwk3262pwbqXOmSm8CXKt6PWCevptO-ktpp7u8h0UMXkC25GPKQTTiasv5dViRyJmhmi6mqF0q4FKaFY9Y9SO6bTA73mXKtXQ_ghHBmU9qZjkZ_5zwfCywLqmJalLHXkTtzjjPZAWcpkMtN9om_q3FBW3eP8PGlzSiK6fnvS1ixT-vak6jVJkm5Pqk1Jcvs_b8Jx8Xswdaxw5kMc28DESIkjHoZyGuYG2KBhRWx16BDf4qHzI0FzifOAUhsrHWJ5gsqo3zVmJ98VPkLZJGKE7Gt1JqwEVqK-w7EiRxJYGeJjrGRW0snsejqdFV9OXsusZuN4gJVsLrkmy7Ik56TMmiRJK6M4PomSppO59ezoN9CxiYY?type=png)](https://mermaid.live/edit#pako:eNqNVF1rE0EU_SvD9CWFfLVpttkNCPlok7RNW5Nqwd08TLM32TW7O8vsrGkaAoJYRFAr-OiDfROEKvigRdBfs43-C2c3aUiNaId9mLlzzrl37rnsELepDljBXUZcAx2UNQeJ5flHk4CGx2_eXz37Mv7wEcWKjPY9YMsanqDCVVAngBZKJO6g4nAXjnnyoYcKrjvKT2Dg6JqzoHsfWBssFFx-Dl59mlcsCiXUANLmqAnsETBUorZLHXC4FyUpqRq-V0MxzyB620n5ZhwdENPqm44uSmvl_5Aq7NdQg_ocvNRUr9DmJnUmYmU1OHspXvfr8bef31-3_lny1buvwY8nV29fBM_P5ysuh2n2GvVIcEMtM_PkxIIwMl_MRnS9qcb2qce7DJp3d5bn7yOVgs-NqOIQW1GLwDmwRBhdgO6TgS16MkNX1RIDsBdwG7ZozgxVUxvgiectwJqcMtKFGXBLLVnU1zsWYYAaqzc6E24WuhOcPg0uLscX5-OzUxQr1Zs35mRb3YaBxwk3262pwbqXOmSm8CXKt6PWCevptO-ktpp7u8h0UMXkC25GPKQTTiasv5dViRyJmhmi6mqF0q4FKaFY9Y9SO6bTA73mXKtXQ_ghHBmU9qZjkZ_5zwfCywLqmJalLHXkTtzjjPZAWcpkMtN9om_q3FBW3eP8PGlzSiK6fnvS1ixT-vak6jVJkm5Pqk1Jcvs_b8Jx8Xswdaxw5kMc28DESIkjHoZyGuYG2KBhRWx16BDf4qHzI0FzifOAUhsrHWJ5gsqo3zVmJ98VPkLZJGKE7Gt1JqwEVqK-w7EiRxJYGeJjrGRW0snsejqdFV9OXsusZuN4gJVsLrkmy7Ik56TMmiRJK6M4PomSppO59ezoN9CxiYY)
+
+```mermaid
+graph TD
+    subgraph "用户端 (Browser)"
+        A[用户] --> B{Next.js App};
+    end
+
+    subgraph "Vercel 平台"
+        B -- React Server Components --> C["UI (shadcn/ui, Tailwind)"];
+        B -- API Routes/Server Actions --> D[后端逻辑];
+    end
+
+    subgraph "核心服务"
+        D -- ORM --> E[Drizzle ORM];
+        E --> F[(PostgreSQL)];
+        D -- Auth API --> G[Better-Auth];
+        D -- Payment API --> H[Creem];
+        D -- Email API --> I[Resend];
+        D -- Storage API --> J[Cloudflare R2];
+    end
+    
+    subgraph "内容管理 (CMS)"
+        K[Keystatic] -- Reads/Writes --> L[Markdown/JSON in Git];
+        B -- Reads data --> L;
+    end
+    
+    G -- OAuth --> M[Google/GitHub/LinkedIn];
+    H -- Webhooks --> D;
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px;
+    style F fill:#add,stroke:#333,stroke-width:2px;
+    style J fill:#f90,stroke:#333,stroke-width:2px;
+    style H fill:#f66,stroke:#333,stroke-width:2px;
+    style I fill:#9cf,stroke:#333,stroke-width:2px;
+```
+
+---
+
+## 2. 深度技术分析
+
+### 2.1. 目录结构详解
+
+```
+SaaS-Starter-main/
+├── src/                  # 所有应用程序源代码
+│   ├── app/              # Next.js App Router 核心目录
+│   │   ├── (auth)/       # 认证相关页面 (登录、注册)
+│   │   ├── (dashboard)/  # 受保护的仪表盘页面
+│   │   ├── (pages)/      # 公开页面 (首页、关于、博客等)
+│   │   ├── api/          # API 路由
+│   │   ├── keystatic/    # Keystatic CMS 管理界面
+│   │   ├── layout.tsx    # 根布局
+│   │   └── not-found.tsx # 全局 404 页面
+│   ├── components/       # React 组件
+│   │   ├── admin/        # 管理后台相关组件
+│   │   ├── auth/         # 认证流程组件
+│   │   ├── blog/         # 博客相关组件
+│   │   ├── forms/        # 表单组件
+│   │   ├── homepage/     # 首页专用组件
+│   │   └── ui/           # 通用 UI 组件 (基于 shadcn/ui)
+│   ├── database/         # Drizzle ORM 相关
+│   │   ├── migrations/   # 数据库迁移文件
+│   │   ├── config.ts     # 开发环境迁移配置
+│   │   ├── config.prod.ts # 生产环境迁移配置
+│   │   ├── index.ts      # Drizzle 客户端初始化
+│   │   └── schema.ts     # 数据库表结构定义
+│   ├── emails/           # React Email 邮件模板
+│   ├── hooks/            # 自定义 React Hooks
+│   ├── lib/              # 核心逻辑与工具函数
+│   │   ├── actions/      # Next.js Server Actions
+│   │   ├── admin/        # 管理后台核心逻辑
+│   │   ├── auth/         # 认证配置与逻辑 (Better-Auth)
+│   │   ├── billing/      # 支付抽象层与提供商 (Creem)
+│   │   ├── config/       # 全局常量、产品、角色等配置
+│   │   ├── database/     # 数据库辅助函数
+│   │   ├── email.tsx     # 邮件发送服务
+│   │   └── r2.ts         # Cloudflare R2 文件上传服务
+│   ├── schemas/          # Zod 验证 schema
+│   └── types/            # TypeScript 类型定义
+├── content/              # Keystatic 管理的内容 (Markdown, JSON)
+├── public/               # 静态资源
+├── scripts/              # 辅助脚本 (如设置管理员)
+└── styles/               # 全局样式与 CSS
+```
+
+### 2.2. 核心模块分析
+
+#### 2.2.1. 入口文件和启动流程
+
+- **`src/app/layout.tsx`**: 项目的根布局，包裹所有页面。它负责：
+  - 设置 HTML `lang` 属性和字体变量。
+  - 集成 `ThemeProvider` 实现深色/浅色模式。
+  - 集成 `NextTopLoader` 提供页面加载进度条。
+  - 集成 `Toaster` 用于全局通知。
+  - 集成 `CookieConsent` 用于 Cookie 同意管理。
+- **`proxy.ts`**: 在请求到达页面之前运行，是实现路由保护的核心。
+  - 检查用户会话 Cookie。
+  - 如果用户未登录但访问 `/dashboard/*`，重定向到 `/login`。
+  - 如果用户已登录但访问 `/login` 或 `/signup`，重定向到 `/dashboard`。
+- **`src/app/dashboard/layout.tsx`**: 仪表盘的根布局。
+  - 使用 `SessionGuard` 组件保护所有子路由。`SessionGuard` 是一个客户端组件，它会验证会话是否存在，如果不存在则重定向到登录页，并在验证期间显示加载动画。
+  - 渲染 `AppSidebar` 和主内容区域 `SidebarInset`。
+
+#### 2.2.2. 配置系统设计
+
+项目的配置高度集中化，便于维护和扩展。
+
+- **环境变量 (`env.ts`)**: 使用 `@t3-oss/env-nextjs` 强制校验环境变量。所有环境变量（如 API 密钥、数据库 URL）必须在 `.env` 文件中定义，并通过 `env.ts` 进行类型安全访问。这避免了运行时因缺少环境变量而导致的错误。
+- **应用常量 (`src/lib/config/constants.ts`)**: 存放应用名称、描述、联系邮箱等不会频繁更改的硬编码值。
+- **产品套餐 (`src/lib/config/products.ts`)**: 统一定义所有付费套餐。每个套餐包含内部 ID、名称、特性列表以及在不同支付提供商（如 Creem）中的产品 ID。这种结构使得添加新套餐或更换支付提供商变得容易。
+- **用户角色 (`src/lib/config/roles.ts`)**: 定义了用户角色及其层级关系（`user`, `admin`, `super_admin`）。`hasRole` 等辅助函数提供了统一的权限检查逻辑。
+- **文件上传 (`src/lib/config/upload.ts`)**: 集中管理文件上传的所有规则，包括最大文件大小、允许的文件类型等。所有上传路径（客户端和服务器端）都共享此配置，确保规则一致性。
+
+#### 2.2.3. 路由架构
+
+项目采用 Next.js App Router，并利用路由组 (Route Groups) 对页面进行逻辑隔离。
+
+- `(pages)`: 存放所有对公众可见的页面，如首页、关于、博客、定价等。使用 `src/app/(pages)/layout.tsx` 提供统一的页头和页脚。
+- `(auth)`: 存放认证流程中的页面，如登录、注册。使用 `src/app/(auth)/layout.tsx` 提供一个居中、简洁的布局。
+- `(dashboard)`: 存放所有需要用户登录才能访问的页面。其布局 `src/app/dashboard/layout.tsx` 通过 `SessionGuard` 实现了路由保护。
+
+#### 2.2.4. 构建和打包流程
+
+- **`next.config.ts`**: Next.js 的核心配置文件。
+  - 配置了 `images.remotePatterns`，允许从 Unsplash 和 Cloudflare R2 加载图片。
+  - 集成了 `@next/bundle-analyzer`。当环境变量 `ANALYZE` 设置为 `true` 时，运行 `pnpm analyze` 会在构建后生成并打开包体积分析报告，帮助开发者优化前端资源大小。
+- **`package.json`**:
+  - `dev`: 启动开发服务器，开启了 Next.js 16 的 `--turbo` 模式以加快本地编译速度。
+  - `build`: 为生产环境构建应用。
+  - `start`: 启动生产服务器。
+
+---
+
+## 3. 开发指南
+
+### 3.1. 环境搭建
+
+1. **安装工具**:
+   - Node.js v20.x 或更高版本。
+   - pnpm (`npm install -g pnpm`)。
+   - PostgreSQL 数据库 (推荐使用 Docker: `docker run --name my-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres`)。
+1. **克隆和安装**:
+   ```bash
+   git clone https://github.com/ullrai/saas-starter.git
+   cd saas-starter
+   pnpm install
+   ```
+1. **配置环境变量**:
+   - 复制 `.env.example` 到 `.env`。
+   - 生成一个安全的 `BETTER_AUTH_SECRET`: `openssl rand -base64 32`。
+   - 填入您的 PostgreSQL `DATABASE_URL`。
+   - 注册并获取 Creem, Resend, Cloudflare R2 的 API 密钥，并填入 `.env` 文件。
+1. **数据库设置**:
+   - **开发环境**: `pnpm db:push` 会将 `src/database/schema.ts` 的更改直接同步到数据库，适合快速迭代。
+   - **生产环境**: **必须**使用迁移文件。流程：
+     1. `pnpm db:generate:prod`：生成生产环境的迁移 SQL 文件。
+     1. 将代码和迁移文件部署到生产环境。
+     1. 在生产环境中执行 `pnpm db:migrate:prod` 应用迁移。
+
+### 3.2. 开发流程
+
+1. **启动开发服务器**: `pnpm dev`
+1. **修改数据库**:
+   - 编辑 `src/database/schema.ts`。
+   - 运行 `pnpm db:push` 同步变更。
+1. **创建新页面**:
+   - 在 `src/app/(pages)` 或 `src/app/(dashboard)` 中创建新的文件夹和 `page.tsx` 文件。
+1. **创建 API 路由**:
+   - 在 `src/app/api` 目录下创建新的文件夹和 `route.ts` 文件。
+1. **创建 Server Action**:
+   - 在 `src/lib/actions` 目录下创建新文件，使用 `"use server";` 指令。
+1. **代码检查**:
+   - 运行 `pnpm lint` 检查代码风格。
+   - 运行 `pnpm prettier:format` 格式化代码。
+
+### 3.3. 代码规范
+
+- **命名规范**:
+  - 组件使用帕斯卡命名法 (PascalCase)，例如 `FileUploader`。
+  - 函数和变量使用驼峰命名法 (camelCase)。
+  - 常量使用大写蛇形命名法 (UPPER_SNAKE_CASE)。
+- **文件组织**:
+  - 页面组件放置在各自的 `src/app` 路由文件夹下，通常在 `_components` 子目录中。
+  - 可复用组件放置在 `src/components` 目录下。
+  - 逻辑、类型、配置等分离到 `src/lib`, `src/types`, `src/schemas` 目录中。
+- **注释要求**:
+  - 对复杂函数或逻辑块使用 JSDoc 注释。
+  - 对非直观的代码进行行内注释。
+
+---
+
+## 4. 功能模块详解
+
+### 4.1. 认证系统 (Better-Auth)
+
+本脚手架使用 `better-auth` 库提供了一套完整的认证解决方案。
+- **核心配置**: `src/lib/auth/server.ts`
+  - 配置了 Drizzle 数据库适配器。
+  - 动态加载社交登录提供商 (Google, GitHub, LinkedIn)，只有在 `.env` 中提供了对应的 `CLIENT_ID` 和 `SECRET` 时才会启用。
+  - 集成了 `magicLink` 插件，并配置了使用 Resend 发送邮件。
+- **API 路由**: `src/app/api/auth/[...all]/route.ts`
+  - 这是一个动态路由，捕获所有 `better-auth` 的认证请求（如 `/api/auth/magic-link`, `/api/auth/google/login` 等），并交由 `auth.handler` 处理。
+- **客户端**: `src/lib/auth/client.ts`
+  - 提供了在客户端组件中与认证系统交互的方法，如 `signIn`, `signOut`, `useSession` 等。
+- **认证流程 (Magic Link 魔术链接)**:
+[![魔术链接](https://mermaid.ink/img/pako:eNp1k-1r00Acx_-V415NaNN2fVh74ETqA4KysYc30je35NaGJrl6SUQtBVeUVXHasQ1ZrYjCQBxL3ZvOWde_ppe0_4WXnh1ldiGQu-P7uXy_97tfFapUIxBBmzxxiaWSOzouMmwWLDB-Kpg5uqpXsOWAdZuwWet5Qyfig23AvW9-4yw47oC5265TukeZeWMWsUrYU8JCwm_v8Ldf-eF3QSw_mCleITaxtFA8qnuDXlcioXKiDo1FFxelDwSG_T3--kiIA--Un3eD-jnf7gWHPX5xMCGkVDDSCQLLS6trIIYregwL4zETF3U1auhWeUJI4RQR7H_xG02__cb_2PUPGkHrFVijZWL9B0j_wlbnzD-t8w-7o5dbMgmY481jSYH1lYeX6SURFWyYDIF_zMm-3-6M9vr--yPJX8kvxTKuFAx-nQhfErk2-v2708lVbBgbWC3fckJbNxVFufYERj_eDTtb0n8E8MYn3vs9-NMadj5fQaZr4_WDC0-qQJ7Ssk6AqNFoe4d7Ld7c5Y2fIKZhu7RBMdNgBBaZrkHkMJdEoEmYicMprI7LD50SMUkBIjHUyCZ2DacAC1ZNYOLmPKbUnJCMusUSRJvYsMXMrWjYmdz0y1UmzpywPHUtB6L5xHgPiKrwGUTJRFxJL8TjafFmc6nkfDoCn0OUziqpXC6XyWUzyVQmk0nUIvDF-K9xJbsgNETTHcoeyQ4bN1rtLzk3Xew?type=png)](https://mermaid.live/edit#pako:eNp1k-1r00Acx_-V415NaNN2fVh74ETqA4KysYc30je35NaGJrl6SUQtBVeUVXHasQ1ZrYjCQBxL3ZvOWde_ppe0_4WXnh1ldiGQu-P7uXy_97tfFapUIxBBmzxxiaWSOzouMmwWLDB-Kpg5uqpXsOWAdZuwWet5Qyfig23AvW9-4yw47oC5265TukeZeWMWsUrYU8JCwm_v8Ldf-eF3QSw_mCleITaxtFA8qnuDXlcioXKiDo1FFxelDwSG_T3--kiIA--Un3eD-jnf7gWHPX5xMCGkVDDSCQLLS6trIIYregwL4zETF3U1auhWeUJI4RQR7H_xG02__cb_2PUPGkHrFVijZWL9B0j_wlbnzD-t8w-7o5dbMgmY481jSYH1lYeX6SURFWyYDIF_zMm-3-6M9vr--yPJX8kvxTKuFAx-nQhfErk2-v2708lVbBgbWC3fckJbNxVFufYERj_eDTtb0n8E8MYn3vs9-NMadj5fQaZr4_WDC0-qQJ7Ssk6AqNFoe4d7Ld7c5Y2fIKZhu7RBMdNgBBaZrkHkMJdEoEmYicMprI7LD50SMUkBIjHUyCZ2DacAC1ZNYOLmPKbUnJCMusUSRJvYsMXMrWjYmdz0y1UmzpywPHUtB6L5xHgPiKrwGUTJRFxJL8TjafFmc6nkfDoCn0OUziqpXC6XyWUzyVQmk0nUIvDF-K9xJbsgNETTHcoeyQ4bN1rtLzk3Xew)
+  ```mermaid
+  sequenceDiagram
+      participant User
+      participant Client as 客户端 (AuthForm)
+      participant Server as 服务器 (API)
+      participant Resend as 邮件服务
+  
+      User->>Client: 输入邮箱并点击登录
+      Client->>Server: POST /api/auth/magic-link
+      Server->>Server: 生成有时效的 Token
+      Server->>Resend: 请求发送邮件 (含 Token URL)
+      Resend-->>User: 发送魔术链接邮件
+      User->>User: 点击邮件中的链接
+      Client->>Server: GET /api/auth/callback?token=...
+      Server->>Server: 验证 Token, 创建会话
+      Server-->>Client: 设置会话 Cookie 并重定向到 /dashboard
+  ```
+### 4.2. 数据库与 ORM (Drizzle)
+
+- **Schema 定义**: `src/database/schema.ts` 是所有数据库表的单一事实来源，使用 Drizzle ORM 的语法定义表结构、关系和约束。
+- **客户端初始化**: `src/database/index.ts` 负责初始化 Drizzle 客户端，并根据环境（Serverless 或传统服务器）应用不同的连接池配置 (`src/lib/database/connection.ts`)。
+- **迁移管理**:
+  - 项目为开发和生产环境维护两套独立的迁移历史记录，分别位于 `src/database/migrations/development` 和 `src/database/migrations/production`。
+  - `pnpm db:generate` & `pnpm db:generate:prod`: 基于 `schema.ts` 的变化生成 SQL 迁移文件。
+  - `pnpm db:push`: 仅限开发，直接将 schema 同步到数据库，会丢失历史记录。
+  - `pnpm db:migrate:dev` & `pnpm db:migrate:prod`: 应用迁移文件到数据库。
+
+### 4.3. 支付与订阅 (Creem)
+- **抽象层**: `src/lib/billing/index.ts` 导出一个统一的 `billing` 对象，未来可以轻松切换到其他支付提供商（如 Stripe），而无需修改上层业务代码。
+- **提供商实现**: `src/lib/billing/creem/provider.ts` 是 Creem 支付提供商的具体实现，封装了创建 Checkout 会话、客户门户和处理 Webhook 的逻辑。
+- **API 接口**:
+  - `/api/billing/checkout`: 创建支付会话。在用户尝试购买已有的订阅时，会返回 `409 Conflict` 状态码和管理链接。
+  - `/api/billing/portal`: 创建一个指向 Creem 客户门户的 URL，用户可以在此管理自己的订阅。
+  - `/api/billing/webhooks/creem`: 接收来自 Creem 的 Webhook 事件，用于更新订阅状态、记录付款等。
+- **Webhook 处理**: `src/lib/billing/creem/webhook.ts`
+  - **安全**: 使用 `crypto.timingSafeEqual` 验证 Webhook 签名，防止伪造请求。
+  - **幂等性**: 在 `webhook_events` 表中记录已处理的事件 ID，防止同一事件被重复处理。
+  - **事务性**: 所有数据库操作都在一个事务中完成，确保数据一致性。
+- **支付流程图**:
+[![支付流程图](https://mermaid.ink/img/pako:eNp1U11rE0EU_SvDPCWQJqn5aDIPfTAFn8RAWwTJy3T3Nlm6u7POzoo1BKwgDbWBCLG0VoT2qSgmedCKBvXPZDbJv3B2txtqTZaF3Zl7zj1n7tzbxBrTARPswlMPbA02DFrn1KrZKHwcyoWhGQ61Bdp2gS_ar5gGqA91kexf-u3vk88DlKhyFbbrqErrkFzE2gT-DHjA8j905NGFPLtamJwDhG7iYOBiZX09EiVo8uqHPByhGn4AAlVNatdwjIwgChtJEVR9tLmFMtQxMjuGaSp3Ga0B2h7zREyJkEH6QJYE6lQAqtzAVNx1DWbPFQLUyi2FON82N--kvGV5-qcnzz8uws4dB4ckaHbYkf33svtWtoeRFvJ7g_HodHbx7W45Ir-yf-y3uxFoqcnHsNNgbA8lYgdpjVmOCQL05H-FiEmzT8fTwcHky2_Z7aTQtD-Uv96Nf74Zj66XUhIb99EWp7ZLNaGKlkT--Vf_ZDjpXakmmfYvZ6evJ0fX_suDJVf7z_EzDt23guK4ggrPxSlc54aOieAepLAF3KLBEjfDXsGiARbUMFG_OuxSzxRBX7QUTXXVE8asmMmZV29gsktNV608R1f3fTMD810Otg68wjxbYHKvEObApImfY5JbzaYLa9lsQb2lcj4XRPcxKZTS-XK5XCyXirl8sVhcbaXwi1A1my6tKQzohmD8YTR74Qi2_gLtEE8s?type=png)](https://mermaid.live/edit#pako:eNp1U11rE0EU_SvDPCWQJqn5aDIPfTAFn8RAWwTJy3T3Nlm6u7POzoo1BKwgDbWBCLG0VoT2qSgmedCKBvXPZDbJv3B2txtqTZaF3Zl7zj1n7tzbxBrTARPswlMPbA02DFrn1KrZKHwcyoWhGQ61Bdp2gS_ar5gGqA91kexf-u3vk88DlKhyFbbrqErrkFzE2gT-DHjA8j905NGFPLtamJwDhG7iYOBiZX09EiVo8uqHPByhGn4AAlVNatdwjIwgChtJEVR9tLmFMtQxMjuGaSp3Ga0B2h7zREyJkEH6QJYE6lQAqtzAVNx1DWbPFQLUyi2FON82N--kvGV5-qcnzz8uws4dB4ckaHbYkf33svtWtoeRFvJ7g_HodHbx7W45Ir-yf-y3uxFoqcnHsNNgbA8lYgdpjVmOCQL05H-FiEmzT8fTwcHky2_Z7aTQtD-Uv96Nf74Zj66XUhIb99EWp7ZLNaGKlkT--Vf_ZDjpXakmmfYvZ6evJ0fX_suDJVf7z_EzDt23guK4ggrPxSlc54aOieAepLAF3KLBEjfDXsGiARbUMFG_OuxSzxRBX7QUTXXVE8asmMmZV29gsktNV608R1f3fTMD810Otg68wjxbYHKvEObApImfY5JbzaYLa9lsQb2lcj4XRPcxKZTS-XK5XCyXirl8sVhcbaXwi1A1my6tKQzohmD8YTR74Qi2_gLtEE8s)
+  ```mermaid
+  sequenceDiagram
+      participant User
+      participant Client as 客户端 (Pricing Page)
+      participant Server as 服务器
+      participant Creem
+  
+      User->>Client: 点击 "Get Plan"
+      Client->>Server: POST /api/billing/checkout
+      Server->>Creem: Create Checkout Session
+      Creem-->>Server: checkoutUrl
+      Server-->>Client: 返回 checkoutUrl
+      Client->>User: 重定向到 Creem 支付页
+      User->>Creem: 完成支付
+      Creem-->>Server: Webhook (checkout.completed)
+      Server->>Server: 验证签名, 记录事件
+      Server->>Server: (DB Transaction) 更新用户订阅状态
+      User->>Client: 重定向到 /payment-status
+  ```
+### 4.4. 文件上传 (Cloudflare R2)
+
+系统支持两种上传模式，为不同场景提供最佳选择。所有上传规则集中在 `src/lib/config/upload.ts`。
+
+#### 4.4.1. 客户端预签名上传 (UI 推荐)
+
+这是通过 `FileUploader` 组件使用的默认方式，性能更高。
+
+**流程图**:
+
+[![签名上传](https://mermaid.ink/img/pako:eNqNU21rUzEY_Sshn1Zoe7u-rTcfBlIRBMXSrV_kfgm9aXfhvpneK2opqJtsa9c5RAdSqToUncO1A3Fit_lnmtz2X5g2W6nrBoYQkifnnJwnyVOFRUcnEMEKeeATu0huGrhMsaXZQDQXU88oGi62PVCoEDobvWWYpOCaDtYJBbgC2OEe3zgODjpBb63f-zlLWCL0oYTyd01W_8jefgU3crdngfn4CJQ1HV8vmZgSEZAgOY7sRBYXp89HYPh0kzf2Fd7Y5Y1Tvrs-cTANm2FNPA-_bQ06z8BccNRj7YbCPn1h3ZehMGCts2BznW03gpP9K_VkUgjk7i0tAwW7huKPNxWXkopRtoke8akJ5gadY370vP-r3j_5UMjfCUkxyZ6SkT4Gvw_6vVP2aksmwl6s8jdd3jy8RMrHEZC6w7214PsZ22kCoS1R-XhkSnfw5zVrta-AnYvN3My1hEv5jzzkCsvi5lo_-PZnmaC0HZo28q_6OWxjh9Xf_8czObacZx3LNYlHxLO0B91VGIZlaugQedQnYWgRauHRElZHmhr0VohFNIjEVCcl7JueBjW7Jmjim913HOuCSR2_vAJRCZsVsfJdHXsX1TCJUmILL1nHtz2I4upYA6IqfARRYj4WTS3EYinRM2oyEU-F4WOIUploUlXVtJpJJ5LpdHq-FoZPxqfGopkFgSG64Tn0rqzCcTHW_gKzZHRj?type=png)](https://mermaid.live/edit#pako:eNqNU21rUzEY_Sshn1Zoe7u-rTcfBlIRBMXSrV_kfgm9aXfhvpneK2opqJtsa9c5RAdSqToUncO1A3Fit_lnmtz2X5g2W6nrBoYQkifnnJwnyVOFRUcnEMEKeeATu0huGrhMsaXZQDQXU88oGi62PVCoEDobvWWYpOCaDtYJBbgC2OEe3zgODjpBb63f-zlLWCL0oYTyd01W_8jefgU3crdngfn4CJQ1HV8vmZgSEZAgOY7sRBYXp89HYPh0kzf2Fd7Y5Y1Tvrs-cTANm2FNPA-_bQ06z8BccNRj7YbCPn1h3ZehMGCts2BznW03gpP9K_VkUgjk7i0tAwW7huKPNxWXkopRtoke8akJ5gadY370vP-r3j_5UMjfCUkxyZ6SkT4Gvw_6vVP2aksmwl6s8jdd3jy8RMrHEZC6w7214PsZ22kCoS1R-XhkSnfw5zVrta-AnYvN3My1hEv5jzzkCsvi5lo_-PZnmaC0HZo28q_6OWxjh9Xf_8czObacZx3LNYlHxLO0B91VGIZlaugQedQnYWgRauHRElZHmhr0VohFNIjEVCcl7JueBjW7Jmjim913HOuCSR2_vAJRCZsVsfJdHXsX1TCJUmILL1nHtz2I4upYA6IqfARRYj4WTS3EYinRM2oyEU-F4WOIUploUlXVtJpJJ5LpdHq-FoZPxqfGopkFgSG64Tn0rqzCcTHW_gKzZHRj)
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant FileUploader as 客户端组件
+    participant Server as 服务器 API
+    participant R2 as Cloudflare R2
+    
+    User->>FileUploader: 选择/拖拽文件
+    FileUploader->>FileUploader: 客户端验证 (类型/大小), 图片压缩
+    FileUploader->>Server: POST /api/upload/presigned-url (请求上传URL)
+    Server->>Server: 验证身份和文件元数据
+    Server->>R2: 请求预签名 URL
+    R2-->>Server: 返回预签名 URL
+    Server-->>FileUploader: 返回预签名 URL
+    FileUploader->>R2: PUT (直接上传文件)
+    R2-->>FileUploader: 上传成功
+    FileUploader->>FileUploader: onUploadComplete 回调
+```
+
+#### 4.4.2. 服务器端代理上传
+
+此模式允许在存储前进行服务器端处理。
+
+**流程图**:
+
+[![服务器端上传](https://mermaid.ink/img/pako:eNp1ks9LIzEUx_-V4Z1caDu1P8ZODoLUyx5kpe5J5hI6aR2YmcymM4tr6UEQthTFZauCWvyxp2WV2os_sLr-M02c_S8206BUxRCSvJfP-z7y8ppQpTYBBA3yJSJ-lcw7uM6wZ_maHAFmoVN1AuyHWtl1iNxwQ-P9X6J9_Xh2occbB6J3_pZdIuwrYQkrelu8c8r3f2tzix_fgpVcApVdGtk1FzMiHQpSq8qZnp1Vgkhb_LT0WdNx4OhR4FJs643xRVpZ2pQXuaGTJNBrlHlpG4f4g5JSChNS__5sxhfr8e3ZaHjPf26Kve-j4dUrtpJDmrhc53fbo7uT-G93Eqrk0hNqo5uORET7B-8cv5Mw7g_4_S5vD8TuQGz1-W33BShJ9VxJPuzwwyMl-TjsiqMepKDOHBtQyCKSAo8wDycmNBMNC8IV4hELkDzapIZlFSyw_JYMk2VeptR7imQ0qq8AqmG3Ia0okBV6-vJnLyO-TViZRn4IKJ8fawBqwqq0prOZ4kw2W5SzZBbyuWIKvgEqljIF0zQNs2TkC4ZhTLdSsDbOms2UZiRDbCekbEG12rjjWv8BwdH1ng?type=png)](https://mermaid.live/edit#pako:eNp1ks9LIzEUx_-V4Z1caDu1P8ZODoLUyx5kpe5J5hI6aR2YmcymM4tr6UEQthTFZauCWvyxp2WV2os_sLr-M02c_S8206BUxRCSvJfP-z7y8ppQpTYBBA3yJSJ-lcw7uM6wZ_maHAFmoVN1AuyHWtl1iNxwQ-P9X6J9_Xh2occbB6J3_pZdIuwrYQkrelu8c8r3f2tzix_fgpVcApVdGtk1FzMiHQpSq8qZnp1Vgkhb_LT0WdNx4OhR4FJs643xRVpZ2pQXuaGTJNBrlHlpG4f4g5JSChNS__5sxhfr8e3ZaHjPf26Kve-j4dUrtpJDmrhc53fbo7uT-G93Eqrk0hNqo5uORET7B-8cv5Mw7g_4_S5vD8TuQGz1-W33BShJ9VxJPuzwwyMl-TjsiqMepKDOHBtQyCKSAo8wDycmNBMNC8IV4hELkDzapIZlFSyw_JYMk2VeptR7imQ0qq8AqmG3Ia0okBV6-vJnLyO-TViZRn4IKJ8fawBqwqq0prOZ4kw2W5SzZBbyuWIKvgEqljIF0zQNs2TkC4ZhTLdSsDbOms2UZiRDbCekbEG12rjjWv8BwdH1ng)
+
+```mermaid
+sequenceDiagram
+    participant Client as 客户端/脚本
+    participant Server as 服务器 API
+    participant R2 as Cloudflare R2
+    
+    Client->>Server: POST /api/upload/server-upload (multipart/form-data)
+    Server->>Server: 验证身份和文件
+    Server->>R2: 流式传输文件
+    R2-->>Server: 上传成功
+    Server->>Server: 记录到数据库
+    Server-->>Client: 返回上传结果
+```
+
+### 4.5. 博客与内容管理 (Keystatic)
+
+- **CMS**: 使用 `Keystatic` 作为 Git-based CMS，所有内容存储在 `content/` 目录下的 Markdown 和 JSON 文件中。
+- **管理界面**: 在开发环境中，通过访问 `/keystatic` 进入管理后台。为了安全，此界面在生产环境中默认禁用。
+- **内容读取**:
+  - `@keystatic/core/reader` 用于在服务器端安全地读取 `content/` 目录下的内容。
+  - `src/app/(pages)/blog/page.tsx`: 博客列表页，读取所有文章。
+  - `src/app/(pages)/blog/[slug]/page.tsx`: 博客详情页，读取单篇文章，并使用 `@markdoc/markdoc` 解析 Markdoc 内容。
+
+### 4.6. 管理后台 (Admin Dashboard)
+
+提供了一套强大的、可扩展的数据管理系统。
+
+- **通用表格管理器**: `src/components/admin/generic-table/generic-table-manager.tsx` 是一个核心组件，可以为任何在 `src/lib/config/admin-tables.ts` 中声明的表自动生成一个完整的 CRUD 管理界面。
+- **配置驱动**:
+  1. 在 `src/lib/config/admin-tables.ts` 中添加 Drizzle 表对象。
+  1. 在 `src/app/dashboard/_components/app-sidebar.tsx` 的 `genericTableNavigation` 中添加导航链接。
+  1. 即可在 `/dashboard/admin/tables/[tableName]` 访问新的管理页面。
+- **Server Actions**: 所有 CRUD 操作都通过 `src/lib/actions/admin-generic.ts` 中的类型安全的 Server Actions 完成，无需编写额外的 API 路由。
+- **Schema 解析**: `src/lib/admin/schema-generator.ts` 动态解析 Drizzle schema，自动生成表单和验证规则 (Zod)，极大地简化了后台开发。
+
+---
+
+## 5. 二次开发指南
+
+### 5.1. 扩展点识别
+
+- **添加新页面**: 在 `src/app/(pages)` 或 `src/app/(dashboard)` 中创建新路由。
+- **添加新后台管理表**:
+  1. 在 `src/database/schema.ts` 中定义新表。
+  1. 在 `src/lib/config/admin-tables.ts` 的 `enabledTablesMap` 中注册该表。
+  1. 在 `src/app/dashboard/_components/app-sidebar.tsx` 中添加导航链接。
+- **添加新支付提供商**:
+  1. 在 `src/lib/billing/` 下创建新的提供商实现文件，需遵循 `src/lib/billing/provider.ts` 的 `PaymentProvider` 接口。
+  1. 在 `src/lib/billing/index.ts` 中修改 `PAYMENT_PROVIDER` 逻辑以切换到新提供商。
+- **自定义邮件模板**: 在 `src/emails/` 目录下创建或修改 React Email 组件。
+- **自定义 UI 组件**: 在 `src/components/ui/` 中修改 `shadcn/ui` 组件或添加新组件。
+
+### 5.2. API 参考
+
+{% table %}
+- 路由
+- 方法
+- 描述
+---
+- `/api/auth/[...all]`
+- GET, POST
+- 处理所有 `better-auth` 认证请求。
+---
+- `/api/billing/checkout`
+- POST
+- 创建支付会话。
+---
+- `/api/billing/portal`
+- GET
+- 获取客户门户 URL。
+---
+- `/api/billing/webhooks/creem`
+- POST
+- 接收 Creem Webhook 事件。
+---
+- `/api/upload/presigned-url`
+- POST
+- 为客户端直传获取预签名 URL。
+---
+- `/api/upload/server-upload`
+- POST
+- 服务器端代理上传文件。
+---
+- `/api/payment-status`
+- GET
+- 查询支付状态。
+---
+- `/api/keystatic/[...params]`
+- GET, POST
+- Keystatic CMS 的 API 接口 (仅开发环境)。
+{% /table %}
+
+### 5.3. Hook 和事件
+
+- **`useSidebar()`**: 在仪表盘组件中用于控制侧边栏的展开/折叠状态。
+- **`useIsMobile()`**: 客户端 hook，用于判断当前设备是否为移动端尺寸，可安全用于响应式组件，避免 SSR 水合错误。
+- **`useAdminTable()`**: 核心 hook，用于驱动管理后台的表格组件。它封装了数据获取、分页、搜索、过滤和加载状态管理的逻辑。
+- **`onUploadComplete`**: `FileUploader` 组件的回调 prop，在文件成功上传后触发。
+
+---
+
+## 6. 开发者工具链
+
+### 6.1. 测试策略
+
+- **框架**: 使用 `Jest` 和 `React Testing Library`。
+- **配置文件**: `jest.config.ts`, `jest.setup.ts`。
+- **示例**: 项目中包含了对 UI 组件 (`logo.test.tsx`)、布局 (`layout.test.tsx`)、Schema (`auth.schema.test.ts`) 和核心逻辑 (`src/database/index.test.ts`) 的单元测试示例。
+- **运行测试**: `pnpm test`
+
+### 6.2. 代码质量保障
+
+- **ESLint**: 配置在 `.eslintrc.json` 中，遵循 `eslint-config-next` 最佳实践。
+- **Prettier**: 与 ESLint 集成，并使用 `prettier-plugin-tailwindcss` 自动排序 Tailwind CSS 类。
+- **运行检查**: `pnpm lint` 和 `pnpm prettier:check`。
+- **自动格式化**: `pnpm prettier:format`。
+
+### 6.3. 包体积分析
+
+- 使用 `@next/bundle-analyzer` 分析生产构建的包体积。
+- 运行 `pnpm analyze` 来生成客户端和服务端的分析报告。
+- 这对于识别和优化大型依赖项至关重要。
+
+---
+
+## 7. 实际应用场景
+
+### 7.1. 典型使用场景
+
+- **企业级 SaaS**: 作为新项目的起点，集成了企业所需的用户管理、角色权限、支付和审计日志（通过 webhook events）等基础。
+- **AI 应用**: 快速搭建需要用户登录和按用量/订阅付费的 AI 工具。文件上传功能可用于处理用户数据。
+- **内容付费平台**: 博客和内容管理系统结合支付功能，可轻松扩展为付费内容平台。
+- **内部工具**: 利用其强大的管理后台和数据管理能力，快速搭建公司内部的数据管理工具或仪表盘。
+
+---
+
+## 8. 实用工具
+
+### 8.1. CLI 命令
+
+{% table %}
+- 脚本
+- 描述
+---
+- `pnpm dev`
+- 启动开发服务器（Turbo 模式）
+---
+- `pnpm build`
+- 构建生产应用
+---
+- `pnpm start`
+- 启动生产服务器
+---
+- `pnpm lint`
+- 运行 ESLint 检查
+---
+- `pnpm test`
+- 运行 Jest 单元测试
+---
+- `pnpm prettier:format`
+- 格式化所有代码
+---
+- `pnpm db:generate`
+- 为开发环境生成迁移文件
+---
+- `pnpm db:generate:prod`
+- 为生产环境生成迁移文件
+---
+- `pnpm db:migrate:dev`
+- 应用开发迁移
+---
+- `pnpm db:migrate:prod`
+- 应用生产迁移
+---
+- `pnpm db:push`
+- (仅开发) 将 Schema 推送到数据库
+---
+- `pnpm analyze`
+- 构建并分析包体积
+---
+- `pnpm set:admin`
+- (本地) 提升用户为超级管理员
+---
+- `pnpm set:admin:prod`
+- (生产) 提升用户为超级管理员
+{% /table %}
+
+### 8.2. 配置选项
+
+所有必需和可选的环境变量都在 `README.md` 的环境配置部分有详细说明。请务必完整填写 `.env` 文件。
+
+### 8.3. 工具函数
+
+`src/lib/utils.ts` 中提供了一些实用的工具函数：
+
+- `cn(...inputs)`: 安全地合并 Tailwind CSS 类名，并解决冲突。
+- `formatCurrency(amount, currency)`: 将以分为单位的金额格式化为货币字符串。
+- `calculateReadingTime(text)`: 根据文本内容计算预计阅读时间。
+- `renderMarkdoc(node)`: 将 Markdoc AST 节点转换为纯文本字符串，用于生成摘要。
+
+---
+
+## 9. 版本管理与升级
+
+### 9.1. 依赖管理
+
+- **包管理器**: 项目使用 `pnpm`，请确保您已全局安装。`pnpm` 利用其内容寻址存储来节省磁盘空间并加快安装速度。
+- **版本锁定**: `pnpm-lock.yaml` 文件锁定了所有依赖项及其子依赖项的精确版本，确保了团队成员和不同部署环境之间的一致性。
+- **依赖更新**: 推荐使用 `pnpm up --latest` 来安全地更新依赖项，并关注主要版本的变更日志。
+
+---
+
+## 10. 最佳实践
+
+### 10.1. 性能优化
+
+- **代码分割**: 对大型组件使用 `next/dynamic` 进行动态导入，如 `src/app/dashboard/settings/_components/settings.tsx` 中对每个设置页面的动态导入。
+- **图片优化**: 优先使用 Next.js 的 `<Image>` 组件，它会自动进行图片大小优化、格式转换（如 WebP）和懒加载。
+- **服务器组件**: 尽可能使用 React Server Components (RSC) 来获取数据和执行逻辑，减少发送到客户端的 JavaScript 代码量。
+- **数据库查询**: 避免在循环中执行数据库查询。利用 Drizzle ORM 的 join 和批量操作能力来减少数据库往返次数。
+
+### 10.2. 安全考虑
+
+- **环境变量**: **绝不**将 `.env` 文件提交到 Git 仓库。使用 Vercel 等平台的秘密管理工具来存储生产环境变量。
+- **路由保护**: `proxy.ts` 是第一道防线，但**必须**在 Server Actions 和 API 路由中使用 `requireAuth`、`requireAdmin` 等函数进行后端权限验证。
+- **SQL 注入**: 使用 Drizzle ORM 可以有效防止 SQL 注入攻击，因为它会自动参数化查询。
+- **XSS**: Next.js 和 React 默认会对 JSX 内容进行转义，防止跨站脚本攻击。处理用户生成的内容时，请使用成熟的库（如 `DOMPurify`）进行清理。
+- **Webhook 安全**: `src/lib/billing/creem/webhook.ts` 中的签名验证是确保 Webhook 请求来源可信的关键。
+
+### 10.3. 部署指南
+
+推荐使用 **Vercel** 进行部署。
+
+1. 将您的代码推送到 GitHub/GitLab/Bitbucket 仓库。
+1. 在 Vercel 中导入该 Git 仓库。
+1. Vercel 会自动检测到 Next.js 项目并配置好构建设置。
+1. 在 Vercel 项目的 `Settings > Environment Variables` 中，添加您在 `.env` 文件中定义的所有环境变量。
+1. 配置生产数据库迁移流程到您的 CI/CD 管道中，确保在每次部署成功后运行 `pnpm db:migrate:prod`。
+1. 每次推送到主分支时，Vercel 将自动构建和部署您的应用。
+
+---
+
+## 11. 社区与生态
+
+### 11.1. 社区资源
+
+- **官方仓库**: [UllrAI SaaS Starter on GitHub](https://github.com/ullrai/saas-starter)
+- **问题与讨论**: 使用 GitHub Issues 提交 Bug 报告和功能请求。
+- **主要依赖文档**:
+  - [Next.js](https://nextjs.org/docs)
+  - [Drizzle ORM](https://orm.drizzle.team/docs)
+  - [Better-Auth](https://better-auth.com/docs)
+  - [Creem](https://creem.io/docs)
+  - [shadcn/ui](https://ui.shadcn.com/docs)
+  - [Keystatic](https://keystatic.com/docs)
+
+### 11.2. 贡献指南
+
+我们欢迎社区的贡献！
+
+1. Fork 本项目仓库。
+1. 创建一个新的分支 (`git checkout -b feature/your-feature-name`)。
+1. 进行修改并提交 (`git commit -m 'feat: Add some feature'`)。
+1. 将您的分支推送到 Fork 的仓库 (`git push origin feature/your-feature-name`)。
+1. 创建一个 Pull Request。
+
+---
+
+## 12. 问题解决
+
+### 12.1. 常见问题 FAQ
+
+**Q: 为什么我无法访问 `/keystatic` 管理后台？**
+
+A: Keystatic 管理界面默认只在开发环境 (`NODE_ENV=development`) 中启用，以确保生产环境的安全。您需要在本地运行 `pnpm dev` 来访问它。
+
+**Q: 文件上传失败，提示 CORS 错误。**
+
+A: 这是最常见的文件上传问题。请确保您已在 Cloudflare R2 存储桶的设置中正确配置了 CORS 策略，允许来自您部署域名和 `http://localhost:3000` 的 `PUT` 和 `GET` 请求。
+
+**Q: 如何设置第一个管理员账户？**
+
+A: 系统不会自动设置管理员。您需要：
+
+1. 先用您想设为管理员的邮箱在应用中正常注册一个账户。
+1. 在您的项目根目录运行 `pnpm set:admin --email=your-email@example.com` (本地) 或 `pnpm set:admin:prod --email=your-email@example.com` (生产)。
+
+**Q: 社交登录不工作怎么办？**
+
+A: 请检查以下几点：
+
+1. 确保您在 `.env` 文件中正确填写了对应社交平台的 `CLIENT_ID` 和 `CLIENT_SECRET`。
+1. 确保在社交平台（如 Google Cloud Console, GitHub Developer Settings）的 OAuth 应用配置中，已将 `http://localhost:3000/api/auth/[provider]/callback` 和您生产域名的回调 URL 添加到授权回调 URL 列表中。

@@ -1,0 +1,106 @@
+/* Markdoc content styling */
+.markdoc-content {
+  @apply text-foreground;
+}
+
+.markdoc-content h1 {
+  @apply mt-8 mb-4 text-3xl font-bold tracking-tight first:mt-0;
+}
+
+.markdoc-content h2 {
+  @apply mt-8 mb-4 text-2xl font-semibold tracking-tight first:mt-0;
+}
+
+.markdoc-content h3 {
+  @apply mt-6 mb-3 text-xl font-semibold tracking-tight first:mt-0;
+}
+
+.markdoc-content h4 {
+  @apply mt-6 mb-3 text-lg font-semibold tracking-tight first:mt-0;
+}
+
+.markdoc-content h5 {
+  @apply mt-4 mb-2 text-base font-semibold tracking-tight first:mt-0;
+}
+
+.markdoc-content h6 {
+  @apply mt-4 mb-2 text-sm font-semibold tracking-tight first:mt-0;
+}
+
+.markdoc-content p {
+  @apply mb-4 text-base leading-7;
+}
+
+.markdoc-content ul {
+  @apply mb-4 list-inside list-disc space-y-2;
+}
+
+.markdoc-content ol {
+  @apply mb-4 list-inside list-decimal space-y-2;
+}
+
+.markdoc-content li {
+  @apply text-base leading-7;
+}
+
+.markdoc-content li > ul,
+.markdoc-content li > ol {
+  @apply mt-2 ml-4;
+}
+
+.markdoc-content blockquote {
+  @apply border-border text-muted-foreground bg-muted/30 mb-4 rounded-r border-l-4 py-2 pl-4 italic;
+}
+
+.markdoc-content code {
+  @apply bg-muted rounded px-1.5 py-0.5 font-mono text-sm;
+}
+
+.markdoc-content pre {
+  @apply bg-muted mb-4 overflow-x-auto rounded-lg p-6;
+}
+
+.markdoc-content pre code {
+  @apply bg-transparent p-0 text-sm;
+}
+
+.markdoc-content a {
+  @apply text-primary hover:text-primary/80 underline underline-offset-4 transition-colors;
+}
+
+.markdoc-content img {
+  @apply mb-4 h-auto max-w-full rounded-lg;
+}
+
+.markdoc-content table {
+  @apply border-border mb-4 w-full border-collapse border;
+}
+
+.markdoc-content th {
+  @apply border-border bg-muted border px-4 py-2 text-left font-semibold;
+}
+
+.markdoc-content td {
+  @apply border-border border px-4 py-2;
+}
+
+.markdoc-content hr {
+  @apply border-border my-8 border-0 border-t;
+}
+
+.markdoc-content strong {
+  @apply font-semibold;
+}
+
+.markdoc-content em {
+  @apply italic;
+}
+
+/* Code syntax highlighting */
+.markdoc-content pre[class*="language-"] {
+  @apply bg-muted;
+}
+
+.markdoc-content code[class*="language-"] {
+  @apply text-foreground;
+}
