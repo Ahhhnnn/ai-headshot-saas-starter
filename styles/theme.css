@@ -35,6 +35,10 @@
   --destructive: oklch(0.6 0.18 25);
   --destructive-foreground: oklch(0.98 0 0);
 
+  /* Success: Green for positive states */
+  --success: oklch(0.55 0.15 145);
+  --success-foreground: oklch(0.99 0 0);
+
   --border: oklch(0.92 0.01 240);
   /* Subtle division */
   --input: oklch(0.92 0.01 240);
@@ -131,6 +135,10 @@
   --destructive: oklch(0.6 0.18 25);
   --destructive-foreground: oklch(0.98 0 0);
 
+  /* Success: Green for positive states (darker/luminous in dark mode) */
+  --success: oklch(0.7 0.14 145);
+  --success-foreground: oklch(0.12 0.03 260);
+
   --border: oklch(0.22 0.04 260);
   --input: oklch(0.22 0.04 260);
   --ring: oklch(0.6 0.16 265);
@@ -179,6 +187,8 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);

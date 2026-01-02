@@ -249,28 +249,14 @@ export function Header() {
   const { data: session, isPending } = useSession();
   const navigationItems: NavItem[] = [
     {
+      id: "nav-samples",
+      title: <>Samples</>,
+      href: "/#samples",
+    },
+    {
       id: "nav-features",
       title: <>Features</>,
-      items: [
-        {
-          id: "nav-authentication",
-          title: <>Authentication</>,
-          href: "/login",
-          description: <>Secure user authentication with magic links</>,
-        },
-        {
-          id: "nav-billing",
-          title: <>Billing</>,
-          href: "/dashboard/settings?page=billing",
-          description: <>Subscription management and payments</>,
-        },
-        {
-          id: "nav-dashboard",
-          title: <>Dashboard</>,
-          href: "/dashboard",
-          description: <>User dashboard and settings</>,
-        },
-      ],
+      href: "/#features",
     },
     {
       id: "nav-pricing",
@@ -278,27 +264,27 @@ export function Header() {
       href: "/pricing",
     },
     {
-      id: "nav-about",
-      title: <>About</>,
-      href: "/about",
+      id: "nav-faq",
+      title: <>FAQ</>,
+      href: "/#faq",
     },
     {
       id: "nav-blog",
       title: <>Blog</>,
       href: "/blog",
     },
-    {
-      id: "nav-contact",
-      title: <>Contact</>,
-      href: "/contact",
-    },
   ];
 
   const mobileNavItems: NavItem[] = [
     {
+      id: "mobile-samples",
+      title: <>Samples</>,
+      href: "/#samples",
+    },
+    {
       id: "mobile-features",
       title: <>Features</>,
-      href: "/features",
+      href: "/#features",
     },
     {
       id: "mobile-pricing",
@@ -306,19 +292,14 @@ export function Header() {
       href: "/pricing",
     },
     {
-      id: "mobile-about",
-      title: <>About</>,
-      href: "/about",
+      id: "mobile-faq",
+      title: <>FAQ</>,
+      href: "/#faq",
     },
     {
-      id: "mobile-blog",
+      id: "nav-blog",
       title: <>Blog</>,
       href: "/blog",
-    },
-    {
-      id: "mobile-contact",
-      title: <>Contact</>,
-      href: "/contact",
     },
   ];
 

@@ -183,8 +183,7 @@ export function Footer() {
               </div>
 
               <p className="text-muted-foreground mb-6 max-w-md text-sm">
-                Complete UllrAI Micro SaaS starter with authentication,
-                payments, database, and deployment.
+                Professional AI-generated headshots at 1/10th the cost of a photo studio. Upload a few selfies and get 50+ stunning professional headshots.
               </p>
 
               {/* Social links */}
@@ -241,7 +240,7 @@ export function Footer() {
 
             <div className="text-muted-foreground flex items-center gap-2 text-sm">
               <Heart className="h-4 w-4 text-red-500" />
-              <span>by UllrAI, for developers</span>
+              <span>Made with care for professionals</span>
             </div>
           </div>
         </div>

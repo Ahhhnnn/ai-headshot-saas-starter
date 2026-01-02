@@ -1,0 +1,3180 @@
+{
+  "entries": {
+    "de0666a65ac7": {
+      "type": "content",
+      "sourceText": "We value your privacy",
+      "context": {
+        "componentName": "CookieConsent",
+        "filePath": "components/cookie-consent.tsx"
+      },
+      "hash": "de0666a65ac7",
+      "location": {
+        "filePath": "components/cookie-consent.tsx",
+        "line": 35,
+        "column": 10
+      }
+    },
+    "2d2c3a9b00dc": {
+      "type": "content",
+      "sourceText": "We use cookies to enhance your browsing experience, serve personalized items or content, and analyze our traffic. By clicking \"Accept All\", you consent to our use of cookies.",
+      "context": {
+        "componentName": "CookieConsent",
+        "filePath": "components/cookie-consent.tsx"
+      },
+      "hash": "2d2c3a9b00dc",
+      "location": {
+        "filePath": "components/cookie-consent.tsx",
+        "line": 36,
+        "column": 10
+      }
+    },
+    "38e7b43632b2": {
+      "type": "content",
+      "sourceText": "Essential Only",
+      "context": {
+        "componentName": "CookieConsent",
+        "filePath": "components/cookie-consent.tsx"
+      },
+      "hash": "38e7b43632b2",
+      "location": {
+        "filePath": "components/cookie-consent.tsx",
+        "line": 43,
+        "column": 10
+      }
+    },
+    "28aa8b598746": {
+      "type": "content",
+      "sourceText": "Accept All",
+      "context": {
+        "componentName": "CookieConsent",
+        "filePath": "components/cookie-consent.tsx"
+      },
+      "hash": "28aa8b598746",
+      "location": {
+        "filePath": "components/cookie-consent.tsx",
+        "line": 49,
+        "column": 10
+      }
+    },
+    "94ae831e3a2d": {
+      "type": "attribute",
+      "sourceText": "Close cookie notice",
+      "context": {
+        "attributeName": "aria-label",
+        "componentName": "CookieConsent",
+        "filePath": "components/cookie-consent.tsx"
+      },
+      "hash": "94ae831e3a2d",
+      "location": {
+        "filePath": "components/cookie-consent.tsx",
+        "line": 55,
+        "column": 10
+      }
+    },
+    "b0b4488a5d51": {
+      "type": "content",
+      "sourceText": "Ready to upgrade your professional image?",
+      "context": {
+        "componentName": "CallToAction",
+        "filePath": "components/homepage/call-to-action.tsx"
+      },
+      "hash": "b0b4488a5d51",
+      "location": {
+        "filePath": "components/homepage/call-to-action.tsx",
+        "line": 19,
+        "column": 8
+      }
+    },
+    "8a445d5eac15": {
+      "type": "content",
+      "sourceText": "Join 5,000+ professionals who have already transformed their online presence with HeadshotPro AI.",
+      "context": {
+        "componentName": "CallToAction",
+        "filePath": "components/homepage/call-to-action.tsx"
+      },
+      "hash": "8a445d5eac15",
+      "location": {
+        "filePath": "components/homepage/call-to-action.tsx",
+        "line": 22,
+        "column": 8
+      }
+    },
+    "9b7accddab81": {
+      "type": "content",
+      "sourceText": "Get Started Now",
+      "context": {
+        "componentName": "CallToAction",
+        "filePath": "components/homepage/call-to-action.tsx"
+      },
+      "hash": "9b7accddab81",
+      "location": {
+        "filePath": "components/homepage/call-to-action.tsx",
+        "line": 26,
+        "column": 10
+      }
+    },
+    "ea31b62a8f64": {
+      "type": "content",
+      "sourceText": "Simple, transparent pricing",
+      "context": {
+        "componentName": "LandingPricing",
+        "filePath": "components/homepage/landing-pricing.tsx"
+      },
+      "hash": "ea31b62a8f64",
+      "location": {
+        "filePath": "components/homepage/landing-pricing.tsx",
+        "line": 56,
+        "column": 10
+      }
+    },
+    "c4ca1ac9eab5": {
+      "type": "content",
+      "sourceText": "Choose the plan that fits your needs. All plans include a satisfaction guarantee.",
+      "context": {
+        "componentName": "LandingPricing",
+        "filePath": "components/homepage/landing-pricing.tsx"
+      },
+      "hash": "c4ca1ac9eab5",
+      "location": {
+        "filePath": "components/homepage/landing-pricing.tsx",
+        "line": 59,
+        "column": 10
+      }
+    },
+    "cd921c6a842f": {
+      "type": "content",
+      "sourceText": "Why choose HeadshotPro AI?",
+      "context": {
+        "componentName": "Features",
+        "filePath": "components/homepage/features.tsx"
+      },
+      "hash": "cd921c6a842f",
+      "location": {
+        "filePath": "components/homepage/features.tsx",
+        "line": 29,
+        "column": 10
+      }
+    },
+    "c0717ba49745": {
+      "type": "content",
+      "sourceText": "Professional results without the professional price tag or time commitment.",
+      "context": {
+        "componentName": "Features",
+        "filePath": "components/homepage/features.tsx"
+      },
+      "hash": "c0717ba49745",
+      "location": {
+        "filePath": "components/homepage/features.tsx",
+        "line": 32,
+        "column": 10
+      }
+    },
+    "d5406e61d01d": {
+      "type": "content",
+      "sourceText": "Select language",
+      "context": {
+        "componentName": "LocaleSwitcher",
+        "filePath": "components/locale-switcher.tsx"
+      },
+      "hash": "d5406e61d01d",
+      "location": {
+        "filePath": "components/locale-switcher.tsx",
+        "line": 101,
+        "column": 10
+      }
+    },
+    "33911e975b6d": {
+      "type": "content",
+      "sourceText": "Language",
+      "context": {
+        "componentName": "LocaleSwitcher",
+        "filePath": "components/locale-switcher.tsx"
+      },
+      "hash": "33911e975b6d",
+      "location": {
+        "filePath": "components/locale-switcher.tsx",
+        "line": 109,
+        "column": 8
+      }
+    },
+    "e7394299196b": {
+      "type": "content",
+      "sourceText": "Professional AI-generated headshots at 1/10th the cost of a photo studio. Upload a few selfies and get 50+ stunning professional headshots.",
+      "context": {
+        "componentName": "Footer",
+        "filePath": "components/homepage/footer.tsx"
+      },
+      "hash": "e7394299196b",
+      "location": {
+        "filePath": "components/homepage/footer.tsx",
+        "line": 185,
+        "column": 14
+      }
+    },
+    "a5a8fd938f3c": {
+      "type": "content",
+      "sourceText": "© {currentYear}{COMPANY_NAME}. All rights reserved.",
+      "context": {
+        "componentName": "Footer",
+        "filePath": "components/homepage/footer.tsx"
+      },
+      "hash": "a5a8fd938f3c",
+      "location": {
+        "filePath": "components/homepage/footer.tsx",
+        "line": 236,
+        "column": 14
+      }
+    },
+    "ea68b353c79d": {
+      "type": "content",
+      "sourceText": "Made with care for professionals",
+      "context": {
+        "componentName": "Footer",
+        "filePath": "components/homepage/footer.tsx"
+      },
+      "hash": "ea68b353c79d",
+      "location": {
+        "filePath": "components/homepage/footer.tsx",
+        "line": 243,
+        "column": 14
+      }
+    },
+    "4487bd795e41": {
+      "type": "content",
+      "sourceText": "Dashboard",
+      "context": {
+        "componentName": "AuthButtons",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "4487bd795e41",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 141,
+        "column": 12
+      }
+    },
+    "6639ec6351f1": {
+      "type": "content",
+      "sourceText": "Sign In",
+      "context": {
+        "componentName": "AuthButtons",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "6639ec6351f1",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 151,
+        "column": 28
+      }
+    },
+    "3dd52b8e342a": {
+      "type": "content",
+      "sourceText": "Get Started",
+      "context": {
+        "componentName": "AuthButtons",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "3dd52b8e342a",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 154,
+        "column": 29
+      }
+    },
+    "c63a3265f194": {
+      "type": "content",
+      "sourceText": "Dashboard",
+      "context": {
+        "componentName": "MobileAuthButtons",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "c63a3265f194",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 185,
+        "column": 12
+      }
+    },
+    "516b3bff6996": {
+      "type": "content",
+      "sourceText": "Sign In",
+      "context": {
+        "componentName": "MobileAuthButtons",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "516b3bff6996",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 195,
+        "column": 28
+      }
+    },
+    "40d88743ebcb": {
+      "type": "content",
+      "sourceText": "Get Started",
+      "context": {
+        "componentName": "MobileAuthButtons",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "40d88743ebcb",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 198,
+        "column": 29
+      }
+    },
+    "2924b40503f8": {
+      "type": "content",
+      "sourceText": "Navigation Menu",
+      "context": {
+        "componentName": "MobileNavigation",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "2924b40503f8",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 218,
+        "column": 40
+      }
+    },
+    "f74e229ee0ff": {
+      "type": "content",
+      "sourceText": "Samples",
+      "context": {
+        "componentName": "Header",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "f74e229ee0ff",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 281,
+        "column": 13
+      }
+    },
+    "cfdb02905783": {
+      "type": "content",
+      "sourceText": "Features",
+      "context": {
+        "componentName": "Header",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "cfdb02905783",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 286,
+        "column": 13
+      }
+    },
+    "636e74a41e80": {
+      "type": "content",
+      "sourceText": "Pricing",
+      "context": {
+        "componentName": "Header",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "636e74a41e80",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 291,
+        "column": 13
+      }
+    },
+    "e984b572fd88": {
+      "type": "content",
+      "sourceText": "FAQ",
+      "context": {
+        "componentName": "Header",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "e984b572fd88",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 296,
+        "column": 13
+      }
+    },
+    "3d3e4c83a046": {
+      "type": "content",
+      "sourceText": "Blog",
+      "context": {
+        "componentName": "Header",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "3d3e4c83a046",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 301,
+        "column": 13
+      }
+    },
+    "56980d19e13c": {
+      "type": "content",
+      "sourceText": "Toggle menu",
+      "context": {
+        "componentName": "Header",
+        "filePath": "components/homepage/header.tsx"
+      },
+      "hash": "56980d19e13c",
+      "location": {
+        "filePath": "components/homepage/header.tsx",
+        "line": 378,
+        "column": 42
+      }
+    },
+    "0733823bfef1": {
+      "type": "content",
+      "sourceText": "Error 404",
+      "context": {
+        "componentName": "NotFound",
+        "filePath": "app/not-found.tsx"
+      },
+      "hash": "0733823bfef1",
+      "location": {
+        "filePath": "app/not-found.tsx",
+        "line": 15,
+        "column": 10
+      }
+    },
+    "20cd73fb1bec": {
+      "type": "content",
+      "sourceText": "Page Not Found",
+      "context": {
+        "componentName": "NotFound",
+        "filePath": "app/not-found.tsx"
+      },
+      "hash": "20cd73fb1bec",
+      "location": {
+        "filePath": "app/not-found.tsx",
+        "line": 30,
+        "column": 10
+      }
+    },
+    "b1c2f0f90a10": {
+      "type": "content",
+      "sourceText": "The page you're looking for doesn't exist or has been moved. Let's get you back on track.",
+      "context": {
+        "componentName": "NotFound",
+        "filePath": "app/not-found.tsx"
+      },
+      "hash": "b1c2f0f90a10",
+      "location": {
+        "filePath": "app/not-found.tsx",
+        "line": 33,
+        "column": 10
+      }
+    },
+    "3f29f12409bd": {
+      "type": "content",
+      "sourceText": "Go to Dashboard",
+      "context": {
+        "componentName": "NotFound",
+        "filePath": "app/not-found.tsx"
+      },
+      "hash": "3f29f12409bd",
+      "location": {
+        "filePath": "app/not-found.tsx",
+        "line": 42,
+        "column": 12
+      }
+    },
+    "12b611abe60d": {
+      "type": "content",
+      "sourceText": "Back to Home",
+      "context": {
+        "componentName": "NotFound",
+        "filePath": "app/not-found.tsx"
+      },
+      "hash": "12b611abe60d",
+      "location": {
+        "filePath": "app/not-found.tsx",
+        "line": 49,
+        "column": 12
+      }
+    },
+    "92737d402302": {
+      "type": "content",
+      "sourceText": "Need help? <Link0>Contact our support team </Link0>",
+      "context": {
+        "componentName": "NotFound",
+        "filePath": "app/not-found.tsx"
+      },
+      "hash": "92737d402302",
+      "location": {
+        "filePath": "app/not-found.tsx",
+        "line": 58,
+        "column": 10
+      }
+    },
+    "ab785bd18d17": {
+      "type": "content",
+      "sourceText": "Light",
+      "context": {
+        "componentName": "ModeToggle",
+        "filePath": "components/mode-toggle.tsx"
+      },
+      "hash": "ab785bd18d17",
+      "location": {
+        "filePath": "components/mode-toggle.tsx",
+        "line": 64,
+        "column": 22
+      }
+    },
+    "02cda586643c": {
+      "type": "content",
+      "sourceText": "Toggle theme",
+      "context": {
+        "componentName": "ModeToggle",
+        "filePath": "components/mode-toggle.tsx"
+      },
+      "hash": "02cda586643c",
+      "location": {
+        "filePath": "components/mode-toggle.tsx",
+        "line": 79,
+        "column": 6
+      }
+    },
+    "6405c5810387": {
+      "type": "content",
+      "sourceText": "See what our AI can create",
+      "context": {
+        "componentName": "SamplesSection",
+        "filePath": "components/homepage/samples.tsx"
+      },
+      "hash": "6405c5810387",
+      "location": {
+        "filePath": "components/homepage/samples.tsx",
+        "line": 15,
+        "column": 10
+      }
+    },
+    "746cd7177098": {
+      "type": "content",
+      "sourceText": "Real results from real customers. Professional headshots generated in minutes.",
+      "context": {
+        "componentName": "SamplesSection",
+        "filePath": "components/homepage/samples.tsx"
+      },
+      "hash": "746cd7177098",
+      "location": {
+        "filePath": "components/homepage/samples.tsx",
+        "line": 18,
+        "column": 10
+      }
+    },
+    "bef99af2ea7d": {
+      "type": "content",
+      "sourceText": "Get your professional LinkedIn headshots in <span0>minutes</span0>, not hours.",
+      "context": {
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "bef99af2ea7d",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 27,
+        "column": 12
+      }
+    },
+    "6c9ef13f1309": {
+      "type": "content",
+      "sourceText": "Professional AI-generated headshots at 1/10th the cost of a photo studio. Upload a few selfies and get 50+ stunning professional headshots in under an hour.",
+      "context": {
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "6c9ef13f1309",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 32,
+        "column": 12
+      }
+    },
+    "b3d723a17720": {
+      "type": "content",
+      "sourceText": "Get Started",
+      "context": {
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "b3d723a17720",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 39,
+        "column": 16
+      }
+    },
+    "3bbdfdc9b659": {
+      "type": "content",
+      "sourceText": "View Samples",
+      "context": {
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "3bbdfdc9b659",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 44,
+        "column": 14
+      }
+    },
+    "0106be9d7699": {
+      "type": "content",
+      "sourceText": "5,000+",
+      "context": {
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "0106be9d7699",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 70,
+        "column": 16
+      }
+    },
+    "88251e9a59c0": {
+      "type": "content",
+      "sourceText": "professionals trust us",
+      "context": {
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "88251e9a59c0",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 71,
+        "column": 16
+      }
+    },
+    "4d29424f8891": {
+      "type": "attribute",
+      "sourceText": "Professional AI-generated headshots",
+      "context": {
+        "attributeName": "alt",
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "4d29424f8891",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 79,
+        "column": 14
+      }
+    },
+    "025321b05729": {
+      "type": "content",
+      "sourceText": "Ready in 30 min",
+      "context": {
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "025321b05729",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 97,
+        "column": 18
+      }
+    },
+    "c89432080047": {
+      "type": "content",
+      "sourceText": "50+ headshots delivered",
+      "context": {
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "c89432080047",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 98,
+        "column": 18
+      }
+    },
+    "73139d22a00b": {
+      "type": "content",
+      "sourceText": "4.9/5",
+      "context": {
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "73139d22a00b",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 110,
+        "column": 16
+      }
+    },
+    "3f8d01303446": {
+      "type": "content",
+      "sourceText": "From 2,000+ reviews",
+      "context": {
+        "componentName": "Hero",
+        "filePath": "components/homepage/hero.tsx"
+      },
+      "hash": "3f8d01303446",
+      "location": {
+        "filePath": "components/homepage/hero.tsx",
+        "line": 112,
+        "column": 14
+      }
+    },
+    "74dc0d1e6b74": {
+      "type": "content",
+      "sourceText": "Close",
+      "context": {
+        "componentName": "SheetContent",
+        "filePath": "components/ui/sheet.tsx"
+      },
+      "hash": "74dc0d1e6b74",
+      "location": {
+        "filePath": "components/ui/sheet.tsx",
+        "line": 77,
+        "column": 10
+      }
+    },
+    "228e9b431fc0": {
+      "type": "content",
+      "sourceText": "Frequently asked questions",
+      "context": {
+        "componentName": "FAQSection",
+        "filePath": "components/homepage/faq.tsx"
+      },
+      "hash": "228e9b431fc0",
+      "location": {
+        "filePath": "components/homepage/faq.tsx",
+        "line": 46,
+        "column": 10
+      }
+    },
+    "313abc236119": {
+      "type": "content",
+      "sourceText": "Everything you need to know about HeadshotPro AI.",
+      "context": {
+        "componentName": "FAQSection",
+        "filePath": "components/homepage/faq.tsx"
+      },
+      "hash": "313abc236119",
+      "location": {
+        "filePath": "components/homepage/faq.tsx",
+        "line": 49,
+        "column": 10
+      }
+    },
+    "d0754ece40ab": {
+      "type": "content",
+      "sourceText": "Loading...",
+      "context": {
+        "componentName": "Loading",
+        "filePath": "app/loading.tsx"
+      },
+      "hash": "d0754ece40ab",
+      "location": {
+        "filePath": "app/loading.tsx",
+        "line": 20,
+        "column": 10
+      }
+    },
+    "4727083829a3": {
+      "type": "content",
+      "sourceText": "Trusted by professionals at leading companies",
+      "context": {
+        "componentName": "SocialProofUnified",
+        "filePath": "components/homepage/social-proof-testimonials.tsx"
+      },
+      "hash": "4727083829a3",
+      "location": {
+        "filePath": "components/homepage/social-proof-testimonials.tsx",
+        "line": 16,
+        "column": 8
+      }
+    },
+    "a47fb0abca67": {
+      "type": "content",
+      "sourceText": "Or continue with magic link",
+      "context": {
+        "componentName": "AuthFormBase",
+        "filePath": "components/auth/auth-form-base.tsx"
+      },
+      "hash": "a47fb0abca67",
+      "location": {
+        "filePath": "components/auth/auth-form-base.tsx",
+        "line": 127,
+        "column": 20
+      }
+    },
+    "134da1decd2b": {
+      "type": "content",
+      "sourceText": "By creating an account, you agree to our <Link0>Terms of Service </Link0> and <Link1>Privacy Policy </Link1> .",
+      "context": {
+        "componentName": "AuthFormBase",
+        "filePath": "components/auth/auth-form-base.tsx"
+      },
+      "hash": "134da1decd2b",
+      "location": {
+        "filePath": "components/auth/auth-form-base.tsx",
+        "line": 199,
+        "column": 12
+      }
+    },
+    "7aa5451aa914": {
+      "type": "content",
+      "sourceText": "Welcome back",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "7aa5451aa914",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 58,
+        "column": 25
+      }
+    },
+    "d5849f34a6d7": {
+      "type": "content",
+      "sourceText": "Get started today",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "d5849f34a6d7",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 54,
+        "column": 41
+      }
+    },
+    "afba6ba3fcb4": {
+      "type": "content",
+      "sourceText": "Enter your email to receive a secure magic link and access your dashboard",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "afba6ba3fcb4",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 56,
+        "column": 8
+      }
+    },
+    "7aeedd14c669": {
+      "type": "content",
+      "sourceText": "Create your account in seconds with just your email address",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "7aeedd14c669",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 57,
+        "column": 8
+      }
+    },
+    "e334763ef2a0": {
+      "type": "content",
+      "sourceText": "Get started",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "e334763ef2a0",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 58,
+        "column": 45
+      }
+    },
+    "407dedf29c3d": {
+      "type": "content",
+      "sourceText": "Send Magic Link",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "407dedf29c3d",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 59,
+        "column": 32
+      }
+    },
+    "3852c62c7d11": {
+      "type": "content",
+      "sourceText": "Create Account",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "3852c62c7d11",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 59,
+        "column": 55
+      }
+    },
+    "006f24988b60": {
+      "type": "content",
+      "sourceText": "Sending magic link...",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "006f24988b60",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 60,
+        "column": 17
+      }
+    },
+    "545a0cdce44c": {
+      "type": "content",
+      "sourceText": "New to our platform?",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "545a0cdce44c",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 63,
+        "column": 8
+      }
+    },
+    "5576cc46c7be": {
+      "type": "content",
+      "sourceText": "Already have an account?",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "5576cc46c7be",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 64,
+        "column": 8
+      }
+    },
+    "d777a1a39c5d": {
+      "type": "content",
+      "sourceText": "Create an account",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "d777a1a39c5d",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 70,
+        "column": 19
+      }
+    },
+    "6d9375362840": {
+      "type": "content",
+      "sourceText": "Sign in instead",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "6d9375362840",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 70,
+        "column": 44
+      }
+    },
+    "531e1f599f7c": {
+      "type": "content",
+      "sourceText": "Email address",
+      "context": {
+        "componentName": "AuthForm",
+        "filePath": "components/forms/auth-form.tsx"
+      },
+      "hash": "531e1f599f7c",
+      "location": {
+        "filePath": "components/forms/auth-form.tsx",
+        "line": 80,
+        "column": 13
+      }
+    },
+    "ccee066905d2": {
+      "type": "content",
+      "sourceText": "Back to Home",
+      "context": {
+        "componentName": "AuthLayout",
+        "filePath": "app/(auth)/layout.tsx"
+      },
+      "hash": "ccee066905d2",
+      "location": {
+        "filePath": "app/(auth)/layout.tsx",
+        "line": 20,
+        "column": 10
+      }
+    },
+    "3699ca86826f": {
+      "type": "attribute",
+      "sourceText": "Dashboard",
+      "context": {
+        "attributeName": "title",
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "3699ca86826f",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 32,
+        "column": 4
+      }
+    },
+    "a322a947f059": {
+      "type": "content",
+      "sourceText": "system_status",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "a322a947f059",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 38,
+        "column": 12
+      }
+    },
+    "eacefe5743c0": {
+      "type": "content",
+      "sourceText": "ONLINE",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "eacefe5743c0",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 45,
+        "column": 12
+      }
+    },
+    "0fb3e4adb6d8": {
+      "type": "content",
+      "sourceText": "Welcome back, User",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "0fb3e4adb6d8",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 52,
+        "column": 12
+      }
+    },
+    "59eceb828756": {
+      "type": "content",
+      "sourceText": "System is running smoothly. All services operational.",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "59eceb828756",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 55,
+        "column": 12
+      }
+    },
+    "52a5616f2188": {
+      "type": "content",
+      "sourceText": "Deploy New Project",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "52a5616f2188",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 61,
+        "column": 12
+      }
+    },
+    "c30b46d3504b": {
+      "type": "content",
+      "sourceText": "View Logs",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "c30b46d3504b",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 65,
+        "column": 12
+      }
+    },
+    "62ebf2b5ef91": {
+      "type": "content",
+      "sourceText": "Total Revenue",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "62ebf2b5ef91",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 77,
+        "column": 12
+      }
+    },
+    "905a02db7956": {
+      "type": "content",
+      "sourceText": "from last month",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "905a02db7956",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 127,
+        "column": 14
+      }
+    },
+    "1efc36caf5eb": {
+      "type": "content",
+      "sourceText": "Active Users",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "1efc36caf5eb",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 96,
+        "column": 12
+      }
+    },
+    "f336480ab195": {
+      "type": "content",
+      "sourceText": "Conversions",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "f336480ab195",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 115,
+        "column": 12
+      }
+    },
+    "f8ba52fb030a": {
+      "type": "content",
+      "sourceText": "Growth Rate",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "f8ba52fb030a",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 134,
+        "column": 12
+      }
+    },
+    "da9a1739f984": {
+      "type": "content",
+      "sourceText": "since last hour",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "da9a1739f984",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 146,
+        "column": 14
+      }
+    },
+    "b5db064ce59a": {
+      "type": "content",
+      "sourceText": "Recent Activity",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "b5db064ce59a",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 156,
+        "column": 12
+      }
+    },
+    "53277da791b7": {
+      "type": "content",
+      "sourceText": "Latest system events and logs",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "53277da791b7",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 160,
+        "column": 12
+      }
+    },
+    "bcdb6033c3a6": {
+      "type": "content",
+      "sourceText": "New user registered",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "bcdb6033c3a6",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 169,
+        "column": 18
+      }
+    },
+    "e3868948ba71": {
+      "type": "content",
+      "sourceText": "user_id: 8923 • 2m ago",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "e3868948ba71",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 172,
+        "column": 18
+      }
+    },
+    "cd0bb3c83670": {
+      "type": "content",
+      "sourceText": "Payment received",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "cd0bb3c83670",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 182,
+        "column": 18
+      }
+    },
+    "0c0747b56743": {
+      "type": "content",
+      "sourceText": "inv_2930 • $49.00 • 5m ago",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "0c0747b56743",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 185,
+        "column": 18
+      }
+    },
+    "5b46c3d70306": {
+      "type": "content",
+      "sourceText": "Feature deployed",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "5b46c3d70306",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 195,
+        "column": 18
+      }
+    },
+    "40c50bea1d1b": {
+      "type": "content",
+      "sourceText": "v2.4.0 • main_branch • 1h ago",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "40c50bea1d1b",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 198,
+        "column": 18
+      }
+    },
+    "b9118f21a74d": {
+      "type": "content",
+      "sourceText": "Quick Actions",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "b9118f21a74d",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 209,
+        "column": 12
+      }
+    },
+    "c2c4799168b6": {
+      "type": "content",
+      "sourceText": "Common administrative tasks",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "c2c4799168b6",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 213,
+        "column": 12
+      }
+    },
+    "65f8f446aa59": {
+      "type": "content",
+      "sourceText": "Upgrade Plan",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "65f8f446aa59",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 217,
+        "column": 14
+      }
+    },
+    "c5e9527ee6d0": {
+      "type": "content",
+      "sourceText": "Manage Team",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "c5e9527ee6d0",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 224,
+        "column": 14
+      }
+    },
+    "d477b06bbdfc": {
+      "type": "content",
+      "sourceText": "Verify Domain",
+      "context": {
+        "componentName": "HomeRoute",
+        "filePath": "app/dashboard/page.tsx"
+      },
+      "hash": "d477b06bbdfc",
+      "location": {
+        "filePath": "app/dashboard/page.tsx",
+        "line": 231,
+        "column": 14
+      }
+    },
+    "f7fd20f2e8c7": {
+      "type": "content",
+      "sourceText": "Loading...",
+      "context": {
+        "componentName": "SessionGuardLoading",
+        "filePath": "app/dashboard/_components/session-guard.tsx"
+      },
+      "hash": "f7fd20f2e8c7",
+      "location": {
+        "filePath": "app/dashboard/_components/session-guard.tsx",
+        "line": 61,
+        "column": 10
+      }
+    },
+    "358b062130d2": {
+      "type": "content",
+      "sourceText": "Admin",
+      "context": {
+        "componentName": "AppSidebar",
+        "filePath": "app/dashboard/_components/app-sidebar.tsx"
+      },
+      "hash": "358b062130d2",
+      "location": {
+        "filePath": "app/dashboard/_components/app-sidebar.tsx",
+        "line": 248,
+        "column": 28
+      }
+    },
+    "7fb9da9bb97f": {
+      "type": "content",
+      "sourceText": "Manage Tables",
+      "context": {
+        "componentName": "AppSidebar",
+        "filePath": "app/dashboard/_components/app-sidebar.tsx"
+      },
+      "hash": "7fb9da9bb97f",
+      "location": {
+        "filePath": "app/dashboard/_components/app-sidebar.tsx",
+        "line": 255,
+        "column": 30
+      }
+    },
+    "e1d111912db3": {
+      "type": "content",
+      "sourceText": "Sidebar",
+      "context": {
+        "componentName": "Sidebar",
+        "filePath": "components/ui/sidebar.tsx"
+      },
+      "hash": "e1d111912db3",
+      "location": {
+        "filePath": "components/ui/sidebar.tsx",
+        "line": 199,
+        "column": 12
+      }
+    },
+    "f9cb8348e85b": {
+      "type": "content",
+      "sourceText": "Displays the mobile sidebar.",
+      "context": {
+        "componentName": "Sidebar",
+        "filePath": "components/ui/sidebar.tsx"
+      },
+      "hash": "f9cb8348e85b",
+      "location": {
+        "filePath": "components/ui/sidebar.tsx",
+        "line": 200,
+        "column": 12
+      }
+    },
+    "2f1ee9c42709": {
+      "type": "content",
+      "sourceText": "Toggle Sidebar",
+      "context": {
+        "componentName": "SidebarTrigger",
+        "filePath": "components/ui/sidebar.tsx"
+      },
+      "hash": "2f1ee9c42709",
+      "location": {
+        "filePath": "components/ui/sidebar.tsx",
+        "line": 277,
+        "column": 6
+      }
+    },
+    "10be69dd0ade": {
+      "type": "attribute",
+      "sourceText": "Toggle Sidebar",
+      "context": {
+        "attributeName": "aria-label",
+        "componentName": "SidebarRail",
+        "filePath": "components/ui/sidebar.tsx"
+      },
+      "hash": "10be69dd0ade",
+      "location": {
+        "filePath": "components/ui/sidebar.tsx",
+        "line": 286,
+        "column": 4
+      }
+    },
+    "41de8216f2b7": {
+      "type": "attribute",
+      "sourceText": "Toggle Sidebar",
+      "context": {
+        "attributeName": "title",
+        "componentName": "SidebarRail",
+        "filePath": "components/ui/sidebar.tsx"
+      },
+      "hash": "41de8216f2b7",
+      "location": {
+        "filePath": "components/ui/sidebar.tsx",
+        "line": 286,
+        "column": 4
+      }
+    },
+    "57c1186f9419": {
+      "type": "content",
+      "sourceText": "Settings",
+      "context": {
+        "componentName": "UserButton",
+        "filePath": "app/dashboard/_components/user-btn.tsx"
+      },
+      "hash": "57c1186f9419",
+      "location": {
+        "filePath": "app/dashboard/_components/user-btn.tsx",
+        "line": 118,
+        "column": 16
+      }
+    },
+    "b265105cba36": {
+      "type": "content",
+      "sourceText": "Log Out",
+      "context": {
+        "componentName": "UserButton",
+        "filePath": "app/dashboard/_components/user-btn.tsx"
+      },
+      "hash": "b265105cba36",
+      "location": {
+        "filePath": "app/dashboard/_components/user-btn.tsx",
+        "line": 132,
+        "column": 16
+      }
+    },
+    "21bc82f74e6d": {
+      "type": "attribute",
+      "sourceText": "breadcrumb",
+      "context": {
+        "attributeName": "aria-label",
+        "componentName": "Breadcrumb",
+        "filePath": "components/ui/breadcrumb-client.tsx"
+      },
+      "hash": "21bc82f74e6d",
+      "location": {
+        "filePath": "components/ui/breadcrumb-client.tsx",
+        "line": 12,
+        "column": 9
+      }
+    },
+    "aab29d93474c": {
+      "type": "content",
+      "sourceText": "More",
+      "context": {
+        "componentName": "BreadcrumbEllipsis",
+        "filePath": "components/ui/breadcrumb-client.tsx"
+      },
+      "hash": "aab29d93474c",
+      "location": {
+        "filePath": "components/ui/breadcrumb-client.tsx",
+        "line": 100,
+        "column": 6
+      }
+    },
+    "d752e92776dc": {
+      "type": "attribute",
+      "sourceText": "File Upload",
+      "context": {
+        "attributeName": "title",
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "d752e92776dc",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 133,
+        "column": 4
+      }
+    },
+    "1aef8d44e67e": {
+      "type": "content",
+      "sourceText": "Client Upload",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "1aef8d44e67e",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 136,
+        "column": 10
+      }
+    },
+    "350342459cab": {
+      "type": "content",
+      "sourceText": "Server Upload",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "350342459cab",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 140,
+        "column": 10
+      }
+    },
+    "7b4780d6cc98": {
+      "type": "content",
+      "sourceText": "Advanced Features",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "7b4780d6cc98",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 144,
+        "column": 10
+      }
+    },
+    "52974956b541": {
+      "type": "content",
+      "sourceText": "Image Upload with Compression",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "52974956b541",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 155,
+        "column": 14
+      }
+    },
+    "ac315fc8f3ca": {
+      "type": "content",
+      "sourceText": "Upload images with automatic compression. Maximum 10MB per file, up to 5 files.",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "ac315fc8f3ca",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 159,
+        "column": 14
+      }
+    },
+    "81a36b8eeb71": {
+      "type": "content",
+      "sourceText": "Document Upload",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "81a36b8eeb71",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 190,
+        "column": 14
+      }
+    },
+    "212b538dba7d": {
+      "type": "content",
+      "sourceText": "Upload documents and files. Maximum 10MB per file, single file upload.",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "212b538dba7d",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 194,
+        "column": 14
+      }
+    },
+    "e1631a16591d": {
+      "type": "content",
+      "sourceText": "Batch Upload",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "e1631a16591d",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 221,
+        "column": 14
+      }
+    },
+    "46631b16c20b": {
+      "type": "content",
+      "sourceText": "Upload multiple files at once. Any supported file type, up to 10 files.",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "46631b16c20b",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 225,
+        "column": 14
+      }
+    },
+    "445cd4ed6743": {
+      "type": "content",
+      "sourceText": "Server-side Upload Demo",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "445cd4ed6743",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 243,
+        "column": 14
+      }
+    },
+    "211bc3fd236b": {
+      "type": "content",
+      "sourceText": "Demonstrate server-side file upload with progress tracking.",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "211bc3fd236b",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 247,
+        "column": 14
+      }
+    },
+    "456a73c3254f": {
+      "type": "content",
+      "sourceText": "Files will be processed on the server side",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "456a73c3254f",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 273,
+        "column": 18
+      }
+    },
+    "c07158fde0eb": {
+      "type": "content",
+      "sourceText": "Upload Progress",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "c07158fde0eb",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 282,
+        "column": 20
+      }
+    },
+    "5d8374062fad": {
+      "type": "content",
+      "sourceText": "{expression0}%",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "5d8374062fad",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 283,
+        "column": 20
+      }
+    },
+    "7a8e2ae626ed": {
+      "type": "content",
+      "sourceText": "Server Upload Features:",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "7a8e2ae626ed",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 290,
+        "column": 16
+      }
+    },
+    "68c8d72f50ff": {
+      "type": "content",
+      "sourceText": "• Files processed on server before storage",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "68c8d72f50ff",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 294,
+        "column": 18
+      }
+    },
+    "4df8728137ed": {
+      "type": "content",
+      "sourceText": "• Server-side validation and security checks",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "4df8728137ed",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 295,
+        "column": 18
+      }
+    },
+    "7ca4189bbb60": {
+      "type": "content",
+      "sourceText": "• Automatic file optimization and metadata extraction",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "7ca4189bbb60",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 296,
+        "column": 18
+      }
+    },
+    "9ae916b44970": {
+      "type": "content",
+      "sourceText": "• Progress tracking and error handling",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "9ae916b44970",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 297,
+        "column": 18
+      }
+    },
+    "9c0159f20cf2": {
+      "type": "content",
+      "sourceText": "Advanced Image Compression",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "9c0159f20cf2",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 309,
+        "column": 14
+      }
+    },
+    "12ce3f5e0ff7": {
+      "type": "content",
+      "sourceText": "Fine-tuned image compression with custom quality and size settings.",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "12ce3f5e0ff7",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 313,
+        "column": 14
+      }
+    },
+    "9e843044558c": {
+      "type": "content",
+      "sourceText": "Compression Settings:",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "9e843044558c",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 330,
+        "column": 16
+      }
+    },
+    "26a420b31635": {
+      "type": "content",
+      "sourceText": "• Quality: 60%",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "26a420b31635",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 332,
+        "column": 18
+      }
+    },
+    "095ab202c811": {
+      "type": "content",
+      "sourceText": "• Max Width: 1280px",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "095ab202c811",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 333,
+        "column": 18
+      }
+    },
+    "f08759834a00": {
+      "type": "content",
+      "sourceText": "• Max Height: 720px",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "f08759834a00",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 334,
+        "column": 18
+      }
+    },
+    "cc58351165b1": {
+      "type": "content",
+      "sourceText": "• Automatic format optimization",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "cc58351165b1",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 335,
+        "column": 18
+      }
+    },
+    "ea813ed88261": {
+      "type": "content",
+      "sourceText": "Large File Upload",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "ea813ed88261",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 344,
+        "column": 14
+      }
+    },
+    "862868d0ce05": {
+      "type": "content",
+      "sourceText": "Upload larger files with extended size limits.",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "862868d0ce05",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 345,
+        "column": 14
+      }
+    },
+    "86d43d42fa78": {
+      "type": "content",
+      "sourceText": "<strong0>Note:</strong0> Large files may take longer to upload and process. Ensure stable internet connection for best results.",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "86d43d42fa78",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 356,
+        "column": 16
+      }
+    },
+    "9aa4d04c5346": {
+      "type": "content",
+      "sourceText": "Uploaded Files",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "9aa4d04c5346",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 371,
+        "column": 12
+      }
+    },
+    "197317452112": {
+      "type": "content",
+      "sourceText": "Files successfully uploaded to R2 storage",
+      "context": {
+        "componentName": "UploadPage",
+        "filePath": "app/dashboard/upload/page.tsx"
+      },
+      "hash": "197317452112",
+      "location": {
+        "filePath": "app/dashboard/upload/page.tsx",
+        "line": 372,
+        "column": 12
+      }
+    },
+    "434c786f2ac2": {
+      "type": "content",
+      "sourceText": "Drop files here or click to upload",
+      "context": {
+        "componentName": "FileUploader",
+        "filePath": "components/ui/file-uploader.tsx"
+      },
+      "hash": "434c786f2ac2",
+      "location": {
+        "filePath": "components/ui/file-uploader.tsx",
+        "line": 410,
+        "column": 12
+      }
+    },
+    "1357be36d2df": {
+      "type": "content",
+      "sourceText": "{expression0} max {expression1}.",
+      "context": {
+        "componentName": "FileUploader",
+        "filePath": "components/ui/file-uploader.tsx"
+      },
+      "hash": "1357be36d2df",
+      "location": {
+        "filePath": "components/ui/file-uploader.tsx",
+        "line": 413,
+        "column": 12
+      }
+    },
+    "8594920a8f20": {
+      "type": "content",
+      "sourceText": "<Upload0></Upload0> Add {expression0}Files",
+      "context": {
+        "componentName": "FileUploader",
+        "filePath": "components/ui/file-uploader.tsx"
+      },
+      "hash": "8594920a8f20",
+      "location": {
+        "filePath": "components/ui/file-uploader.tsx",
+        "line": 476,
+        "column": 14
+      }
+    },
+    "b98d15f52da2": {
+      "type": "attribute",
+      "sourceText": "Settings",
+      "context": {
+        "attributeName": "title",
+        "componentName": "SettingsPage",
+        "filePath": "app/dashboard/settings/page.tsx"
+      },
+      "hash": "b98d15f52da2",
+      "location": {
+        "filePath": "app/dashboard/settings/page.tsx",
+        "line": 32,
+        "column": 4
+      }
+    },
+    "9a531b957aff": {
+      "type": "content",
+      "sourceText": "Settings",
+      "context": {
+        "componentName": "Settings",
+        "filePath": "app/dashboard/settings/_components/settings.tsx"
+      },
+      "hash": "9a531b957aff",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/settings.tsx",
+        "line": 100,
+        "column": 10
+      }
+    },
+    "570979db5978": {
+      "type": "content",
+      "sourceText": "Appearance",
+      "context": {
+        "componentName": "AppearancePage",
+        "filePath": "app/dashboard/settings/_components/appearance-page.tsx"
+      },
+      "hash": "570979db5978",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/appearance-page.tsx",
+        "line": 113,
+        "column": 8
+      }
+    },
+    "a042c3623fec": {
+      "type": "content",
+      "sourceText": "Customize the look and feel of your dashboard",
+      "context": {
+        "componentName": "AppearancePage",
+        "filePath": "app/dashboard/settings/_components/appearance-page.tsx"
+      },
+      "hash": "a042c3623fec",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/appearance-page.tsx",
+        "line": 114,
+        "column": 8
+      }
+    },
+    "ae98430157b2": {
+      "type": "content",
+      "sourceText": "Theme Preferences",
+      "context": {
+        "componentName": "AppearancePage",
+        "filePath": "app/dashboard/settings/_components/appearance-page.tsx"
+      },
+      "hash": "ae98430157b2",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/appearance-page.tsx",
+        "line": 121,
+        "column": 10
+      }
+    },
+    "f95d1442a9e2": {
+      "type": "content",
+      "sourceText": "Choose your preferred theme for the dashboard interface",
+      "context": {
+        "componentName": "AppearancePage",
+        "filePath": "app/dashboard/settings/_components/appearance-page.tsx"
+      },
+      "hash": "f95d1442a9e2",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/appearance-page.tsx",
+        "line": 125,
+        "column": 10
+      }
+    },
+    "8a00d24892a2": {
+      "type": "content",
+      "sourceText": "Notifications",
+      "context": {
+        "componentName": "NotificationPage",
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx"
+      },
+      "hash": "8a00d24892a2",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx",
+        "line": 29,
+        "column": 8
+      }
+    },
+    "2c662b7171ab": {
+      "type": "content",
+      "sourceText": "Manage your email preferences and notification settings",
+      "context": {
+        "componentName": "NotificationPage",
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx"
+      },
+      "hash": "2c662b7171ab",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx",
+        "line": 30,
+        "column": 8
+      }
+    },
+    "bfd6518b246e": {
+      "type": "content",
+      "sourceText": "Email Preferences",
+      "context": {
+        "componentName": "NotificationPage",
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx"
+      },
+      "hash": "bfd6518b246e",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx",
+        "line": 37,
+        "column": 10
+      }
+    },
+    "6eafb313bafe": {
+      "type": "content",
+      "sourceText": "Choose what emails you get from us",
+      "context": {
+        "componentName": "NotificationPage",
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx"
+      },
+      "hash": "6eafb313bafe",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx",
+        "line": 38,
+        "column": 10
+      }
+    },
+    "42ce499f81ab": {
+      "type": "content",
+      "sourceText": "Essential",
+      "context": {
+        "componentName": "NotificationPage",
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx"
+      },
+      "hash": "42ce499f81ab",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx",
+        "line": 43,
+        "column": 14
+      }
+    },
+    "49fe37645eaa": {
+      "type": "content",
+      "sourceText": "Important account and security updates",
+      "context": {
+        "componentName": "NotificationPage",
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx"
+      },
+      "hash": "49fe37645eaa",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx",
+        "line": 46,
+        "column": 14
+      }
+    },
+    "d24021de770d": {
+      "type": "content",
+      "sourceText": "Tips and Education",
+      "context": {
+        "componentName": "NotificationPage",
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx"
+      },
+      "hash": "d24021de770d",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx",
+        "line": 59,
+        "column": 14
+      }
+    },
+    "16a872c1a21d": {
+      "type": "content",
+      "sourceText": "Learn how to get the most out of our platform",
+      "context": {
+        "componentName": "NotificationPage",
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx"
+      },
+      "hash": "16a872c1a21d",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx",
+        "line": 60,
+        "column": 14
+      }
+    },
+    "08f343da13d5": {
+      "type": "content",
+      "sourceText": "New Features",
+      "context": {
+        "componentName": "NotificationPage",
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx"
+      },
+      "hash": "08f343da13d5",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx",
+        "line": 72,
+        "column": 14
+      }
+    },
+    "5cda1dc7cbf6": {
+      "type": "content",
+      "sourceText": "Be the first to know about new features and updates",
+      "context": {
+        "componentName": "NotificationPage",
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx"
+      },
+      "hash": "5cda1dc7cbf6",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/notifications-page.tsx",
+        "line": 73,
+        "column": 14
+      }
+    },
+    "cd253ef38d3e": {
+      "type": "content",
+      "sourceText": "Account Information",
+      "context": {
+        "componentName": "AccountPage",
+        "filePath": "app/dashboard/settings/_components/account-page.tsx"
+      },
+      "hash": "cd253ef38d3e",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/account-page.tsx",
+        "line": 33,
+        "column": 8
+      }
+    },
+    "3a1df89dfa18": {
+      "type": "content",
+      "sourceText": "Edit Profile",
+      "context": {
+        "componentName": "EditUserDialog",
+        "filePath": "app/dashboard/settings/_components/account-page.tsx"
+      },
+      "hash": "3a1df89dfa18",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/account-page.tsx",
+        "line": 88,
+        "column": 8
+      }
+    },
+    "3c698fc5fdb8": {
+      "type": "content",
+      "sourceText": "Edit Your Profile",
+      "context": {
+        "componentName": "EditUserDialog",
+        "filePath": "app/dashboard/settings/_components/account-page.tsx"
+      },
+      "hash": "3c698fc5fdb8",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/account-page.tsx",
+        "line": 95,
+        "column": 10
+      }
+    },
+    "becd198609cc": {
+      "type": "content",
+      "sourceText": "Change your name and profile picture",
+      "context": {
+        "componentName": "EditUserDialog",
+        "filePath": "app/dashboard/settings/_components/account-page.tsx"
+      },
+      "hash": "becd198609cc",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/account-page.tsx",
+        "line": 96,
+        "column": 10
+      }
+    },
+    "c016235dc4f0": {
+      "type": "content",
+      "sourceText": "Full Name",
+      "context": {
+        "componentName": "EditUserDialog",
+        "filePath": "app/dashboard/settings/_components/account-page.tsx"
+      },
+      "hash": "c016235dc4f0",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/account-page.tsx",
+        "line": 102,
+        "column": 12
+      }
+    },
+    "ec6fe33b24a4": {
+      "type": "content",
+      "sourceText": "Profile Picture",
+      "context": {
+        "componentName": "EditUserDialog",
+        "filePath": "app/dashboard/settings/_components/account-page.tsx"
+      },
+      "hash": "ec6fe33b24a4",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/account-page.tsx",
+        "line": 111,
+        "column": 12
+      }
+    },
+    "90b3f2ab1933": {
+      "type": "content",
+      "sourceText": "Profile pictures are automatically generated using DiceBear avatars based on your email address.",
+      "context": {
+        "componentName": "EditUserDialog",
+        "filePath": "app/dashboard/settings/_components/account-page.tsx"
+      },
+      "hash": "90b3f2ab1933",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/account-page.tsx",
+        "line": 129,
+        "column": 16
+      }
+    },
+    "63b43f92aa70": {
+      "type": "content",
+      "sourceText": "{expression0} Update Profile",
+      "context": {
+        "componentName": "EditUserDialog",
+        "filePath": "app/dashboard/settings/_components/account-page.tsx"
+      },
+      "hash": "63b43f92aa70",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/account-page.tsx",
+        "line": 138,
+        "column": 10
+      }
+    },
+    "14075952c3d3": {
+      "type": "content",
+      "sourceText": "Billing & Plans",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "14075952c3d3",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 59,
+        "column": 8
+      }
+    },
+    "290b1ba238ba": {
+      "type": "content",
+      "sourceText": "Manage your subscription and billing information",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "290b1ba238ba",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 60,
+        "column": 8
+      }
+    },
+    "9ad634e2a670": {
+      "type": "content",
+      "sourceText": "Current Plan: {expression0}",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "9ad634e2a670",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 71,
+        "column": 16
+      }
+    },
+    "f94f5bf4ddcb": {
+      "type": "content",
+      "sourceText": "Your active plan details.",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "f94f5bf4ddcb",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 76,
+        "column": 16
+      }
+    },
+    "d0453a5d7dad": {
+      "type": "content",
+      "sourceText": "Your subscription will end on {expression0}",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "d0453a5d7dad",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 94,
+        "column": 18
+      }
+    },
+    "ac8afb3ec712": {
+      "type": "content",
+      "sourceText": "Your subscription renews on {expression0}",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "ac8afb3ec712",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 99,
+        "column": 18
+      }
+    },
+    "2c8f0b356808": {
+      "type": "content",
+      "sourceText": "{expression0} Manage Subscription",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "2c8f0b356808",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 106,
+        "column": 12
+      }
+    },
+    "672a112609d4": {
+      "type": "content",
+      "sourceText": "No Active Subscription",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "672a112609d4",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 121,
+        "column": 12
+      }
+    },
+    "bcf572d9069f": {
+      "type": "content",
+      "sourceText": "Upgrade to unlock premium features.",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "bcf572d9069f",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 122,
+        "column": 12
+      }
+    },
+    "ecb1bc135103": {
+      "type": "content",
+      "sourceText": "View Plans",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "ecb1bc135103",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 127,
+        "column": 12
+      }
+    },
+    "5a13c4971b03": {
+      "type": "content",
+      "sourceText": "Payment History",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "5a13c4971b03",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 135,
+        "column": 10
+      }
+    },
+    "8981d8ade16b": {
+      "type": "content",
+      "sourceText": "View your recent purchases and subscription payments",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "8981d8ade16b",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 136,
+        "column": 10
+      }
+    },
+    "fed979a9c081": {
+      "type": "content",
+      "sourceText": "Date",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "fed979a9c081",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 145,
+        "column": 18
+      }
+    },
+    "cc34c71f83e6": {
+      "type": "content",
+      "sourceText": "Product",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "cc34c71f83e6",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 146,
+        "column": 18
+      }
+    },
+    "5c974e0c0b1b": {
+      "type": "content",
+      "sourceText": "Type",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "5c974e0c0b1b",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 147,
+        "column": 18
+      }
+    },
+    "5f8d5eca1cf7": {
+      "type": "content",
+      "sourceText": "Amount",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "5f8d5eca1cf7",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 148,
+        "column": 18
+      }
+    },
+    "a41c235144fb": {
+      "type": "content",
+      "sourceText": "Status",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "a41c235144fb",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 149,
+        "column": 18
+      }
+    },
+    "84e8297a0e53": {
+      "type": "content",
+      "sourceText": "No payment history found.",
+      "context": {
+        "componentName": "BillingPage",
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx"
+      },
+      "hash": "84e8297a0e53",
+      "location": {
+        "filePath": "app/dashboard/settings/_components/billing-page.tsx",
+        "line": 196,
+        "column": 12
+      }
+    },
+    "c037e047ac1e": {
+      "type": "content",
+      "sourceText": "Close",
+      "context": {
+        "componentName": "DialogContent",
+        "filePath": "components/ui/dialog.tsx"
+      },
+      "hash": "c037e047ac1e",
+      "location": {
+        "filePath": "components/ui/dialog.tsx",
+        "line": 75,
+        "column": 12
+      }
+    },
+    "5f59f5e6d454": {
+      "type": "content",
+      "sourceText": "PRICING.md",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "5f59f5e6d454",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 53,
+        "column": 16
+      }
+    },
+    "c47f84c7ff49": {
+      "type": "content",
+      "sourceText": "Simple, transparent pricing",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "c47f84c7ff49",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 57,
+        "column": 14
+      }
+    },
+    "8fa495ee1b40": {
+      "type": "content",
+      "sourceText": "Choose the plan that works best for your needs. No hidden fees, no surprises. Start building today.",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "8fa495ee1b40",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 60,
+        "column": 14
+      }
+    },
+    "ec36c0a69e77": {
+      "type": "content",
+      "sourceText": "Platform Specifications",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "ec36c0a69e77",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 75,
+        "column": 16
+      }
+    },
+    "d2729d490fed": {
+      "type": "content",
+      "sourceText": "Core infrastructure capabilities included in all plans",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "d2729d490fed",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 78,
+        "column": 14
+      }
+    },
+    "c70fb3bace83": {
+      "type": "content",
+      "sourceText": "7-Day Trial",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "c70fb3bace83",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 88,
+        "column": 20
+      }
+    },
+    "3f35dc56ca06": {
+      "type": "content",
+      "sourceText": "NO_CC_REQUIRED",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "3f35dc56ca06",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 89,
+        "column": 20
+      }
+    },
+    "21959864d646": {
+      "type": "content",
+      "sourceText": "Full access to all features. No credit card required for dev environment.",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "21959864d646",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 94,
+        "column": 20
+      }
+    },
+    "b2bcecc04e67": {
+      "type": "content",
+      "sourceText": "Instant Provisioning",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "b2bcecc04e67",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 106,
+        "column": 20
+      }
+    },
+    "ad2d96ab1c1b": {
+      "type": "content",
+      "sourceText": "AUTOMATED_SETUP",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "ad2d96ab1c1b",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 107,
+        "column": 20
+      }
+    },
+    "8581c1bc681d": {
+      "type": "content",
+      "sourceText": "Your environment is ready in less than 60 seconds. Zero configuration needed.",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "8581c1bc681d",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 112,
+        "column": 20
+      }
+    },
+    "acf4ebfa7c2a": {
+      "type": "content",
+      "sourceText": "Enterprise Grade",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "acf4ebfa7c2a",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 124,
+        "column": 20
+      }
+    },
+    "040fbf9453c1": {
+      "type": "content",
+      "sourceText": "SOC2_TYPE_II",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "040fbf9453c1",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 125,
+        "column": 20
+      }
+    },
+    "c28d50ff0cee": {
+      "type": "content",
+      "sourceText": "Compliant infrastructure with 99.99% uptime SLA guarantee.",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "c28d50ff0cee",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 130,
+        "column": 20
+      }
+    },
+    "7aa02ff2358e": {
+      "type": "content",
+      "sourceText": "24/7 Support",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "7aa02ff2358e",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 141,
+        "column": 20
+      }
+    },
+    "a4edcc085cf7": {
+      "type": "content",
+      "sourceText": "ENGINEERING_DIRECT",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "a4edcc085cf7",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 142,
+        "column": 20
+      }
+    },
+    "d52b8dd7a648": {
+      "type": "content",
+      "sourceText": "Direct access to engineering team via Slack or Discord.",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "d52b8dd7a648",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 147,
+        "column": 20
+      }
+    },
+    "a3cfbdfbbbc6": {
+      "type": "content",
+      "sourceText": "Security & Compliance",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "a3cfbdfbbbc6",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 159,
+        "column": 16
+      }
+    },
+    "87e979b3a7ed": {
+      "type": "content",
+      "sourceText": "/security/certifications",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "87e979b3a7ed",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 162,
+        "column": 14
+      }
+    },
+    "0321eb6749a1": {
+      "type": "content",
+      "sourceText": "SSL_ENCRYPTED",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "0321eb6749a1",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 172,
+        "column": 20
+      }
+    },
+    "08f6107a3372": {
+      "type": "content",
+      "sourceText": "TLS 1.3",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "08f6107a3372",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 175,
+        "column": 20
+      }
+    },
+    "a1560ee64a9d": {
+      "type": "content",
+      "sourceText": "SOC2_COMPLIANT",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "a1560ee64a9d",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 186,
+        "column": 20
+      }
+    },
+    "de70a3237a76": {
+      "type": "content",
+      "sourceText": "Type II",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "de70a3237a76",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 189,
+        "column": 20
+      }
+    },
+    "c1d36dc4bdd4": {
+      "type": "content",
+      "sourceText": "GDPR_READY",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "c1d36dc4bdd4",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 200,
+        "column": 20
+      }
+    },
+    "290b57983a1c": {
+      "type": "content",
+      "sourceText": "EU Data Protection",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "290b57983a1c",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 203,
+        "column": 20
+      }
+    },
+    "b4bded7e10cf": {
+      "type": "content",
+      "sourceText": "PCI_DSS",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "b4bded7e10cf",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 214,
+        "column": 20
+      }
+    },
+    "5e2edd400d2c": {
+      "type": "content",
+      "sourceText": "Level 1",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "5e2edd400d2c",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 215,
+        "column": 20
+      }
+    },
+    "ab2eb0d7a599": {
+      "type": "content",
+      "sourceText": "Supported Payment Methods",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "ab2eb0d7a599",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 227,
+        "column": 16
+      }
+    },
+    "7487486ce254": {
+      "type": "content",
+      "sourceText": "infrastructure_provider: <span0>{PAYMENT_PROVIDER}</span0>",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "7487486ce254",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 245,
+        "column": 16
+      }
+    },
+    "d4bb7c4f60f1": {
+      "type": "content",
+      "sourceText": "Need a Custom Plan?",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "d4bb7c4f60f1",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 261,
+        "column": 12
+      }
+    },
+    "64daf2351ec1": {
+      "type": "content",
+      "sourceText": "Enterprise customers with specific requirements can contact our sales team for tailored solutions.",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "64daf2351ec1",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 264,
+        "column": 12
+      }
+    },
+    "76ce7a424898": {
+      "type": "content",
+      "sourceText": "Contact Sales",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "76ce7a424898",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 270,
+        "column": 16
+      }
+    },
+    "424359c5f9cb": {
+      "type": "content",
+      "sourceText": "Learn More",
+      "context": {
+        "componentName": "PricingPage",
+        "filePath": "app/(pages)/pricing/page.tsx"
+      },
+      "hash": "424359c5f9cb",
+      "location": {
+        "filePath": "app/(pages)/pricing/page.tsx",
+        "line": 273,
+        "column": 16
+      }
+    },
+    "1cb5980d9605": {
+      "type": "content",
+      "sourceText": "Subscription",
+      "context": {
+        "componentName": "PricingSection",
+        "filePath": "components/payment-options.tsx"
+      },
+      "hash": "1cb5980d9605",
+      "location": {
+        "filePath": "components/payment-options.tsx",
+        "line": 136,
+        "column": 12
+      }
+    },
+    "b361ff1c7e3b": {
+      "type": "content",
+      "sourceText": "Lifetime",
+      "context": {
+        "componentName": "PricingSection",
+        "filePath": "components/payment-options.tsx"
+      },
+      "hash": "b361ff1c7e3b",
+      "location": {
+        "filePath": "components/payment-options.tsx",
+        "line": 142,
+        "column": 12
+      }
+    },
+    "a728b8280c6c": {
+      "type": "content",
+      "sourceText": "Monthly",
+      "context": {
+        "componentName": "PricingSection",
+        "filePath": "components/payment-options.tsx"
+      },
+      "hash": "a728b8280c6c",
+      "location": {
+        "filePath": "components/payment-options.tsx",
+        "line": 156,
+        "column": 12
+      }
+    },
+    "2bfaa2765db5": {
+      "type": "content",
+      "sourceText": "Yearly",
+      "context": {
+        "componentName": "PricingSection",
+        "filePath": "components/payment-options.tsx"
+      },
+      "hash": "2bfaa2765db5",
+      "location": {
+        "filePath": "components/payment-options.tsx",
+        "line": 175,
+        "column": 12
+      }
+    },
+    "67c5d9896269": {
+      "type": "content",
+      "sourceText": "Save 17%",
+      "context": {
+        "componentName": "PricingSection",
+        "filePath": "components/payment-options.tsx"
+      },
+      "hash": "67c5d9896269",
+      "location": {
+        "filePath": "components/payment-options.tsx",
+        "line": 189,
+        "column": 14
+      }
+    }
+  },
+  "stats": {
+    "totalEntries": 226,
+    "lastUpdated": "2026-01-02T14:05:31.043Z"
+  }
+}

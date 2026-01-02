@@ -102,15 +102,15 @@ export function OtherProducts() {
         <div className="mx-auto max-w-3xl text-center">
           <Badge variant="outline" className="border-primary text-primary mb-4">
             <FlaskConical className="mr-2 h-3 w-3" />
-            <>UllrAI Lab</>
+            <>HeadshotPro AI</>
           </Badge>
           <h2 className="text-foreground text-3xl font-bold tracking-tight sm:text-4xl">
             <>Explore our other tools</>
           </h2>
           <p className="text-muted-foreground mt-4 text-lg leading-8">
             <>
-              AI-powered utilities that help creators, developers, and teams
-              ship faster every day.
+              AI-powered tools that help professionals and teams create
+              stunning headshots every day.
             </>
           </p>
         </div>
@@ -161,12 +161,12 @@ export function OtherProducts() {
         </div>
 
         <p className="text-muted-foreground mt-10 text-center text-sm">
-          <>Have an idea for another tool?</>
+          <>Have questions about our headshot service?</>
           <a
-            href="mailto:support@ullrai.com"
+            href="mailto:support@headshotpro.ai"
             className="text-primary ml-2 font-bold hover:underline"
           >
-            <>Let us know</>
+            <>Contact us</>
           </a>
         </p>
       </div>
