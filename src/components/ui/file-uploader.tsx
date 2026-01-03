@@ -54,7 +54,7 @@ interface FileWithPreview extends File {
   preview?: string;
 }
 
-interface UploadedFile {
+export interface UploadedFile {
   url: string;
   key: string;
   size: number;
@@ -405,7 +405,7 @@ export function FileUploader({
         )}
       >
         {files.length === 0 ? (
-          <div className="text-center">
+          <div className="text-center pointer-events-none">
             <Upload className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
             <p className="mb-2 text-lg font-medium">
               Drop files here or click to upload

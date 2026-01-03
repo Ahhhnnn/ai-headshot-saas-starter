@@ -36,6 +36,13 @@ const env = createEnv({
     CREEM_API_KEY: z.string(),
     CREEM_ENVIRONMENT: z.enum(["test_mode", "live_mode"]).default("test_mode"),
     CREEM_WEBHOOK_SECRET: z.string(),
+
+    // AI Generation
+    REPLICATE_API_KEY: z.string().optional(),
+
+    // V3 AI Generation
+    V3_API_KEY: z.string().optional(),
+    V3_API_BASE_URL: z.string().optional(),
   },
 
   // Client-side public environment variables
@@ -80,7 +87,16 @@ const env = createEnv({
     CREEM_API_KEY: process.env.CREEM_API_KEY,
     CREEM_ENVIRONMENT: process.env.CREEM_ENVIRONMENT,
     CREEM_WEBHOOK_SECRET: process.env.CREEM_WEBHOOK_SECRET,
+
+    // AI Generation
+    REPLICATE_API_KEY: process.env.REPLICATE_API_KEY,
+
+    // V3 AI Generation
+    V3_API_KEY: process.env.V3_API_KEY,
+    V3_API_BASE_URL: process.env.V3_API_BASE_URL,
   },
 });
+
+export { env };
 
 export default env;
