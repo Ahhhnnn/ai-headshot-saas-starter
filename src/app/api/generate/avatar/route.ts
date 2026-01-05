@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth/server";
 import { getStyleById } from "@/lib/config/avatar-styles";
-import env from "@/env";
+import { getProvider } from "@/lib/generate/provider";
+import type { GenerateInput } from "@/lib/generate/provider";
 
 // 生成请求类型
 interface GenerateRequest {
@@ -45,16 +46,24 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid style ID" }, { status: 400 });
     }
 
-    // 4. 检查 API key 是否配置
-    if (!env.REPLICATE_API_KEY) {
+    // 4. 使用 V3 Provider 进行图生图生成
+    const provider = getProvider("v3");
+
+    if (!provider) {
       return NextResponse.json(
-        { error: "AI generation service not configured" },
+        { error: "V3 AI generation provider not found" },
         { status: 503 },
       );
     }
 
-    // 5. 调用 Replicate API
-    const jobId = `job_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    if (!provider.isConfigured()) {
+      return NextResponse.json(
+        { error: "V3 AI generation service not configured. Please set V3_API_KEY." },
+        { status: 503 },
+      );
+    }
+
+    const jobId = `v3_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
     // 存储任务状态
     generationJobs.set(jobId, {
@@ -62,8 +71,8 @@ export async function POST(request: NextRequest) {
       createdAt: Date.now(),
     });
 
-    // 异步执行生成任务
-    generateHeadshot(jobId, inputImageUrl, style.aiPrompt)
+    // 异步执行生成任务 (图生图)
+    generateHeadshot(provider, jobId, inputImageUrl, style.aiPrompt, session.user.id)
       .then((result) => {
         generationJobs.set(jobId, {
           ...result,
@@ -121,54 +130,50 @@ export async function GET(request: NextRequest) {
   });
 }
 
-// 异步生成任务
+// 异步生成任务 - 使用 V3 Provider 图生图
 async function generateHeadshot(
+  provider: ReturnType<typeof getProvider>,
   jobId: string,
   inputImageUrl: string,
   prompt: string,
+  userId: string,
 ): Promise<
   { status: "completed"; imageUrl: string } | { status: "failed"; error: string }
 > {
   try {
-    // 调用 Replicate API
-    const response = await fetch("https://api.replicate.com/v1/predictions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.REPLICATE_API_KEY}`,
-        "Content-Type": "application/json",
-        "User-Agent": "HeadshotPro-AI/1.0",
+    console.log(`[Avatar API] Starting V3 image-to-image generation for job ${jobId}`);
+    console.log(`[Avatar API] Input image: ${inputImageUrl}`);
+    console.log(`[Avatar API] Prompt: ${prompt}`);
+
+    // 构建生成输入 - 使用 V3 图生图
+    const input: GenerateInput = {
+      inputImageUrl,
+      prompt,
+      styleId: "default",
+      userId,
+      extra: {
+        size: "1:1",
       },
-      body: JSON.stringify({
-        version:
-          "stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c55633708",
-        input: {
-          prompt: `${prompt}, person based on input image, high quality, professional photography`,
-          negative_prompt:
-            "blurry, low quality, distorted, deformed, ugly, disfigured, watermark, text",
-          image: inputImageUrl,
-          strength: 0.7, // Image to Image 强度
-          num_outputs: 1,
-        },
-      }),
-    });
+    };
 
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.detail || "Replicate API error");
-    }
+    // 调用 V3 Provider 创建生成任务 (图生图)
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    const result = await provider!.createGeneration(input);
 
-    const prediction = await response.json();
+    console.log(`[Avatar API] V3 job created: ${result.jobId}, status: ${result.status}`);
 
-    // 轮询 Replicate 结果
-    const result = await pollReplicatePrediction(prediction.id);
+    // 轮询 V3 生成状态
+    const finalResult = await pollV3Generation(provider!, result.jobId);
 
-    if (result.status === "succeeded" && result.output) {
-      return { status: "completed", imageUrl: result.output as string };
+    if (finalResult.status === "completed" && finalResult.imageUrl) {
+      console.log(`[Avatar API] Job ${jobId} completed with URL: ${finalResult.imageUrl}`);
+      return { status: "completed", imageUrl: finalResult.imageUrl };
     } else {
-      return { status: "failed", error: "Generation failed" };
+      console.error(`[Avatar API] Job ${jobId} failed: ${finalResult.error}`);
+      return { status: "failed", error: finalResult.error || "Generation failed" };
     }
   } catch (error) {
-    console.error("Replicate generation error:", error);
+    console.error("[Avatar API] V3 generation error:", error);
     return {
       status: "failed",
       error: error instanceof Error ? error.message : "Unknown error",
@@ -176,41 +181,30 @@ async function generateHeadshot(
   }
 }
 
-// 轮询 Replicate 预测结果
-async function pollReplicatePrediction(
-  predictionId: string,
-): Promise<{ status: string; output?: string }> {
-  const maxAttempts = 120; // 120 * 5s = 10 分钟
+// 轮询 V3 生成结果
+async function pollV3Generation(
+  provider: NonNullable<ReturnType<typeof getProvider>>,
+  jobId: string,
+): Promise<{ status: "completed" | "failed"; imageUrl?: string; error?: string }> {
+  const maxAttempts = 60; // 60 * 5s = 5 分钟
   const pollInterval = 5000;
 
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    const response = await fetch(
-      `https://api.replicate.com/v1/predictions/${predictionId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${env.REPLICATE_API_KEY}`,
-          "User-Agent": "HeadshotPro-AI/1.0",
-        },
-      },
-    );
+    const result = await provider.getGenerationStatus(jobId);
 
-    if (!response.ok) {
-      throw new Error("Failed to poll prediction status");
+    console.log(`[Avatar API] Poll attempt ${attempt + 1}/${maxAttempts}, status: ${result.status}`);
+
+    if (result.status === "completed" && result.imageUrl) {
+      return { status: "completed", imageUrl: result.imageUrl };
     }
 
-    const prediction = await response.json();
-
-    if (prediction.status === "succeeded") {
-      return { status: "succeeded", output: prediction.output };
-    }
-
-    if (prediction.status === "failed") {
-      return { status: "failed" };
+    if (result.status === "failed") {
+      return { status: "failed", error: result.error };
     }
 
     // 等待后继续轮询
     await new Promise((resolve) => setTimeout(resolve, pollInterval));
   }
 
-  return { status: "timeout" };
+  return { status: "failed", error: "Timeout waiting for generation" };
 }

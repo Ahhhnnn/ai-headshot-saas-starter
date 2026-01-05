@@ -73,7 +73,7 @@ async function testV3ImageToImage() {
   console.log(`Configured: ${provider.isConfigured()}`);
   console.log("");
 
-  const prompt = "Convert this photo into a professional headshot with studio lighting, keep the face similar, Side view, blue background";
+  const prompt = "Tech startup founder headshot, modern professional look, clean minimalist background, tech industry style, approachable yet professional, high quality, 4K";
   console.log("📝 Prompt:", prompt);
   console.log("📝 Input Image URL:", INPUT_IMAGE_URL);
   console.log("");

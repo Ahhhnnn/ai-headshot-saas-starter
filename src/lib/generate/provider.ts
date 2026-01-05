@@ -74,14 +74,26 @@ export interface ImageGenerationProvider {
 export type ProviderId = "replicate" | "v3";
 
 const providerRegistry = new Map<ProviderId, () => ImageGenerationProvider>();
+const providerInstances = new Map<ProviderId, ImageGenerationProvider>();
 
 export function registerProvider(id: ProviderId, factory: () => ImageGenerationProvider): void {
   providerRegistry.set(id, factory);
 }
 
 export function getProvider(id: ProviderId): ImageGenerationProvider | null {
+  // Return singleton instance to ensure taskCache is shared
+  if (providerInstances.has(id)) {
+    return providerInstances.get(id)!;
+  }
+
   const factory = providerRegistry.get(id);
-  return factory ? factory() : null;
+  if (factory) {
+    const instance = factory();
+    providerInstances.set(id, instance);
+    return instance;
+  }
+
+  return null;
 }
 
 export function getAvailableProviders(): ProviderId[] {

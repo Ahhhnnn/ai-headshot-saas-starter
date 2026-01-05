@@ -25,7 +25,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { toast } from "sonner";
-import { generateAvatar, pollGenerationStatus } from "@/lib/actions/generate";
+import { generateAvatar, getGenerationStatus } from "@/lib/actions/generate";
 import { FileUploader, type UploadedFile } from "@/components/ui/file-uploader";
 
 // 生成步骤
@@ -84,22 +84,44 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
         throw new Error(result.error || "Generation failed");
       }
 
-      const finalResult = await pollGenerationStatus(result.jobId!, {
-        onProgress: (progress) => setGenerationProgress(progress),
-        maxAttempts: 60,
-      });
+      // 客户端轮询生成状态
+      const pollInterval = 5000; // 5 seconds
+      const maxAttempts = 60;
+      let attempt = 0;
 
-      if (finalResult.status === "completed" && finalResult.imageUrl) {
-        setGenerationResult({
-          id: finalResult.id!,
-          status: "completed",
-          imageUrl: finalResult.imageUrl,
-        });
-        setCurrentStep(3);
-        toast.success("Headshot generated successfully!");
-      } else {
-        throw new Error(finalResult.error || "Generation failed");
-      }
+      const poll = async (): Promise<void> => {
+        if (attempt >= maxAttempts) {
+          throw new Error("Timeout waiting for generation");
+        }
+
+        const status = await getGenerationStatus(result.jobId!);
+
+        // 更新进度
+        const progress = Math.min(Math.round((attempt / maxAttempts) * 100), 95);
+        setGenerationProgress(progress);
+
+        if (status.status === "completed" && status.imageUrl) {
+          setGenerationResult({
+            id: status.id,
+            status: "completed",
+            imageUrl: status.imageUrl,
+          });
+          setCurrentStep(3);
+          toast.success("Headshot generated successfully!");
+          return;
+        }
+
+        if (status.status === "failed") {
+          throw new Error(status.error || "Generation failed");
+        }
+
+        // 继续轮询
+        attempt++;
+        await new Promise((resolve) => setTimeout(resolve, pollInterval));
+        await poll();
+      };
+
+      await poll();
     } catch (error) {
       console.error("Generation error:", error);
       setGenerationResult({
@@ -213,12 +235,13 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
             <CardContent>
               {uploadedFile ? (
                 <div className="relative">
-                  <div className="aspect-square max-w-md mx-auto rounded-lg overflow-hidden bg-muted">
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-muted">
                     <Image
                       src={uploadedFile.url}
                       alt="Uploaded photo"
                       fill
-                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-contain"
                     />
                   </div>
                   <Button
@@ -248,10 +271,13 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
               )}
             </CardContent>
           </Card>
+        </div>
 
-          {/* Result Card */}
-          {generationResult?.status === "completed" &&
-            generationResult.imageUrl && (
+        {/* Right Column - Style Selection & Generate OR Result */}
+        <div className="space-y-6">
+          {generationResult?.status === "completed" && generationResult.imageUrl ? (
+            /* Show Result - keep both images visible */
+            <>
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -260,15 +286,21 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="aspect-square max-w-md mx-auto rounded-lg overflow-hidden bg-muted">
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-muted">
                     <Image
                       src={generationResult.imageUrl}
                       alt="Generated headshot"
                       fill
-                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-contain"
                     />
                   </div>
-                  <div className="flex gap-3 mt-4">
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
                     <Button className="flex-1" onClick={handleDownload}>
                       <Download className="w-4 h-4 mr-2" />
                       Download
@@ -280,101 +312,101 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
                   </div>
                 </CardContent>
               </Card>
-            )}
-        </div>
-
-        {/* Right Column - Style Selection & Generate */}
-        <div className="space-y-6">
-          {/* Style Selection */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Wand2 className="w-5 h-5" />
-                Select Style
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <RadioGroup
-                value={selectedStyle || ""}
-                onValueChange={handleStyleSelect}
-                className="grid grid-cols-2 gap-4"
-              >
-                {AVATAR_STYLES.map((style) => (
-                  <Label
-                    key={style.id}
-                    className={cn(
-                      "cursor-pointer relative rounded-lg border-2 p-4 transition-all hover:border-primary/50",
-                      selectedStyle === style.id
-                        ? "border-primary bg-primary/5"
-                        : "border-border",
-                    )}
+            </>
+          ) : (
+            /* Show Style Selection & Generate */
+            <>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Wand2 className="w-5 h-5" />
+                    Select Style
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <RadioGroup
+                    value={selectedStyle || ""}
+                    onValueChange={handleStyleSelect}
+                    className="grid grid-cols-2 gap-4"
                   >
-                    <RadioGroupItem value={style.id} className="sr-only" />
-                    <div className="aspect-video rounded-md overflow-hidden bg-muted mb-3">
-                      <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center">
-                        <span className="text-sm text-muted-foreground">
-                          {style.name}
-                        </span>
+                    {AVATAR_STYLES.map((style) => (
+                      <Label
+                        key={style.id}
+                        className={cn(
+                          "cursor-pointer relative rounded-lg border-2 p-4 transition-all hover:border-primary/50",
+                          selectedStyle === style.id
+                            ? "border-primary bg-primary/5"
+                            : "border-border",
+                        )}
+                      >
+                        <RadioGroupItem value={style.id} className="sr-only" />
+                        <div className="aspect-video rounded-md overflow-hidden bg-muted mb-3">
+                          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center">
+                            <span className="text-sm text-muted-foreground">
+                              {style.name}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="font-medium text-sm">{style.name}</p>
+                          <p className="text-xs text-muted-foreground line-clamp-2">
+                            {style.description}
+                          </p>
+                        </div>
+                        {selectedStyle === style.id && (
+                          <div className="absolute top-2 right-2">
+                            <Badge variant="default" className="bg-primary">
+                              <Check className="w-3 h-3 mr-1" />
+                              Selected
+                            </Badge>
+                          </div>
+                        )}
+                      </Label>
+                    ))}
+                  </RadioGroup>
+                </CardContent>
+              </Card>
+
+              {/* Generate Button */}
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="space-y-4">
+                    {isGenerating ? (
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-center gap-2 text-primary">
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span className="font-medium">
+                            Generating your headshot...
+                          </span>
+                        </div>
+                        <Progress value={generationProgress} className="h-2" />
+                        <p className="text-center text-sm text-muted-foreground">
+                          {generationProgress}% complete
+                        </p>
                       </div>
-                    </div>
-                    <div className="space-y-1">
-                      <p className="font-medium text-sm">{style.name}</p>
-                      <p className="text-xs text-muted-foreground line-clamp-2">
-                        {style.description}
-                      </p>
-                    </div>
-                    {selectedStyle === style.id && (
-                      <div className="absolute top-2 right-2">
-                        <Badge variant="default" className="bg-primary">
-                          <Check className="w-3 h-3 mr-1" />
-                          Selected
-                        </Badge>
+                    ) : (
+                      <Button
+                        size="lg"
+                        className="w-full"
+                        onClick={handleGenerate}
+                        disabled={!uploadedFile || !selectedStyle}
+                      >
+                        <Sparkles className="w-5 h-5 mr-2" />
+                        Generate Headshot
+                      </Button>
+                    )}
+
+                    {generationResult?.status === "failed" && (
+                      <div className="p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
+                        <p className="font-medium">Generation failed</p>
+                        <p>{generationResult.error}</p>
                       </div>
                     )}
-                  </Label>
-                ))}
-              </RadioGroup>
-            </CardContent>
-          </Card>
-
-          {/* Generate Button */}
-          <Card>
-            <CardContent className="pt-6">
-              <div className="space-y-4">
-                {isGenerating ? (
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-center gap-2 text-primary">
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      <span className="font-medium">
-                        Generating your headshot...
-                      </span>
-                    </div>
-                    <Progress value={generationProgress} className="h-2" />
-                    <p className="text-center text-sm text-muted-foreground">
-                      {generationProgress}% complete
-                    </p>
                   </div>
-                ) : (
-                  <Button
-                    size="lg"
-                    className="w-full"
-                    onClick={handleGenerate}
-                    disabled={!uploadedFile || !selectedStyle}
-                  >
-                    <Sparkles className="w-5 h-5 mr-2" />
-                    Generate Headshot
-                  </Button>
-                )}
-
-                {generationResult?.status === "failed" && (
-                  <div className="p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
-                    <p className="font-medium">Generation failed</p>
-                    <p>{generationResult.error}</p>
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </Card>
+            </>
+          )}
         </div>
       </div>
     </div>
