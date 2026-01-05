@@ -4,21 +4,24 @@
  * This test makes real API calls to the V3 (nano-banana) image generation service.
  *
  * To run this test:
- *   npx tsx src/lib/generate/providers/v3.integration-test.ts
+ *   npx tsx --env-file=.env src/lib/generate/providers/v3.integration-test.ts
  *
  * Required environment variables in .env:
  *   V3_API_KEY - Your V3 API key
- *   V3_API_BASE_URL - V3 API base URL (default: https://api.v3.cm)
+ *   V3_API_BASE_URL - V3 API base URL (default: https://api.gpt.ge)
  *
  * Note: This test will make actual API calls and may incur costs.
  */
 
-import { config } from "dotenv";
 import { resolve, join } from "path";
 import fs from "fs";
+import { loadEnvFile } from "process";
 
-// Load .env file first
-config({ path: resolve(process.cwd(), ".env") });
+// Load .env file manually (since we use tsx with --env-file flag)
+const envPath = resolve(process.cwd(), ".env");
+if (fs.existsSync(envPath)) {
+  loadEnvFile(envPath);
+}
 
 // V3 API 配置 - 直接从 process.env 读取
 const V3_API_KEY = process.env.V3_API_KEY;
