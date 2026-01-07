@@ -175,3 +175,32 @@ export const uploads = pgTable(
     };
   },
 );
+
+// Generation jobs table for tracking AI image generation tasks
+export const generations = pgTable(
+  "generations",
+  {
+    id: text("id").primaryKey(), // jobId from provider
+    userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    provider: text("provider").notNull().default("v3"),
+    status: text("status")
+      .notNull()
+      .default("pending"), // pending, processing, completed, failed
+    inputImageUrl: text("inputImageUrl"),
+    prompt: text("prompt"),
+    styleId: text("styleId"),
+    outputImageUrl: text("outputImageUrl"),
+    error: text("error"),
+    createdAt: timestamp("createdAt").notNull().defaultNow(),
+    updatedAt: timestamp("updatedAt").notNull().defaultNow(),
+  },
+  (table) => {
+    return {
+      userIdx: index("generations_userId_idx").on(table.userId),
+      statusIdx: index("generations_status_idx").on(table.status),
+      createdAtIdx: index("generations_createdAt_idx").on(table.createdAt),
+    };
+  },
+);

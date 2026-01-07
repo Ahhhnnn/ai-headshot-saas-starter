@@ -15,6 +15,9 @@
  * - V3_API_BASE_URL: V3 API 基础地址 (可选，默认 https://api.gpt.ge)
  */
 
+import { db } from "@/database";
+import { generations } from "@/database/tables";
+import { eq } from "drizzle-orm";
 import env from "@/env";
 import type {
   ImageGenerationProvider,
@@ -92,13 +95,11 @@ export class V3Provider implements ImageGenerationProvider {
 
   private apiKey: string;
   private baseUrl: string;
-  private taskCache: Map<string, V3GenerationResponseData>;
 
   constructor() {
     // Support both env.js and direct process.env for testing
     this.apiKey = env.V3_API_KEY || process.env.V3_API_KEY || "";
     this.baseUrl = env.V3_API_BASE_URL || process.env.V3_API_BASE_URL || "https://api.gpt.ge";
-    this.taskCache = new Map();
   }
 
   isConfigured(): boolean {
@@ -116,17 +117,20 @@ export class V3Provider implements ImageGenerationProvider {
     jobId: string;
     status: "pending" | "processing" | "completed" | "failed";
   }> {
-    const generationType = this.determineGenerationType(input);
-    const jobId = `v3_${generationType}_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+    // 从输入中获取 jobId（如果已生成），否则内部生成
+    let jobId = input.extra?.jobId as string | undefined;
+    if (!jobId) {
+      const generationType = this.determineGenerationType(input);
+      jobId = `v3_${generationType}_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+    }
 
-    console.log(`[V3] Creating ${generationType} job: ${jobId}`);
+    console.log(`[V3] Creating generation job: ${jobId}`);
 
     // 异步执行生成任务
     this.executeGeneration(jobId, input).catch((error) => {
       console.error(`[V3] Generation failed for job ${jobId}:`, error);
-      this.taskCache.set(jobId, {
-        b64_json: `ERROR:${error instanceof Error ? error.message : "Unknown error"}`,
-      });
+      // 更新数据库为失败状态
+      this.updateGenerationStatus(jobId, "failed", null, error instanceof Error ? error.message : "Unknown error");
     });
 
     return {
@@ -136,43 +140,77 @@ export class V3Provider implements ImageGenerationProvider {
   }
 
   async getGenerationStatus(jobId: string): Promise<GenerationResult> {
-    const result = this.taskCache.get(jobId);
+    try {
+      const [result] = await db
+        .select()
+        .from(generations)
+        .where(eq(generations.id, jobId))
+        .limit(1);
 
-    if (!result) {
+      if (!result) {
+        return {
+          status: "pending",
+          metadata: { provider: this.id },
+        };
+      }
+
+      if (result.status === "failed") {
+        return {
+          status: "failed",
+          error: result.error || "Generation failed",
+          metadata: { provider: this.id },
+        };
+      }
+
+      if (result.status === "completed" && result.outputImageUrl) {
+        return {
+          status: "completed",
+          imageUrl: result.outputImageUrl,
+          metadata: { provider: this.id },
+        };
+      }
+
+      return {
+        status: result.status as "pending" | "processing",
+        metadata: { provider: this.id },
+      };
+    } catch (error) {
+      console.error(`[V3] Error fetching status for job ${jobId}:`, error);
       return {
         status: "pending",
         metadata: { provider: this.id },
       };
     }
-
-    if (result.b64_json?.startsWith("ERROR:")) {
-      return {
-        status: "failed",
-        error: result.b64_json.substring(6),
-        metadata: { provider: this.id },
-      };
-    }
-
-    if (result.url || result.b64_json) {
-      return {
-        status: "completed",
-        imageUrl: result.url,
-        metadata: {
-          provider: this.id,
-          b64_json: result.b64_json,
-        },
-      };
-    }
-
-    return {
-      status: "processing",
-      metadata: { provider: this.id },
-    };
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async cancelGeneration(_jobId: string): Promise<boolean> {
     return true;
+  }
+
+  /**
+   * 更新数据库中的任务状态
+   */
+  private async updateGenerationStatus(
+    jobId: string,
+    status: string,
+    outputImageUrl: string | null,
+    error: string | null,
+  ): Promise<void> {
+    try {
+      await db
+        .update(generations)
+        .set({
+          status,
+          outputImageUrl,
+          error,
+          updatedAt: new Date(),
+        })
+        .where(eq(generations.id, jobId));
+      console.log(`[V3] Updated database status for job ${jobId}: ${status}`);
+    } catch (dbError) {
+      console.error(`[V3] Failed to update database for job ${jobId}:`, dbError);
+    }
   }
 
   // ============ 私有方法 ============
@@ -200,7 +238,9 @@ export class V3Provider implements ImageGenerationProvider {
       console.log(`[V3] Response received for job ${jobId}, data length: ${response.data?.length}`);
 
       if (response.data && response.data.length > 0) {
-        this.taskCache.set(jobId, response.data[0]);
+        const imageUrl = response.data[0].url || null;
+        // 更新数据库为完成状态
+        await this.updateGenerationStatus(jobId, "completed", imageUrl, null);
         console.log(`[V3] Job ${jobId} completed successfully`);
       } else {
         throw new Error("No image data in response");
@@ -208,9 +248,8 @@ export class V3Provider implements ImageGenerationProvider {
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "Unknown error";
       console.error(`[V3] Job ${jobId} failed: ${errorMessage}`);
-      this.taskCache.set(jobId, {
-        b64_json: `ERROR:${errorMessage}`,
-      });
+      // 更新数据库为失败状态
+      await this.updateGenerationStatus(jobId, "failed", null, errorMessage);
       throw error;
     }
   }

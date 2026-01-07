@@ -86,7 +86,7 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
 
       // 客户端轮询生成状态
       const pollInterval = 5000; // 5 seconds
-      const maxAttempts = 60;
+      const maxAttempts = 20;
       let attempt = 0;
 
       const poll = async (): Promise<void> => {
@@ -293,6 +293,7 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-contain"
+                      unoptimized
                     />
                   </div>
                 </CardContent>
