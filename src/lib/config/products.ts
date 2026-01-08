@@ -55,8 +55,8 @@ export const PRODUCT_TIERS: PricingTier[] = [
     ],
     pricing: {
       creem: {
-        // 示例ID, 请替换
-        oneTime: "prod_1HVwfBIaKkJh9CgS7zD37h",
+        // headshotpro: prod_6mYAPTGcXZrU1XrPRXfleP
+        oneTime: "prod_6mYAPTGcXZrU1XrPRXfleP",
         monthly: "prod_6uhcfBUcRxprqDvep0U5Jw",
         yearly: "prod_7LJkGVgv4LOBuucrxANo2b",
       },

@@ -2,9 +2,6 @@
   "permissions": {
     "allow": [
       "Bash(cp:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
       "Bash(pnpm dev:*)",
       "Bash(pnpm build:*)",
       "Bash(pnpm start:*)",
@@ -30,7 +27,6 @@
       "Bash(jest --coverage)",
       "Bash(npx jest:*)",
       "Bash(ls:*)",
-      "Bash(git rm:*)",
       "Bash(touch:*)",
       "Bash(sed:*)",
       "mcp__ide__getDiagnostics",

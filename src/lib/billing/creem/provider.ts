@@ -40,22 +40,24 @@ const creemProvider: PaymentProvider = {
         );
       }
 
-      const checkoutRequestData = {
+      const checkoutRequestData: {
+        productId: string;
+        successUrl?: string;
+        customer: { email?: string };
+        metadata?: Record<string, string>;
+      } = {
         productId: creemProductId,
         successUrl: options.successUrl,
-        // Note: Creem may not support cancelUrl directly, but we include it in metadata
-        // for potential future use or custom handling
         customer: {
           email: options.userEmail,
-          name: options.userName ?? undefined,
         },
         metadata: {
           userId: options.userId,
           tierId: options.tierId,
           paymentMode: options.paymentMode,
-          billingCycle: options.billingCycle ?? null,
-          cancelUrl: options.cancelUrl ?? null,
-          failureUrl: options.failureUrl ?? null,
+          billingCycle: options.billingCycle ?? "",
+          cancelUrl: options.cancelUrl ?? "",
+          failureUrl: options.failureUrl ?? "",
         },
       };
 

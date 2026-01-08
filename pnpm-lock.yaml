@@ -28,7 +28,7 @@ importers:
         version: 5.0.4(@keystatic/core@0.5.47(next@16.1.1(@babel/core@7.27.4)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@16.1.1(@babel/core@7.27.4)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@lingo.dev/compiler':
         specifier: ^0.1.2
-        version: 0.1.2(@types/node@24.0.3)(@types/react@19.1.8)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(next@16.1.1(@babel/core@7.27.4)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(zod@4.1.13)
+        version: 0.1.2(@types/node@24.0.3)(@types/react@19.1.8)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(next@16.1.1(@babel/core@7.27.4)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(zod@3.25.76)
       '@markdoc/markdoc':
         specifier: ^0.5.2
         version: 0.5.2(@types/react@19.1.8)(react@19.1.0)
@@ -115,7 +115,7 @@ importers:
         version: 1.2.7(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@t3-oss/env-nextjs':
         specifier: ^0.13.8
-        version: 0.13.8(typescript@5.8.3)(zod@4.1.13)
+        version: 0.13.8(typescript@5.8.3)(zod@3.25.76)
       better-auth:
         specifier: ^1.4.5
         version: 1.4.5(next@16.1.1(@babel/core@7.27.4)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -130,7 +130,7 @@ importers:
         version: 1.1.1(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       creem:
         specifier: ^0.3.37
-        version: 0.3.37(zod@4.1.13)
+        version: 0.3.37(zod@3.25.76)
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -210,8 +210,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       zod:
-        specifier: ^4.1.8
-        version: 4.1.13
+        specifier: ^3.23.4
+        version: 3.25.76
     devDependencies:
       '@jest/globals':
         specifier: ^30.0.2
@@ -8535,12 +8535,12 @@ snapshots:
       '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/gateway@3.0.2(zod@4.1.13)':
+  '@ai-sdk/gateway@3.0.2(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 3.0.0
-      '@ai-sdk/provider-utils': 4.0.1(zod@4.1.13)
+      '@ai-sdk/provider-utils': 4.0.1(zod@3.25.76)
       '@vercel/oidc': 3.0.5
-      zod: 4.1.13
+      zod: 3.25.76
 
   '@ai-sdk/google@1.2.19(zod@3.25.76)':
     dependencies:
@@ -8548,11 +8548,11 @@ snapshots:
       '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/google@3.0.1(zod@4.1.13)':
+  '@ai-sdk/google@3.0.1(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 3.0.0
-      '@ai-sdk/provider-utils': 4.0.1(zod@4.1.13)
-      zod: 4.1.13
+      '@ai-sdk/provider-utils': 4.0.1(zod@3.25.76)
+      zod: 3.25.76
 
   '@ai-sdk/groq@1.2.3(zod@3.25.76)':
     dependencies:
@@ -8560,11 +8560,11 @@ snapshots:
       '@ai-sdk/provider-utils': 2.2.3(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/groq@3.0.1(zod@4.1.13)':
+  '@ai-sdk/groq@3.0.1(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 3.0.0
-      '@ai-sdk/provider-utils': 4.0.1(zod@4.1.13)
-      zod: 4.1.13
+      '@ai-sdk/provider-utils': 4.0.1(zod@3.25.76)
+      zod: 3.25.76
 
   '@ai-sdk/mistral@1.2.8(zod@3.25.76)':
     dependencies:
@@ -8572,11 +8572,11 @@ snapshots:
       '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/mistral@3.0.1(zod@4.1.13)':
+  '@ai-sdk/mistral@3.0.1(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 3.0.0
-      '@ai-sdk/provider-utils': 4.0.1(zod@4.1.13)
-      zod: 4.1.13
+      '@ai-sdk/provider-utils': 4.0.1(zod@3.25.76)
+      zod: 3.25.76
 
   '@ai-sdk/openai@1.3.22(zod@3.25.76)':
     dependencies:
@@ -8598,12 +8598,12 @@ snapshots:
       secure-json-parse: 2.7.0
       zod: 3.25.76
 
-  '@ai-sdk/provider-utils@4.0.1(zod@4.1.13)':
+  '@ai-sdk/provider-utils@4.0.1(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 3.0.0
       '@standard-schema/spec': 1.1.0
       eventsource-parser: 3.0.6
-      zod: 4.1.13
+      zod: 3.25.76
 
   '@ai-sdk/provider@1.1.0':
     dependencies:
@@ -9497,7 +9497,7 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@better-auth/core@1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@4.1.13))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0)':
+  '@better-auth/core@1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@3.25.76))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0)':
     dependencies:
       '@better-auth/utils': 0.3.0
       '@better-fetch/fetch': 1.1.18
@@ -9508,9 +9508,9 @@ snapshots:
       nanostores: 1.1.0
       zod: 4.1.13
 
-  '@better-auth/telemetry@1.4.5(@better-auth/core@1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@4.1.13))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0))':
+  '@better-auth/telemetry@1.4.5(@better-auth/core@1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@3.25.76))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0))':
     dependencies:
-      '@better-auth/core': 1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@4.1.13))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0)
+      '@better-auth/core': 1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@3.25.76))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0)
       '@better-auth/utils': 0.3.0
       '@better-fetch/fetch': 1.1.18
 
@@ -10730,11 +10730,11 @@ snapshots:
       zod: 3.25.76
       zod-to-json-schema: 3.25.0(zod@3.25.76)
 
-  '@lingo.dev/compiler@0.1.2(@types/node@24.0.3)(@types/react@19.1.8)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(next@16.1.1(@babel/core@7.27.4)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(zod@4.1.13)':
+  '@lingo.dev/compiler@0.1.2(@types/node@24.0.3)(@types/react@19.1.8)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(next@16.1.1(@babel/core@7.27.4)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(zod@3.25.76)':
     dependencies:
-      '@ai-sdk/google': 3.0.1(zod@4.1.13)
-      '@ai-sdk/groq': 3.0.1(zod@4.1.13)
-      '@ai-sdk/mistral': 3.0.1(zod@4.1.13)
+      '@ai-sdk/google': 3.0.1(zod@3.25.76)
+      '@ai-sdk/groq': 3.0.1(zod@3.25.76)
+      '@ai-sdk/mistral': 3.0.1(zod@3.25.76)
       '@babel/core': 7.27.4
       '@babel/generator': 7.28.5
       '@babel/parser': 7.28.5
@@ -10743,9 +10743,9 @@ snapshots:
       '@babel/traverse': 7.28.5
       '@babel/types': 7.28.5
       '@formatjs/icu-messageformat-parser': 3.2.0
-      '@openrouter/ai-sdk-provider': 1.5.4(ai@6.0.3(zod@4.1.13))(zod@4.1.13)
-      ai: 6.0.3(zod@4.1.13)
-      ai-sdk-ollama: 3.0.0(ai@6.0.3(zod@4.1.13))(zod@4.1.13)
+      '@openrouter/ai-sdk-provider': 1.5.4(ai@6.0.3(zod@3.25.76))(zod@3.25.76)
+      ai: 6.0.3(zod@3.25.76)
+      ai-sdk-ollama: 3.0.0(ai@6.0.3(zod@3.25.76))(zod@3.25.76)
       dotenv: 17.2.3
       fast-xml-parser: 5.3.3
       intl-messageformat: 11.0.7
@@ -11046,11 +11046,11 @@ snapshots:
       ai: 4.3.15(react@19.2.3)(zod@3.25.76)
       zod: 3.25.76
 
-  '@openrouter/ai-sdk-provider@1.5.4(ai@6.0.3(zod@4.1.13))(zod@4.1.13)':
+  '@openrouter/ai-sdk-provider@1.5.4(ai@6.0.3(zod@3.25.76))(zod@3.25.76)':
     dependencies:
       '@openrouter/sdk': 0.1.27
-      ai: 6.0.3(zod@4.1.13)
-      zod: 4.1.13
+      ai: 6.0.3(zod@3.25.76)
+      zod: 3.25.76
 
   '@openrouter/sdk@0.1.27':
     dependencies:
@@ -13055,17 +13055,17 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@t3-oss/env-core@0.13.8(typescript@5.8.3)(zod@4.1.13)':
+  '@t3-oss/env-core@0.13.8(typescript@5.8.3)(zod@3.25.76)':
     optionalDependencies:
       typescript: 5.8.3
-      zod: 4.1.13
+      zod: 3.25.76
 
-  '@t3-oss/env-nextjs@0.13.8(typescript@5.8.3)(zod@4.1.13)':
+  '@t3-oss/env-nextjs@0.13.8(typescript@5.8.3)(zod@3.25.76)':
     dependencies:
-      '@t3-oss/env-core': 0.13.8(typescript@5.8.3)(zod@4.1.13)
+      '@t3-oss/env-core': 0.13.8(typescript@5.8.3)(zod@3.25.76)
     optionalDependencies:
       typescript: 5.8.3
-      zod: 4.1.13
+      zod: 3.25.76
 
   '@tailwindcss/node@4.1.10':
     dependencies:
@@ -13540,11 +13540,11 @@ snapshots:
 
   agent-base@7.1.3: {}
 
-  ai-sdk-ollama@3.0.0(ai@6.0.3(zod@4.1.13))(zod@4.1.13):
+  ai-sdk-ollama@3.0.0(ai@6.0.3(zod@3.25.76))(zod@3.25.76):
     dependencies:
       '@ai-sdk/provider': 3.0.0
-      '@ai-sdk/provider-utils': 4.0.1(zod@4.1.13)
-      ai: 6.0.3(zod@4.1.13)
+      '@ai-sdk/provider-utils': 4.0.1(zod@3.25.76)
+      ai: 6.0.3(zod@3.25.76)
       ollama: 0.6.3
     transitivePeerDependencies:
       - zod
@@ -13573,13 +13573,13 @@ snapshots:
     optionalDependencies:
       react: 19.2.3
 
-  ai@6.0.3(zod@4.1.13):
+  ai@6.0.3(zod@3.25.76):
     dependencies:
-      '@ai-sdk/gateway': 3.0.2(zod@4.1.13)
+      '@ai-sdk/gateway': 3.0.2(zod@3.25.76)
       '@ai-sdk/provider': 3.0.0
-      '@ai-sdk/provider-utils': 4.0.1(zod@4.1.13)
+      '@ai-sdk/provider-utils': 4.0.1(zod@3.25.76)
       '@opentelemetry/api': 1.9.0
-      zod: 4.1.13
+      zod: 3.25.76
 
   ajv-formats@3.0.1(ajv@8.17.1):
     optionalDependencies:
@@ -13803,8 +13803,8 @@ snapshots:
 
   better-auth@1.4.5(next@16.1.1(@babel/core@7.27.4)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@better-auth/core': 1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@4.1.13))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0)
-      '@better-auth/telemetry': 1.4.5(@better-auth/core@1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@4.1.13))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0))
+      '@better-auth/core': 1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@3.25.76))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0)
+      '@better-auth/telemetry': 1.4.5(@better-auth/core@1.4.5(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.4(zod@3.25.76))(jose@6.1.3)(kysely@0.28.8)(nanostores@1.1.0))
       '@better-auth/utils': 0.3.0
       '@better-fetch/fetch': 1.1.18
       '@noble/ciphers': 2.0.1
@@ -14116,9 +14116,9 @@ snapshots:
       path-type: 4.0.0
       yaml: 1.10.2
 
-  creem@0.3.37(zod@4.1.13):
+  creem@0.3.37(zod@3.25.76):
     dependencies:
-      zod: 4.1.13
+      zod: 3.25.76
 
   cross-env@10.1.0:
     dependencies:
