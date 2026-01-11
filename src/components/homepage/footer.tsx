@@ -50,29 +50,11 @@ const footerSections: FooterSection[] = [
     title: <>Other Products</>,
     links: [
       {
-        id: "foot-pixmiller",
-        name: "PixMiller",
-        href: "https://pixmiller.com/",
+        id: "indiehackertool",
+        name: "Indiehackertool",
+        href: "https://www.indiehackertool.com/",
         external: true,
-      },
-      {
-        id: "foot-headshots",
-        name: "HeadShots.fun",
-        href: "https://headshots.fun/",
-        external: true,
-      },
-      {
-        id: "foot-tomarkdown",
-        name: "To Markdown",
-        href: "https://to-markdown.com/",
-        external: true,
-      },
-      {
-        id: "foot-hipng",
-        name: "HiPNG.com",
-        href: "https://hipng.com/",
-        external: true,
-      },
+      }
     ],
   },
   {
@@ -80,9 +62,9 @@ const footerSections: FooterSection[] = [
     title: <>Company</>,
     links: [
       { id: "foot-about", name: <>About</>, href: "/about" },
-      { id: "foot-blog", name: <>Blog</>, href: "/blog" },
-      { id: "foot-contact", name: <>Contact</>, href: "/contact" },
-      { id: "foot-careers", name: <>Careers</>, href: "/careers" },
+      // { id: "foot-blog", name: <>Blog</>, href: "/blog" },
+      // { id: "foot-contact", name: <>Contact</>, href: "/contact" },
+      // { id: "foot-careers", name: <>Careers</>, href: "/careers" },
     ],
   },
   {
@@ -101,7 +83,7 @@ const footerSections: FooterSection[] = [
     links: [
       { id: "foot-privacy", name: <>Privacy</>, href: "/privacy" },
       { id: "foot-terms", name: <>Terms</>, href: "/terms" },
-      { id: "foot-security", name: <>Security</>, href: "/security" },
+      // { id: "foot-security", name: <>Security</>, href: "/security" },
     ],
   },
 ];

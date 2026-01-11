@@ -12,10 +12,10 @@ export const TRIAL_DAYS = 7;
 export const AVATAR_STYLE = "adventurer-neutral";
 
 // Contact Information
-export const CONTACT_EMAIL = "support@headshotpro.ai";
-export const LEGAL_EMAIL = "legal@headshotpro.ai";
-export const PRIVACY_EMAIL = "privacy@headshotpro.ai";
-export const RESEND_EMAIL_FROM = "noreply@mail.headshotpro.ai";
+export const CONTACT_EMAIL = "support@headshotpro.work";
+export const LEGAL_EMAIL = "addhhh150@gmail.com";
+export const PRIVACY_EMAIL = "addhhh150@gmail.com";
+export const RESEND_EMAIL_FROM = "noreply@mail.headshotpro.work";
 
 // External Links
 export const GITHUB_URL = "https://github.com/headshotpro/ai-saas";
@@ -24,5 +24,5 @@ export const VERCEL_DEPLOY_URL =
 
 export const PAYMENT_PROVIDER = "creem" as const;
 // SEO
-export const OGIMAGE = "https://headshotpro.ai/og.png";
-export const TWITTERACCOUNT = "@headshotproai";
+export const OGIMAGE = "https://headshotpro.work//og.png";
+export const TWITTERACCOUNT = "@headshotprowork";

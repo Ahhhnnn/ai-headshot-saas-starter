@@ -67,7 +67,7 @@ export function Hero() {
                 ))}
               </div>
               <div className="text-sm">
-                <span className="font-semibold text-foreground">5,000+</span>
+                <span className="font-semibold text-foreground">5+</span>
                 <span className="text-muted-foreground"> professionals trust us</span>
               </div>
             </div>
@@ -109,7 +109,7 @@ export function Hero() {
                 </div>
                 <span className="text-sm font-medium text-foreground">4.9/5</span>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">From 2,000+ reviews</p>
+              <p className="text-xs text-muted-foreground mt-1">From 5+ reviews</p>
             </div>
           </div>
         </div>

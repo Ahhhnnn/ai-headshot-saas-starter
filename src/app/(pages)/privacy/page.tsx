@@ -138,14 +138,14 @@ export default function PrivacyPage() {
               <p>
                 <strong>Email:</strong> {PRIVACY_EMAIL}
               </p>
-              <p>
+              {/* <p>
                 <strong>Address:</strong> 123 Privacy Street, Data City, DC
                 12345
-              </p>
-              <p>
+              </p> */}
+              {/* <p>
                 <strong>Phone:</strong>{" "}
                 <span data-lingo-skip>+1 (555) 123-4567</span>
-              </p>
+              </p> */}
             </div>
           </div>
 
