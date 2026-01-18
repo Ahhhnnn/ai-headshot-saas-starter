@@ -18,6 +18,7 @@ import {
 } from "@/lib/database/subscription";
 import type { Tx } from "@/lib/database/subscription";
 import { getProductTierByProductId } from "@/lib/config/products";
+import { grantCredits } from "@/lib/database/credits";
 
 // --- Helper functions and type guards (no changes here) ---
 
@@ -234,6 +235,21 @@ async function processCheckoutCompletedEvent(
       },
       tx,
     );
+
+    // Grant credits for one-time purchase
+    const creditsToGrant = tier?.credits?.oneTime ?? 0;
+    if (creditsToGrant > 0) {
+      await grantCredits(
+        userId,
+        creditsToGrant,
+        order.transaction,
+        `Credits from ${tier?.name || "purchase"}`,
+        tx,
+      );
+      console.log(
+        `Granted ${creditsToGrant} credits to user ${userId} for one-time purchase`,
+      );
+    }
   } else {
     throw new Error(
       `Unsupported payment mode: ${paymentMode} or missing subscription data for subscription mode`,

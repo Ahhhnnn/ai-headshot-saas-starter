@@ -8,6 +8,13 @@ export interface ProductFeature {
 }
 
 /**
+ * 定义一次性购买获得的积分
+ */
+export interface TierCredits {
+  oneTime: number; // 一次性购买获得的积分数量
+}
+
+/**
  * 定义一个定价套餐
  */
 export interface PricingTier {
@@ -30,6 +37,7 @@ export interface PricingTier {
     monthly: number;
     yearly: number;
   };
+  credits?: TierCredits; // 一次性购买获得的积分
   currency: "USD" | "EUR"; // 支持的货币
 }
 
@@ -39,23 +47,121 @@ export interface PricingTier {
  */
 export const PRODUCT_TIERS: PricingTier[] = [
   {
+    id: "starter",
+    name: "Starter",
+    description: "Perfect for trying out",
+    isPopular: false,
+    features: [
+      { name: "5 professional headshots", included: true },
+      { name: "3 background styles", included: true },
+      { name: "48-hour delivery", included: true },
+      { name: "Basic retouching", included: true },
+      // { name: "Advanced analytics", included: true },
+      // { name: "Priority support", included: true },
+      // { name: "10GB storage", included: false },
+      // { name: "Team collaboration", included: false },
+      // { name: "API access", included: false },
+    ],
+    pricing: {
+      creem: {
+        // TODO: Replace with actual Creem product IDs
+        oneTime: "prod_starter_one_time",
+        monthly: "prod_starter_monthly",
+        yearly: "prod_starter_yearly",
+      },
+    },
+    prices: {
+      oneTime: 4.9,
+      monthly: 0,
+      yearly: 0,
+    },
+    credits: {
+      oneTime: 5, // $4.9 = 5 credits
+    },
+    currency: "USD",
+  },
+  {
+    id: "pro",
+    name: "Pro",
+    description: "Best for professionals",
+    isPopular: true,
+    features: [
+      { name: "10 professional headshots", included: true },
+      { name: "10 background styles", included: true },
+      { name: "1-hour delivery", included: true },
+      { name: "Advanced retouching", included: true },
+      { name: "LinkedIn optimization", included: true },
+      { name: "Priority support", included: true },
+      // { name: "10GB storage", included: true },
+      // { name: "Team collaboration", included: true },
+      // { name: "API access", included: true },
+      // { name: "Dedicated support", included: false },
+    ],
+    pricing: {
+      creem: {
+        // TODO: Replace with actual Creem product IDs
+        oneTime: "prod_pro_one_time",
+        monthly: "prod_pro_monthly",
+        yearly: "prod_pro_yearly",
+      },
+    },
+    prices: {
+      oneTime: 9.9,
+      monthly: 0,
+      yearly: 0,
+    },
+    credits: {
+      oneTime: 10, // $9.9 = 10 credits
+    },
+    currency: "USD",
+  },
+  {
+    id: "team",
+    name: "Team",
+    description: "For teams and companies",
+    isPopular: false,
+    features: [
+      { name: "60 headshots (up to 5 people)", included: true },
+      { name: "Unlimited backgrounds", included: true },
+      { name: "30-minute delivery", included: true },
+      { name: "Premium retouching", included: true },
+      { name: "Brand consistency", included: true },
+      { name: "Dedicated account manager", included: true },
+      // { name: "Advanced analytics", included: true },
+      // { name: "Priority support", included: true },
+      // { name: "10GB storage", included: true },
+      // { name: "Team collaboration", included: true },
+      // { name: "API access", included: true },
+      // { name: "Dedicated support", included: true },
+    ],
+    pricing: {
+      creem: {
+        // TODO: Replace with actual Creem product IDs
+        oneTime: "prod_team_one_time",
+        monthly: "prod_team_monthly",
+        yearly: "prod_team_yearly",
+      },
+    },
+    prices: {
+      oneTime: 59.9,
+      monthly: 0,
+      yearly: 0,
+    },
+    credits: {
+      oneTime: 60, // $59.9 = 60 credits
+    },
+    currency: "USD",
+  },
+  // Legacy tiers kept for reference, can be removed later
+  /*
+  {
     id: "plus",
     name: "Plus",
     description: "Best for growing teams and businesses",
     isPopular: false,
-    features: [
-      { name: "Unlimited projects", included: true },
-      { name: "Advanced analytics", included: true },
-      { name: "Priority support", included: true },
-      { name: "10GB storage", included: false },
-      { name: "Team collaboration", included: false },
-      { name: "API access", included: false },
-      { name: "Dedicated support", included: false },
-      { name: "Advanced security", included: false },
-    ],
+    features: [],
     pricing: {
       creem: {
-        // headshotpro: prod_6mYAPTGcXZrU1XrPRXfleP
         oneTime: "prod_6mYAPTGcXZrU1XrPRXfleP",
         monthly: "prod_6uhcfBUcRxprqDvep0U5Jw",
         yearly: "prod_7LJkGVgv4LOBuucrxANo2b",
@@ -66,26 +172,19 @@ export const PRODUCT_TIERS: PricingTier[] = [
       monthly: 9.99,
       yearly: 99.99,
     },
+    credits: {
+      oneTime: 10,
+    },
     currency: "USD",
   },
   {
-    id: "pro",
+    id: "professional",
     name: "Professional",
     description: "Best for growing teams and businesses",
     isPopular: true,
-    features: [
-      { name: "Unlimited projects", included: true },
-      { name: "Advanced analytics", included: true },
-      { name: "Priority support", included: true },
-      { name: "10GB storage", included: true },
-      { name: "Team collaboration", included: true },
-      { name: "API access", included: true },
-      { name: "Dedicated support", included: false },
-      { name: "Advanced security", included: false },
-    ],
+    features: [],
     pricing: {
       creem: {
-        // 示例ID, 请替换
         oneTime: "prod_6uhcfBUcRxprqDvep0U5Jw",
         monthly: "prod_6uhcfBUcRxprqDvep0U5Jw",
         yearly: "prod_6uhcfBUcRxprqDvep0U5Jw",
@@ -96,39 +195,12 @@ export const PRODUCT_TIERS: PricingTier[] = [
       monthly: 19.99,
       yearly: 199.99,
     },
-    currency: "USD",
-  },
-  {
-    id: "team",
-    name: "Team",
-    description: "Best for growing teams and businesses",
-    isPopular: false,
-    features: [
-      { name: "Unlimited projects", included: true },
-      { name: "Advanced analytics", included: true },
-      { name: "Priority support", included: true },
-      { name: "10GB storage", included: true },
-      { name: "Team collaboration", included: true },
-      { name: "API access", included: true },
-      { name: "Dedicated support", included: true },
-      { name: "Advanced security", included: true },
-    ],
-    pricing: {
-      creem: {
-        // 示例ID, 请替换
-        oneTime: "prod_6uhcfBUcRxprqDvep0U5Jw",
-        monthly: "prod_6uhcfBUcRxprqDvep0U5Jw",
-        yearly: "prod_6uhcfBUcRxprqDvep0U5Jw",
-      },
-    },
-    prices: {
-      oneTime: 59.99,
-      monthly: 49.99,
-      yearly: 499.99,
+    credits: {
+      oneTime: 15,
     },
     currency: "USD",
   },
-  // 可以添加更多套餐...
+  */
 ];
 
 /**

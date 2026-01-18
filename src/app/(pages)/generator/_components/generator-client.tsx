@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import {
   Card,
@@ -23,6 +23,7 @@ import {
   Check,
   Loader2,
   Sparkles,
+  Coins,
 } from "lucide-react";
 import { toast } from "sonner";
 import { generateAvatar, getGenerationStatus } from "@/lib/actions/generate";
@@ -56,6 +57,24 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
     useState<GenerationResult | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationProgress, setGenerationProgress] = useState(0);
+  const [creditBalance, setCreditBalance] = useState<number>(0);
+
+  // Fetch credit balance on mount
+  const fetchCredits = useCallback(async () => {
+    try {
+      const response = await fetch("/api/credits");
+      if (response.ok) {
+        const data = await response.json();
+        setCreditBalance(data.credits?.balance ?? 0);
+      }
+    } catch (error) {
+      console.error("Failed to fetch credits:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchCredits();
+  }, [fetchCredits]);
 
   // 处理风格选择
   const handleStyleSelect = useCallback((styleId: string) => {
@@ -108,6 +127,7 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
           });
           setCurrentStep(3);
           toast.success("Headshot generated successfully!");
+          fetchCredits(); // Refresh credit balance
           return;
         }
 
@@ -133,7 +153,7 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
     } finally {
       setIsGenerating(false);
     }
-  }, [uploadedFile, selectedStyle]);
+  }, [uploadedFile, selectedStyle, fetchCredits]);
 
   // 重新开始
   const handleReset = useCallback(() => {
@@ -172,10 +192,17 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
         <h1 className="text-3xl font-bold tracking-tight mb-2">
           AI Headshot Generator
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground mb-4">
           Upload your photo, select a style, and get professional headshots in
           minutes
         </p>
+        {/* Credit Balance */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20">
+          <Coins className="w-4 h-4 text-amber-500" />
+          <span className="text-sm font-medium text-amber-700 dark:text-amber-400">
+            {creditBalance} credits remaining
+          </span>
+        </div>
       </div>
 
       {/* Progress Steps */}
@@ -386,15 +413,21 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
                         </p>
                       </div>
                     ) : (
-                      <Button
-                        size="lg"
-                        className="w-full"
-                        onClick={handleGenerate}
-                        disabled={!uploadedFile || !selectedStyle}
-                      >
-                        <Sparkles className="w-5 h-5 mr-2" />
-                        Generate Headshot
-                      </Button>
+                      <div className="space-y-3">
+                        <Button
+                          size="lg"
+                          className="w-full"
+                          onClick={handleGenerate}
+                          disabled={!uploadedFile || !selectedStyle}
+                        >
+                          <Sparkles className="w-5 h-5 mr-2" />
+                          Generate Headshot
+                        </Button>
+                        <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
+                          <Coins className="w-3.5 h-3.5 text-amber-500" />
+                          <span>Generates 1 headshot, costs 1 credit</span>
+                        </div>
+                      </div>
                     )}
 
                     {generationResult?.status === "failed" && (

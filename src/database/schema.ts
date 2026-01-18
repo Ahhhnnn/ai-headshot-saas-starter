@@ -204,3 +204,43 @@ export const generations = pgTable(
     };
   },
 );
+
+// Credits table to store user credit balance
+export const credits = pgTable(
+  "credits",
+  {
+    userId: text("userId").primaryKey().references(() => users.id, { onDelete: "cascade" }),
+    balance: integer("balance").notNull().default(0), // Current balance
+    totalEarned: integer("totalEarned").notNull().default(0), // Total credits earned
+    totalSpent: integer("totalSpent").notNull().default(0), // Total credits spent
+    createdAt: timestamp("createdAt").notNull().defaultNow(),
+    updatedAt: timestamp("updatedAt").notNull().defaultNow(),
+  },
+  (table) => {
+    return {
+      userIdx: index("credits_userId_idx").on(table.userId),
+    };
+  },
+);
+
+// Credit transactions table for audit trail
+export const creditTransactions = pgTable(
+  "credit_transactions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    amount: integer("amount").notNull(), // Positive = earned, Negative = spent
+    type: text("type").notNull(), // "payment_refill", "generation_spent", "admin_adjust"
+    referenceId: text("referenceId"), // Reference to payment or order ID
+    description: text("description"),
+    createdAt: timestamp("createdAt").notNull().defaultNow(),
+  },
+  (table) => {
+    return {
+      userIdx: index("creditTransactions_userId_idx").on(table.userId),
+      createdAtIdx: index("creditTransactions_createdAt_idx").on(table.createdAt),
+    };
+  },
+);

@@ -3,6 +3,10 @@ import { auth } from "@/lib/auth/server";
 import { getStyleById } from "@/lib/config/avatar-styles";
 import { getProvider } from "@/lib/generate/provider";
 import type { GenerateInput } from "@/lib/generate/provider";
+import { getUserCredits, deductCredits, InsufficientCreditsError } from "@/lib/database/credits";
+
+// Credits configuration
+const CREDITS_PER_GENERATION = 1;
 
 // 生成请求类型
 interface GenerateRequest {
@@ -46,7 +50,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid style ID" }, { status: 400 });
     }
 
-    // 4. 使用 V3 Provider 进行图生图生成
+    // 4. Check user credits
+    const creditRecord = await getUserCredits(session.user.id);
+    if (!creditRecord || creditRecord.balance < CREDITS_PER_GENERATION) {
+      return NextResponse.json(
+        { error: "Insufficient credits", required: CREDITS_PER_GENERATION },
+        { status: 403 },
+      );
+    }
+
+    // 5. 使用 V3 Provider 进行图生图生成
     const provider = getProvider("v3");
 
     if (!provider) {
@@ -167,6 +180,11 @@ async function generateHeadshot(
 
     if (finalResult.status === "completed" && finalResult.imageUrl) {
       console.log(`[Avatar API] Job ${jobId} completed with URL: ${finalResult.imageUrl}`);
+
+      // Deduct credits after successful generation
+      await deductCredits(userId, CREDITS_PER_GENERATION, "AI headshot generation");
+      console.log(`[Avatar API] Deducted ${CREDITS_PER_GENERATION} credit(s) from user ${userId}`);
+
       return { status: "completed", imageUrl: finalResult.imageUrl };
     } else {
       console.error(`[Avatar API] Job ${jobId} failed: ${finalResult.error}`);
@@ -174,8 +192,14 @@ async function generateHeadshot(
     }
   } catch (error) {
     console.error("[Avatar API] V3 generation error:", error);
+    if (error instanceof InsufficientCreditsError) {
+      return {
+        status: "failed" as const,
+        error: "Insufficient credits to complete generation",
+      };
+    }
     return {
-      status: "failed",
+      status: "failed" as const,
       error: error instanceof Error ? error.message : "Unknown error",
     };
   }

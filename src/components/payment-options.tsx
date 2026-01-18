@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -8,25 +8,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import {
   Check,
-  Zap,
-  Calendar,
   CreditCard,
   Loader2,
   LogIn,
   Terminal,
+  Coins,
 } from "lucide-react";
 import { PRODUCT_TIERS, type PricingTier } from "@/lib/config/products";
 import { useSession } from "@/lib/auth/client";
 import { useRouter } from "nextjs-toploader/app";
-import type { PaymentMode, BillingCycle } from "@/types/billing";
+import type { PaymentMode } from "@/types/billing";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "./ui/skeleton";
 
@@ -38,13 +34,20 @@ const formatPrice = (price: number, currency: string = "USD") => {
   }).format(price);
 };
 
+// TODO: Uncomment subscription support when ready
+/*
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { Zap, Calendar } from "lucide-react";
+import type { BillingCycle } from "@/types/billing";
+*/
+
 export function PricingSection({ className }: { className?: string }) {
-  const [paymentMode, setPaymentMode] = useState<PaymentMode>("subscription");
-  const [billingCycle, setBillingCycle] = useState<BillingCycle>("yearly");
+  const [paymentMode] = useState<PaymentMode>("one_time"); // Default to one-time
   const [loadingState, setLoadingState] = useState<{
     tierId: string;
     mode: PaymentMode;
-    cycle?: BillingCycle;
   } | null>(null);
 
   const { data: session, isPending: isSessionLoading } = useSession();
@@ -55,11 +58,7 @@ export function PricingSection({ className }: { className?: string }) {
     setMounted(true);
   }, []);
 
-  const handleCheckout = async (
-    tier: PricingTier,
-    mode: PaymentMode,
-    cycle?: BillingCycle,
-  ) => {
+  const handleCheckout = async (tier: PricingTier, mode: PaymentMode) => {
     if (!session?.user) {
       toast.error("Please log in to continue purchase.", {
         action: {
@@ -71,7 +70,7 @@ export function PricingSection({ className }: { className?: string }) {
       return;
     }
 
-    setLoadingState({ tierId: tier.id, mode, cycle });
+    setLoadingState({ tierId: tier.id, mode });
     toast.info("Initializing secure checkout sequence...");
 
     let isRedirecting = false;
@@ -83,7 +82,6 @@ export function PricingSection({ className }: { className?: string }) {
         body: JSON.stringify({
           tierId: tier.id,
           paymentMode: mode,
-          billingCycle: cycle,
         }),
       });
 
@@ -125,7 +123,8 @@ export function PricingSection({ className }: { className?: string }) {
 
   return (
     <div className={cn("mx-auto w-full max-w-7xl px-4", className)}>
-      {/* Payment Mode Selection */}
+      {/* Payment Mode Selection - Commented out for now, subscription support TBD */}
+      {/*
       <div className="mb-8 text-center">
         <Tabs
           value={paymentMode}
@@ -148,8 +147,21 @@ export function PricingSection({ className }: { className?: string }) {
           </TabsList>
         </Tabs>
       </div>
+      */}
 
-      {/* Billing Cycle Toggle */}
+      {/* One-time payment indicator */}
+      <div className="mb-8 text-center">
+        <Badge
+          variant="outline"
+          className="border-amber-500/30 bg-amber-500/10 text-amber-600 text-sm font-medium"
+        >
+          <CreditCard className="mr-1.5 h-4 w-4" />
+          One-time payment with credits
+        </Badge>
+      </div>
+
+      {/* Billing Cycle Toggle - Commented out for now */}
+      {/*
       {paymentMode === "subscription" && (
         <div className="mb-10 flex flex-col items-center gap-3">
           <div className="bg-muted/30 flex items-center justify-center gap-3 rounded-full border p-1">
@@ -196,21 +208,15 @@ export function PricingSection({ className }: { className?: string }) {
           </div>
         </div>
       )}
+      */}
 
       {/* Pricing Cards */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
         {PRODUCT_TIERS.map((tier) => {
-          const price =
-            paymentMode === "one_time"
-              ? tier.prices.oneTime
-              : billingCycle === "yearly"
-                ? tier.prices.yearly
-                : tier.prices.monthly;
+          const price = tier.prices.oneTime;
 
           const isLoading =
-            loadingState?.tierId === tier.id &&
-            loadingState.mode === paymentMode &&
-            (paymentMode === "one_time" || loadingState.cycle === billingCycle);
+            loadingState?.tierId === tier.id && loadingState.mode === paymentMode;
 
           const isDisabled = !mounted || isLoading || isSessionLoading;
 
@@ -227,7 +233,7 @@ export function PricingSection({ className }: { className?: string }) {
               {tier.isPopular && (
                 <div className="absolute -top-3 left-1/2 z-10 -translate-x-1/2">
                   <Badge className="bg-primary text-primary-foreground hover:bg-primary px-3 py-1 text-xs font-bold shadow-sm">
-                    RECOMMENDED
+                    MOST POPULAR
                   </Badge>
                 </div>
               )}
@@ -242,33 +248,33 @@ export function PricingSection({ className }: { className?: string }) {
                 <div className="mt-6 space-y-2">
                   <div className="flex items-baseline justify-center gap-1">
                     <span className="text-foreground font-mono text-4xl font-bold tracking-tight">
-                      {paymentMode === "one_time"
-                        ? formatPrice(price, tier.currency)
-                        : billingCycle === "monthly"
-                          ? formatPrice(price, tier.currency)
-                          : formatPrice(Math.round(price / 12), tier.currency)}
+                      {formatPrice(price, tier.currency)}
                     </span>
-                    {paymentMode === "subscription" && (
-                      <span className="text-muted-foreground font-mono text-sm">
-                        /mo
-                      </span>
-                    )}
+                    <span className="text-muted-foreground font-mono text-sm">
+                      one-time
+                    </span>
                   </div>
                   <div className="flex h-5 items-center justify-center">
                     <p className="text-muted-foreground text-xs font-medium uppercase tracking-wide">
-                      {paymentMode === "one_time" ? (
-                        <>One-time payment</>
-                      ) : billingCycle === "yearly" ? (
-                        <>Billed annually</>
-                      ) : (
-                        <>Billed monthly</>
-                      )}
+                      One-time payment
                     </p>
                   </div>
+                  {/* Credits badge */}
+                  {tier.credits?.oneTime && (
+                    <div className="mt-3 flex h-7 items-center justify-center">
+                      <Badge
+                        variant="outline"
+                        className="border-amber-500/30 bg-amber-500/10 text-amber-600 text-xs font-semibold"
+                      >
+                        <Coins className="mr-1.5 h-3 w-3" />
+                        Get {tier.credits.oneTime} Credits
+                      </Badge>
+                    </div>
+                  )}
                 </div>
               </CardHeader>
 
-              <CardContent className="flex flex-1 flex-col px-6 pt-0 pb-8">
+              <CardContent className="flex flex-1 flex-col px-6 pb-8 pt-0">
                 <div className="bg-muted/30 mb-6 h-px w-full" />
                 <div className="mb-8 flex-1 space-y-4">
                   {tier.features.map((feature, index) => (
@@ -310,9 +316,7 @@ export function PricingSection({ className }: { className?: string }) {
                         ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md"
                         : "bg-background hover:bg-accent hover:text-accent-foreground border",
                     )}
-                    onClick={() =>
-                      handleCheckout(tier, paymentMode, billingCycle)
-                    }
+                    onClick={() => handleCheckout(tier, paymentMode)}
                     variant={tier.isPopular ? "default" : "outline"}
                     disabled={isDisabled}
                   >

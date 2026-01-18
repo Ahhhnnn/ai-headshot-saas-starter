@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { z } from "zod";
 import { db } from "@/database";
 import { generations } from "@/database/tables";
+import { deductCredits, getUserCredits } from "@/lib/database/credits";
 import { eq } from "drizzle-orm";
 
 // 验证输入 schema
@@ -128,6 +129,20 @@ export async function getGenerationStatus(
 
     if (result.status === "completed" && result.outputImageUrl) {
       console.log(`[Generate] Generation completed for job ${jobId}`);
+
+      // Deduct credits after successful generation
+      try {
+        const userCredits = await getUserCredits(result.userId);
+        if (userCredits && userCredits.balance > 0) {
+          await deductCredits(result.userId, 1, `Generation for job ${jobId}`);
+          console.log(`[Generate] Deducted 1 credit for job ${jobId}, remaining balance: ${userCredits.balance - 1}`);
+        } else {
+          console.warn(`[Generate] User ${result.userId} has no credits for job ${jobId}`);
+        }
+      } catch (creditError) {
+        console.error(`[Generate] Failed to deduct credits for job ${jobId}:`, creditError);
+      }
+
       console.log(`[Generate] Original image URL from V3: ${result.outputImageUrl}`);
 
       // Upload to R2 if not already uploaded

@@ -8,6 +8,8 @@ import {
   webhookEvents,
   uploads,
   generations,
+  credits,
+  creditTransactions,
   userRoleEnum,
 } from "./schema";
 
@@ -21,5 +23,7 @@ export {
   webhookEvents,
   uploads,
   generations,
+  credits,
+  creditTransactions,
   userRoleEnum,
 };
