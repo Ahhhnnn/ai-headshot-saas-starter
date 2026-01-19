@@ -89,6 +89,12 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
       return;
     }
 
+    // 校验积分
+    if (creditBalance < 1) {
+      toast.error("Insufficient credits. Please purchase more credits to continue.");
+      return;
+    }
+
     setIsGenerating(true);
     setCurrentStep(2);
     setGenerationProgress(0);
@@ -418,15 +424,21 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
                           size="lg"
                           className="w-full"
                           onClick={handleGenerate}
-                          disabled={!uploadedFile || !selectedStyle}
+                          disabled={!uploadedFile || !selectedStyle || creditBalance < 1}
                         >
                           <Sparkles className="w-5 h-5 mr-2" />
                           Generate Headshot
                         </Button>
-                        <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                          <Coins className="w-3.5 h-3.5 text-amber-500" />
-                          <span>Generates 1 headshot, costs 1 credit</span>
-                        </div>
+                        {creditBalance < 1 ? (
+                          <div className="flex items-center justify-center gap-1.5 text-xs text-destructive">
+                            <span>No credits remaining</span>
+                          </div>
+                        ) : (
+                          <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
+                            <Coins className="w-3.5 h-3.5 text-amber-500" />
+                            <span>Generates 1 headshot, costs 1 credit</span>
+                          </div>
+                        )}
                       </div>
                     )}
 
