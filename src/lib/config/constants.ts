@@ -13,16 +13,16 @@ export const AVATAR_STYLE = "adventurer-neutral";
 
 // Contact Information
 export const CONTACT_EMAIL = "support@headshotpro.work";
-export const LEGAL_EMAIL = "addhhh150@gmail.com";
-export const PRIVACY_EMAIL = "addhhh150@gmail.com";
+export const LEGAL_EMAIL = "support@headshotpro.work";
+export const PRIVACY_EMAIL = "support@headshotpro.work";
 export const RESEND_EMAIL_FROM = "noreply@mail.headshotpro.work";
 
 // External Links
-export const GITHUB_URL = "https://github.com/headshotpro/ai-saas";
+export const GITHUB_URL = "https://github.com/Ahhhnnn";
 export const VERCEL_DEPLOY_URL =
-  "https://vercel.com/new/clone?repository-url=https://github.com/headshotpro/ai-saas";
+  "https://vercel.com/new/clone?repository-url=https://github.com/Ahhhnnn";
 
 export const PAYMENT_PROVIDER = "creem" as const;
 // SEO
 export const OGIMAGE = "https://headshotpro.work//og.png";
-export const TWITTERACCOUNT = "@headshotprowork";
+export const TWITTERACCOUNT = "@hehecodex";

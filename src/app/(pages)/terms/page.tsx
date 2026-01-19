@@ -155,13 +155,13 @@ export default function TermsPage() {
               <p>
                 <strong>Email:</strong> {LEGAL_EMAIL}
               </p>
-              <p>
+              {/* <p>
                 <strong>Address:</strong> 123 Legal Street, Terms City, TC 12345
               </p>
               <p>
                 <strong>Phone:</strong>{" "}
                 <span data-lingo-skip>+1 (555) 123-4567</span>
-              </p>
+              </p> */}
             </div>
           </div>
 

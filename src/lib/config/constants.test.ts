@@ -26,7 +26,7 @@ describe("Constants Configuration", () => {
         configurable: true,
       });
       const { APP_NAME } = await import("./constants");
-      expect(APP_NAME).toBe("DEV - SaaS Starter");
+      expect(APP_NAME).toBe("DEV - HeadshotPro AI");
     });
 
     it("should set APP_NAME for production environment", async () => {
@@ -36,7 +36,7 @@ describe("Constants Configuration", () => {
         configurable: true,
       });
       const { APP_NAME } = await import("./constants");
-      expect(APP_NAME).toBe("SaaS Starter");
+      expect(APP_NAME).toBe("HeadshotPro AI");
     });
 
     it("should set APP_NAME for test environment", async () => {
@@ -46,7 +46,7 @@ describe("Constants Configuration", () => {
         configurable: true,
       });
       const { APP_NAME } = await import("./constants");
-      expect(APP_NAME).toBe("SaaS Starter");
+      expect(APP_NAME).toBe("HeadshotPro AI");
     });
 
     it("should set APP_NAME for undefined environment", async () => {
@@ -56,7 +56,7 @@ describe("Constants Configuration", () => {
         configurable: true,
       });
       const { APP_NAME } = await import("./constants");
-      expect(APP_NAME).toBe("SaaS Starter");
+      expect(APP_NAME).toBe("HeadshotPro AI");
     });
   });
 
@@ -82,10 +82,10 @@ describe("Constants Configuration", () => {
     it("should export correct contact information", async () => {
       const constants = await import("./constants");
 
-      expect(constants.CONTACT_EMAIL).toBe("support@ullrai.com");
-      expect(constants.LEGAL_EMAIL).toBe("legal@ullrai.com");
-      expect(constants.PRIVACY_EMAIL).toBe("privacy@ullrai.com");
-      expect(constants.RESEND_EMAIL_FROM).toBe("noreply@mail.ullrai.com");
+      expect(constants.CONTACT_EMAIL).toBe("support@headshotpro.work");
+      expect(constants.LEGAL_EMAIL).toBe("support@headshotpro.work");
+      expect(constants.PRIVACY_EMAIL).toBe("support@headshotpro.work");
+      expect(constants.RESEND_EMAIL_FROM).toBe("noreply@mail.headshotpro.work");
 
       // Validate email format
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -99,10 +99,10 @@ describe("Constants Configuration", () => {
       const constants = await import("./constants");
 
       expect(constants.GITHUB_URL).toBe(
-        "https://github.com/ullrai/saas-starter",
+        "https://github.com/Ahhhnnn",
       );
       expect(constants.VERCEL_DEPLOY_URL).toBe(
-        "https://vercel.com/new/clone?repository-url=https://github.com/ullrai/saas-starter",
+        "https://vercel.com/new/clone?repository-url=https://github.com/Ahhhnnn",
       );
 
       // Validate URL format
@@ -121,7 +121,7 @@ describe("Constants Configuration", () => {
       const constants = await import("./constants");
 
       expect(constants.OGIMAGE).toBe("https://starter.ullrai.com/og.png");
-      expect(constants.TWITTERACCOUNT).toBe("@ullr_ai");
+      expect(constants.TWITTERACCOUNT).toBe("@hehecodex");
 
       // Validate URL format for OG image
       const urlRegex = /^https?:\/\/.+/;
@@ -210,24 +210,24 @@ describe("Constants Configuration", () => {
       const constants = await import("./constants");
 
       // Both GitHub URL and Vercel URL should reference the same repository
-      expect(constants.GITHUB_URL).toContain("ullrai/saas-starter");
-      expect(constants.VERCEL_DEPLOY_URL).toContain("ullrai/saas-starter");
+      expect(constants.GITHUB_URL).toContain("Ahhhnnn");
+      expect(constants.VERCEL_DEPLOY_URL).toContain("Ahhhnnn");
 
-      // All emails should be from ullrai.com domain
-      expect(constants.CONTACT_EMAIL).toContain("ullrai.com");
-      expect(constants.LEGAL_EMAIL).toContain("ullrai.com");
-      expect(constants.PRIVACY_EMAIL).toContain("ullrai.com");
-      expect(constants.RESEND_EMAIL_FROM).toContain("ullrai.com");
+      // All emails should be from headshotpro.work domain
+      expect(constants.CONTACT_EMAIL).toContain("headshotpro.work");
+      expect(constants.LEGAL_EMAIL).toContain("headshotpro.work");
+      expect(constants.PRIVACY_EMAIL).toContain("headshotpro.work");
+      expect(constants.RESEND_EMAIL_FROM).toContain("headshotpro.work");
 
       // Company name should be consistent with domain
-      expect(constants.COMPANY_NAME).toContain("UllrAI");
-      expect(constants.TWITTERACCOUNT).toContain("ullr");
+      expect(constants.COMPANY_NAME).toContain("HeadshotPro");
+      expect(constants.TWITTERACCOUNT).toContain("hehecodex");
     });
 
     it("should have APP_NAME that includes base name", async () => {
       const constants = await import("./constants");
 
-      expect(constants.APP_NAME).toContain("SaaS Starter");
+      expect(constants.APP_NAME).toContain("HeadshotPro AI");
 
       if (process.env.NODE_ENV === "development") {
         expect(constants.APP_NAME).toContain("DEV");

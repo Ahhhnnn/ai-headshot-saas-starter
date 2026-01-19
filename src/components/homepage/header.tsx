@@ -360,7 +360,7 @@ export function Header() {
             {/* Right side actions */}
             <div className="flex items-center gap-3">
               {/* Locale selector */}
-              <LocaleSwitcher variant="ghost" size="icon" />
+              {/* <LocaleSwitcher variant="ghost" size="icon" /> */}
               {/* Theme toggle */}
               <ModeToggle variant="ghost" size="icon" />
 

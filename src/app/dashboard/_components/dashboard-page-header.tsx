@@ -72,7 +72,7 @@ export function DashboardPageHeader({
         </div>
         <div className="flex items-center gap-2">
           {actions}
-          <LocaleSwitcher variant="ghost" size="icon" />
+          {/* <LocaleSwitcher variant="ghost" size="icon" /> */}
           <ModeToggle variant="ghost" size="icon" />
         </div>
       </div>

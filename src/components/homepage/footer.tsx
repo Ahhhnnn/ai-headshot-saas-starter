@@ -178,12 +178,12 @@ export function Footer() {
                 ))}
                 <div className="bg-border mx-1 h-6 w-px" />
                 <ModeToggle variant="outline" size="icon" />
-                <LocaleSwitcher
+                {/* <LocaleSwitcher
                   variant="outline"
                   size="sm"
                   showLabel
                   align="start"
-                />
+                /> */}
               </div>
             </div>
 
