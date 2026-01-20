@@ -7,6 +7,10 @@ export const COMPANY_NAME = "HeadshotPro AI";
 
 export const TRIAL_DAYS = 7;
 
+// Signup bonus credits for new users
+export const SIGNUP_BONUS_CREDITS = 2;
+export const SIGNUP_BONUS_DESCRIPTION = "Welcome bonus for signing up";
+
 // https://www.dicebear.com/playground/
 // DEFAULT: initials
 export const AVATAR_STYLE = "adventurer-neutral";

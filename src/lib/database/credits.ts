@@ -1,7 +1,7 @@
 import { db } from "@/database";
 import * as schema from "@/database/schema";
 import { credits as creditsTable, creditTransactions as creditTransactionsTable } from "@/database/tables";
-import { eq, desc, sql } from "drizzle-orm";
+import { and, desc, eq, sql } from "drizzle-orm";
 import type { PgTransaction } from "drizzle-orm/pg-core";
 import type { PostgresJsQueryResultHKT } from "drizzle-orm/postgres-js";
 import { ExtractTablesWithRelations } from "drizzle-orm";
@@ -25,6 +25,25 @@ export async function getUserCredits(userId: string, tx?: Tx) {
     .where(eq(creditsTable.userId, userId))
     .limit(1);
   return result[0] ?? null;
+}
+
+/**
+ * Check if signup bonus has already been granted to a user
+ * Checks for existing transaction with referenceId = "signup_{userId}"
+ */
+export async function hasSignupBonusBeenGranted(userId: string, tx?: Tx): Promise<boolean> {
+  const dbase = getDb(tx);
+  const result = await dbase
+    .select()
+    .from(creditTransactionsTable)
+    .where(
+      and(
+        eq(creditTransactionsTable.userId, userId),
+        eq(creditTransactionsTable.referenceId, `signup_${userId}`)
+      )
+    )
+    .limit(1);
+  return result.length > 0;
 }
 
 /**
