@@ -49,6 +49,8 @@ export function PricingSection({ className }: { className?: string }) {
     tierId: string;
     mode: PaymentMode;
   } | null>(null);
+  const [trialerPurchased, setTrialerPurchased] = useState<boolean>(false);
+  const [checkingTrialer, setCheckingTrialer] = useState(false);
 
   const { data: session, isPending: isSessionLoading } = useSession();
   const router = useRouter();
@@ -57,6 +59,26 @@ export function PricingSection({ className }: { className?: string }) {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Check if user has purchased trialer package
+  useEffect(() => {
+    if (!session?.user) return;
+    const checkTrialerStatus = async () => {
+      setCheckingTrialer(true);
+      try {
+        const response = await fetch("/api/billing/trialer-status");
+        if (response.ok) {
+          const data = await response.json();
+          setTrialerPurchased(data.hasPurchased);
+        }
+      } catch (error) {
+        console.error("Failed to check trialer status:", error);
+      } finally {
+        setCheckingTrialer(false);
+      }
+    };
+    checkTrialerStatus();
+  }, [session?.user]);
 
   const handleCheckout = async (tier: PricingTier, mode: PaymentMode) => {
     if (!session?.user) {
@@ -218,7 +240,9 @@ export function PricingSection({ className }: { className?: string }) {
           const isLoading =
             loadingState?.tierId === tier.id && loadingState.mode === paymentMode;
 
-          const isDisabled = !mounted || isLoading || isSessionLoading;
+          // Disable button for trialer if already purchased
+          const isTrialerDisabled = tier.id === "trialer" && trialerPurchased;
+          const isDisabled = !mounted || isLoading || isSessionLoading || isTrialerDisabled || checkingTrialer;
 
           return (
             <Card
@@ -261,7 +285,7 @@ export function PricingSection({ className }: { className?: string }) {
                   </div>
                   {/* Credits badge */}
                   {tier.credits?.oneTime && (
-                    <div className="mt-3 flex h-7 items-center justify-center">
+                    <div className="mt-3 flex flex-col items-center gap-2">
                       <Badge
                         variant="outline"
                         className="border-amber-500/30 bg-amber-500/10 text-amber-600 text-xs font-semibold"
@@ -269,6 +293,11 @@ export function PricingSection({ className }: { className?: string }) {
                         <Coins className="mr-1.5 h-3 w-3" />
                         Get {tier.credits.oneTime} Credits
                       </Badge>
+                      {tier.id === "trialer" && (
+                        <p className="text-muted-foreground text-xs font-medium">
+                          Limited to one purchase per user
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>
@@ -276,35 +305,18 @@ export function PricingSection({ className }: { className?: string }) {
 
               <CardContent className="flex flex-1 flex-col px-6 pb-8 pt-0">
                 <div className="bg-muted/30 mb-6 h-px w-full" />
-                <div className="mb-8 flex-1 space-y-4">
+                <ul className="mb-8 flex-1 space-y-4">
                   {tier.features.map((feature, index) => (
-                    <div
-                      key={index}
-                      className="group/feature flex items-start gap-3"
-                    >
-                      <div
-                        className={cn(
-                          "mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-sm border transition-colors",
-                          feature.included
-                            ? "border-primary/50 bg-primary/10 text-primary"
-                            : "border-muted bg-muted/50 text-muted-foreground",
-                        )}
-                      >
-                        <Check className="h-3 w-3" />
+                    <li key={index} className="flex items-start gap-3">
+                      <div className="w-5 h-5 bg-success/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Check className="w-3 h-3 text-success" />
                       </div>
-                      <span
-                        className={cn(
-                          "text-sm leading-tight transition-colors",
-                          feature.included
-                            ? "text-foreground"
-                            : "text-muted-foreground line-through opacity-70",
-                        )}
-                      >
+                      <span className="text-sm text-muted-foreground">
                         {feature.name}
                       </span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
                 {!mounted || isSessionLoading ? (
                   <Skeleton className="h-11 w-full" />
@@ -315,6 +327,7 @@ export function PricingSection({ className }: { className?: string }) {
                       tier.isPopular
                         ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md"
                         : "bg-background hover:bg-accent hover:text-accent-foreground border",
+                      isTrialerDisabled && "opacity-50 cursor-not-allowed",
                     )}
                     onClick={() => handleCheckout(tier, paymentMode)}
                     variant={tier.isPopular ? "default" : "outline"}
@@ -324,6 +337,10 @@ export function PricingSection({ className }: { className?: string }) {
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         PROCESSING
+                      </>
+                    ) : isTrialerDisabled ? (
+                      <>
+                        ALREADY PURCHASED
                       </>
                     ) : !session?.user ? (
                       <>

@@ -4,6 +4,7 @@ import { billing } from "@/lib/billing";
 import { Session } from "@/types/auth";
 import { z } from "zod";
 import { getUserSubscription } from "@/lib/database/subscription";
+import { hasTrialerBeenPurchased } from "@/lib/database/credits";
 
 const checkoutSchema = z.object({
   tierId: z.string(),
@@ -30,6 +31,17 @@ export async function POST(request: NextRequest) {
     }
 
     const { tierId, paymentMode, billingCycle } = parsedBody.data;
+
+    // 检查体验套餐是否已购买（限购一次）
+    if (tierId === "trialer") {
+      const hasPurchased = await hasTrialerBeenPurchased(session.user.id);
+      if (hasPurchased) {
+        return NextResponse.json(
+          { error: "Trialer package can only be purchased once per user" },
+          { status: 400 }
+        );
+      }
+    }
 
     // 仅在用户尝试购买新订阅时检查
     if (paymentMode === "subscription") {

@@ -47,6 +47,35 @@ export interface PricingTier {
  */
 export const PRODUCT_TIERS: PricingTier[] = [
   {
+    id: "trialer",
+    name: "Trialer",
+    description: "Try before you commit",
+    isPopular: false,
+    features: [
+      { name: "2 professional headshots", included: true },
+      { name: "1 background style", included: true },
+      { name: "48-hour delivery", included: true },
+      { name: "Basic retouching", included: true },
+      { name: "One-time purchase only", included: true },
+    ],
+    pricing: {
+      creem: {
+        oneTime: "prod_2g4rjo9C62coHG16jrie6",
+        monthly: "",
+        yearly: "",
+      },
+    },
+    prices: {
+      oneTime: 1,
+      monthly: 0,
+      yearly: 0,
+    },
+    credits: {
+      oneTime: 2, // $0.09 = 2 credits
+    },
+    currency: "USD",
+  },
+  {
     id: "starter",
     name: "Starter",
     description: "Perfect for trying out",
@@ -64,10 +93,9 @@ export const PRODUCT_TIERS: PricingTier[] = [
     ],
     pricing: {
       creem: {
-        // TODO: Replace with actual Creem product IDs
-        oneTime: "prod_starter_one_time",
-        monthly: "prod_starter_monthly",
-        yearly: "prod_starter_yearly",
+        oneTime: "prod_4MJUT4Hc1kW2Nq6oIKz3os",
+        monthly: "",
+        yearly: "",
       },
     },
     prices: {
@@ -99,10 +127,9 @@ export const PRODUCT_TIERS: PricingTier[] = [
     ],
     pricing: {
       creem: {
-        // TODO: Replace with actual Creem product IDs
-        oneTime: "prod_pro_one_time",
-        monthly: "prod_pro_monthly",
-        yearly: "prod_pro_yearly",
+        oneTime: "prod_6yroK3rnaFHSZoDcCMzJWp",
+        monthly: "",
+        yearly: "",
       },
     },
     prices: {
@@ -111,10 +138,12 @@ export const PRODUCT_TIERS: PricingTier[] = [
       yearly: 0,
     },
     credits: {
-      oneTime: 10, // $9.9 = 10 credits
+      oneTime: 20, // $9.9 = 20 credits
     },
     currency: "USD",
   },
+  // Team tier commented out - temporarily unavailable
+  /*
   {
     id: "team",
     name: "Team",
@@ -127,16 +156,9 @@ export const PRODUCT_TIERS: PricingTier[] = [
       { name: "Premium retouching", included: true },
       { name: "Brand consistency", included: true },
       { name: "Dedicated account manager", included: true },
-      // { name: "Advanced analytics", included: true },
-      // { name: "Priority support", included: true },
-      // { name: "10GB storage", included: true },
-      // { name: "Team collaboration", included: true },
-      // { name: "API access", included: true },
-      // { name: "Dedicated support", included: true },
     ],
     pricing: {
       creem: {
-        // TODO: Replace with actual Creem product IDs
         oneTime: "prod_team_one_time",
         monthly: "prod_team_monthly",
         yearly: "prod_team_yearly",
@@ -148,10 +170,11 @@ export const PRODUCT_TIERS: PricingTier[] = [
       yearly: 0,
     },
     credits: {
-      oneTime: 60, // $59.9 = 60 credits
+      oneTime: 60,
     },
     currency: "USD",
   },
+  */
   // Legacy tiers kept for reference, can be removed later
   /*
   {

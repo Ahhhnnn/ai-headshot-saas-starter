@@ -47,6 +47,26 @@ export async function hasSignupBonusBeenGranted(userId: string, tx?: Tx): Promis
 }
 
 /**
+ * Check if trialer package has been purchased by a user
+ * Checks for existing transaction with description = "Credits from Trialer"
+ */
+export async function hasTrialerBeenPurchased(userId: string, tx?: Tx): Promise<boolean> {
+  const dbase = getDb(tx);
+  const result = await dbase
+    .select()
+    .from(creditTransactionsTable)
+    .where(
+      and(
+        eq(creditTransactionsTable.userId, userId),
+        eq(creditTransactionsTable.type, "payment_refill"),
+        eq(creditTransactionsTable.description, "Credits from Trialer")
+      )
+    )
+    .limit(1);
+  return result.length > 0;
+}
+
+/**
  * Grant credits to a user (called after one-time payment)
  */
 export async function grantCredits(

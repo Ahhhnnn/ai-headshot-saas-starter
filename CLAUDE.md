@@ -50,7 +50,7 @@ pnpm run set:admin:prod  # Promote user to admin (production)
 
 ### Tech Stack
 
-- **Framework**: Next.js 15 with App Router and Server Components
+- **Framework**: Next.js 16 with App Router and Server Components
 - **Database**: PostgreSQL with Drizzle ORM
 - **Auth**: Better-Auth with Magic Link via Resend
 - **Payments**: Creem payment provider with webhook integration
@@ -81,11 +81,16 @@ All uploads go through:
 
 #### Database Schema Organization
 
-- Users have role-based permissions (user, admin, super_admin)
-- Sessions track device/browser information with parsed user agent fields
-- Subscriptions and payments are linked for billing
-- Webhook events ensure idempotency
-- Accounts table for OAuth provider integration
+- **users**: Role-based permissions (user, admin, super_admin with numeric comparison)
+- **sessions**: Device/browser information with parsed user agent fields (os, browser, deviceType)
+- **accounts**: OAuth provider integration (Google, GitHub, LinkedIn)
+- **subscriptions**: User subscription status with period tracking
+- **payments**: Payment history linked to subscriptions
+- **webhook_events**: Idempotency tracking for payment webhooks
+- **uploads**: File metadata for R2 storage tracking
+- **generations**: AI image generation job tracking with status polling
+- **credits**: User credit balance (balance, totalEarned, totalSpent)
+- **credit_transactions**: Audit trail for all credit operations
 
 ### Directory Structure
 
@@ -200,6 +205,146 @@ Keystatic CMS is configured for local development only (security measure). Blog 
 - Customer management with provider customer ID linking
 - Webhook events for payment status updates
 
+#### Webhook Idempotency Pattern
+
+Webhooks use a multi-layer idempotency pattern to prevent duplicate processing:
+
+1. **Signature Verification**: HMAC SHA256 signature validation before processing
+2. **Event Tracking**: `webhook_events` table stores processed event IDs
+3. **Transactional Processing**: Event is recorded before business logic executes
+4. **Unique Event ID**: Combination of `object.id + eventType` ensures uniqueness
+
+Located in: `src/lib/billing/creem/webhook.ts`
+
+### Credit System
+
+The credit system is the core monetization mechanism for AI generation:
+
+#### Credit Operations (`src/lib/database/credits.ts`)
+
+- **`grantCredits()`**: Upsert balance with atomic SQL fragments, record transaction
+- **`deductCredits()`**: Check balance first, throw `InsufficientCreditsError` if insufficient
+- **`getUserCredits()`**: Retrieve current credit balance
+- **`hasEnoughCredits()`**: Boolean check for sufficient balance
+- **`getCreditHistory()``:** Paginated transaction audit trail
+
+#### Transaction Audit Trail
+
+Every credit operation is recorded in `credit_transactions`:
+- **amount**: Positive for earnings, negative for spending
+- **type**: `payment_refill`, `generation_spent`, `admin_adjust`
+- **referenceId**: Links to payment ID or order ID
+- **description**: Human-readable explanation
+
+#### Signup Bonus Prevention Pattern
+
+Prevents duplicate signup credits using reference-based tracking:
+
+```typescript
+// Check for existing transaction with referenceId = "signup_{userId}"
+await hasSignupBonusBeenGranted(userId);
+```
+
+Located in: `src/lib/database/credits.ts:34-47`
+
+### AI Generation System
+
+The core product feature uses a provider abstraction pattern similar to billing:
+
+#### Provider Interface (`src/lib/generate/provider.ts`)
+
+All AI generation providers must implement `ImageGenerationProvider`:
+
+```typescript
+interface ImageGenerationProvider {
+  readonly id: string;
+  readonly name: string;
+  isConfigured(): boolean;
+  createGeneration(input: GenerateInput): Promise<{jobId, status}>;
+  getGenerationStatus(jobId: string): Promise<GenerationResult>;
+  cancelGeneration(jobId: string): Promise<boolean>;
+}
+```
+
+#### Database-First Architecture
+
+1. Create generation record in `generations` table with provider `jobId`
+2. Poll provider for status updates using `getGenerationStatus()`
+3. Update database record with final result or error
+4. Store output images in R2 with presigned URLs
+
+#### Supported Providers
+
+- **Replicate**: Stable Diffusion models
+- **V3**: Custom AI headshot provider (default)
+
+Provider registry in: `src/lib/generate/provider.ts:76-101`
+
+### Admin System
+
+The admin system provides a generic table management interface:
+
+#### Dynamic Schema Generation (`src/lib/admin/schema-generator.ts`)
+
+Automatically generates admin UI from database schema:
+
+1. **Type Detection**: Maps Drizzle types to UI column types
+2. **Name-Based Detection**: Infers specialized types (email, url, phone, color, currency, etc.)
+3. **Foreign Key Handling**: Detects relationships and generates lookup fields
+4. **Zod Schema Generation**: Automatic validation schemas for each table
+
+#### Table Configuration (`src/lib/admin/config.ts`)
+
+Per-table customization:
+- **userRelated**: Enable user-scoped filtering
+- **hiddenColumns**: Hide sensitive fields (e.g., token)
+- **readOnlyColumns**: Prevent editing of auto-generated fields
+
+#### Role-Based Protection
+
+Admin routes are protected with role hierarchy:
+- **user**: No admin access
+- **admin**: Access to non-sensitive admin features
+- **super_admin**: Full access including user management
+
+### Database Transaction Pattern
+
+Operations that need atomicity use an optional transaction parameter:
+
+```typescript
+const getDb = (tx?: Tx) => tx || db;
+
+export async function someOperation(data: Data, tx?: Tx) {
+  const dbase = getDb(tx);
+  // ... use dbase for queries
+}
+```
+
+#### Usage Pattern
+
+- Standalone: Function uses `db` directly
+- In transaction: Pass `tx` parameter from parent transaction
+- Atomic SQL fragments: Use `sql` template for safe operations like `balance + ${amount}`
+
+Located in: `src/lib/database/credits.ts:15-15`
+
+### Role Hierarchy
+
+User roles use numeric comparison for permission checks:
+
+```typescript
+// Role values: user=0, admin=1, super_admin=2
+if (user.role >= "admin") { /* allow */ }
+```
+
+#### Role Definitions
+
+- **user**: Default role, basic access
+- **admin**: Can access admin panel, manage non-sensitive data
+- **super_admin**: Full system access including user role management
+
+Defined in: `src/database/schema.ts:13-17`
+
 ### Security Considerations
 
 - File uploads are validated server-side before R2 storage
@@ -253,11 +398,30 @@ All environment variables are validated in `env.js` using Zod schemas. Never add
 
 ### Performance Considerations
 
-- Use Next.js 15 Turbo for faster development
+- Use Next.js 16 Turbo for faster development
 - Implement proper loading states with React Suspense
 - Optimize images with Next.js Image component
 - Use bundle analyzer to identify size issues
 - Consider database query optimization with proper indexes
+
+#### Environment-Aware Database Connection
+
+The database connection pool automatically adapts to the deployment environment:
+
+**Serverless Detection** (`src/lib/database/connection.ts:6-14`):
+- Vercel, AWS Lambda, Netlify, Railway, Cloud Functions, Azure
+
+**Serverless Configuration**:
+- `max: 1` - Single connection per instance
+- `idle_timeout: 20` - Close idle connections quickly
+- `max_lifetime: 1800` - 30-minute maximum lifetime
+
+**Traditional Server Configuration**:
+- `max: env.DB_POOL_SIZE` - Higher connection pool
+- `idle_timeout: env.DB_IDLE_TIMEOUT` - 5 minutes default
+- `max_lifetime: env.DB_MAX_LIFETIME` - 4 hours default
+
+Configuration validation with warnings runs once at startup.
 
 # Localization
 
@@ -505,3 +669,7 @@ export function App() {
 - Do not hallucinate React hooks (e.g., `useTranslation`).
 - Do not hallucinate React components (e.g., `FormattedMessage`).
 - Do not hallucinate methods (e.g., `localizeText`).
+
+
+## 约束
+使用中文回复，代码实现要避免冗余，尽可能使用已有的代码
