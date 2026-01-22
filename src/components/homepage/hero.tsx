@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Star } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import Link from "next/link";
 
 const heroImage = "/images/hero/hero.jpeg";
@@ -51,6 +51,7 @@ export function Hero() {
               </Button>
             </div>
 
+            {/* Temporarily hidden for Creem review - "5+ professionals trust us" section
             <div className="mt-8 flex items-center gap-4 justify-center lg:justify-start">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -71,6 +72,7 @@ export function Hero() {
                 <span className="text-muted-foreground"> professionals trust us</span>
               </div>
             </div>
+            */}
           </div>
 
           {/* Hero Image */}
@@ -100,6 +102,7 @@ export function Hero() {
               </div>
             </div>
 
+            {/* Temporarily hidden for Creem review - "From 5+ reviews" floating card
             <div className="absolute -top-4 -right-4 bg-card rounded-xl p-4 shadow-xl border border-border">
               <div className="flex items-center gap-2">
                 <div className="flex">
@@ -111,6 +114,7 @@ export function Hero() {
               </div>
               <p className="text-xs text-muted-foreground mt-1">From 5+ reviews</p>
             </div>
+            */}
           </div>
         </div>
       </div>
