@@ -1,244 +1,324 @@
-import React from "react";
+import { auth } from "@/lib/auth/server";
+import { headers } from "next/headers";
 import { DashboardPageWrapper } from "./_components/dashboard-page-wrapper";
 import { createMetadata } from "@/lib/metadata";
+import { getUserCredits, getCreditHistory } from "@/lib/database/credits";
+import {
+  getUserGenerations,
+  getGenerationCount,
+} from "@/lib/database/generations";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Coins,
+  Image as ImageIcon,
+  CheckCircle2,
+  Clock,
+  Plus,
+  Minus,
+  Gift,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
-  BarChart3,
-  Users,
-  TrendingUp,
-  DollarSign,
-  Activity,
-  Terminal,
-  ArrowUpRight,
-  Zap,
-  Clock,
-  CheckCircle2,
-} from "lucide-react";
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { formatDistanceToNow } from "date-fns";
 
 export const metadata = createMetadata({
   title: "Dashboard",
-  description: "System overview and metrics",
+  description: "Your AI HeadShot generations and credits",
 });
 
-export default function HomeRoute() {
+export default async function DashboardPage() {
+  // 获取会话
+  const requestHeaders = await headers();
+  const session = await auth.api.getSession({ headers: requestHeaders });
+
+  if (!session?.user?.id) {
+    return (
+      <DashboardPageWrapper title="Dashboard">
+        <div className="flex min-h-[400px] items-center justify-center">
+          <p className="text-muted-foreground">Please log in to view your dashboard</p>
+        </div>
+      </DashboardPageWrapper>
+    );
+  }
+
+  // 并行获取所有数据
+  const [credits, transactions, generations, totalCount] = await Promise.all([
+    getUserCredits(session.user.id),
+    getCreditHistory(session.user.id, 10),
+    getUserGenerations(session.user.id, 8),
+    getGenerationCount(session.user.id),
+  ]);
+
+  // 计算统计数据
+  const balance = credits?.balance ?? 0;
+  const completedCount = generations.filter(
+    (g) => g.status === "completed",
+  ).length;
+  const processingCount = generations.filter(
+    (g) => g.status === "processing" || g.status === "pending",
+  ).length;
+
+  // 获取用户显示名称
+  const displayName = session.user.name ?? session.user.email?.split("@")[0] ?? "User";
+
   return (
     <DashboardPageWrapper title="Dashboard">
-      {/* System Status / Welcome Panel */}
+      {/* 欢迎面板 */}
       <div className="bg-card text-card-foreground mb-8 border shadow-sm">
-        <div className="bg-muted/50 flex items-center justify-between border-b px-6 py-3">
-          <div className="flex items-center gap-2">
-            <Terminal className="text-primary h-4 w-4" />
-            <span className="font-mono text-sm font-bold">system_status</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="bg-emerald-500 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-              <span className="bg-emerald-500 relative inline-flex h-2 w-2 rounded-full"></span>
-            </span>
-            <span className="text-muted-foreground font-mono text-xs">
-              ONLINE
-            </span>
-          </div>
-        </div>
         <div className="p-6">
-          <div className="mb-6">
-            <h1 className="text-foreground mb-2 text-2xl font-bold tracking-tight">
-              Welcome back, User
-            </h1>
-            <p className="text-muted-foreground font-mono text-sm">
-              System is running smoothly. All services operational.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Button size="sm" className="gap-2 shadow-xs">
-              <Zap className="h-4 w-4" />
-              Deploy New Project
-            </Button>
-            <Button variant="outline" size="sm" className="gap-2 shadow-xs">
-              <Activity className="h-4 w-4" />
-              View Logs
-            </Button>
-          </div>
+          <h1 className="text-foreground mb-2 text-2xl font-bold tracking-tight">
+            Welcome back, {displayName}
+          </h1>
+          <p className="text-muted-foreground">
+            You have <span className="font-semibold text-foreground">{balance}</span> credits remaining
+          </p>
         </div>
       </div>
 
-      {/* Metrics Grid */}
+      {/* 统计卡片 */}
       <div className="mb-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card className="shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-            <DollarSign className="text-muted-foreground h-4 w-4" />
+            <CardTitle className="text-sm font-medium">Credits</CardTitle>
+            <Coins className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-mono" data-lingo-skip>
-              $45,231.89
+            <div className="text-2xl font-bold" data-lingo-skip>
+              {balance}
             </div>
             <p className="text-muted-foreground text-xs">
-              <span className="text-emerald-600 flex items-center gap-1 font-medium">
-                <TrendingUp className="h-3 w-3" />
-                <span data-lingo-skip>+20.1%</span>
-              </span>
-              <span className="opacity-70">from last month</span>
+              Current balance
             </p>
           </CardContent>
         </Card>
 
         <Card className="shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
-            <Users className="text-muted-foreground h-4 w-4" />
+            <CardTitle className="text-sm font-medium">Generated</CardTitle>
+            <ImageIcon className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-mono" data-lingo-skip>
-              +2,350
+            <div className="text-2xl font-bold" data-lingo-skip>
+              {totalCount}
             </div>
             <p className="text-muted-foreground text-xs">
-              <span className="text-emerald-600 flex items-center gap-1 font-medium">
-                <TrendingUp className="h-3 w-3" />
-                <span data-lingo-skip>+180.1%</span>
-              </span>
-              <span className="opacity-70">from last month</span>
+              Total generations
             </p>
           </CardContent>
         </Card>
 
         <Card className="shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Conversions</CardTitle>
-            <Activity className="text-muted-foreground h-4 w-4" />
+            <CardTitle className="text-sm font-medium">Completed</CardTitle>
+            <CheckCircle2 className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-mono" data-lingo-skip>
-              +12,234
+            <div className="text-2xl font-bold" data-lingo-skip>
+              {completedCount}
             </div>
             <p className="text-muted-foreground text-xs">
-              <span className="text-emerald-600 flex items-center gap-1 font-medium">
-                <TrendingUp className="h-3 w-3" />
-                <span data-lingo-skip>+19%</span>
-              </span>
-              <span className="opacity-70">from last month</span>
+              Successfully completed
             </p>
           </CardContent>
         </Card>
 
         <Card className="shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Growth Rate</CardTitle>
-            <BarChart3 className="text-muted-foreground h-4 w-4" />
+            <CardTitle className="text-sm font-medium">Processing</CardTitle>
+            <Clock className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-mono" data-lingo-skip>
-              +573
+            <div className="text-2xl font-bold" data-lingo-skip>
+              {processingCount}
             </div>
             <p className="text-muted-foreground text-xs">
-              <span className="text-emerald-600 flex items-center gap-1 font-medium">
-                <TrendingUp className="h-3 w-3" />
-                <span data-lingo-skip>+201</span>
-              </span>
-              <span className="opacity-70">since last hour</span>
+              In progress
             </p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Activity & Quick Actions */}
-      <div className="grid gap-4 md:grid-cols-2 lg:gap-8">
-        <Card className="shadow-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Terminal className="text-primary h-5 w-5" />
-              Recent Activity
-            </CardTitle>
-            <CardDescription>Latest system events and logs</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3 text-sm">
-                <div className="bg-primary/10 text-primary mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border border-primary/20">
-                  <Users className="h-3 w-3" />
-                </div>
-                <div className="grid gap-1">
-                  <p className="text-foreground font-medium leading-none">
-                    New user registered
-                  </p>
-                  <p className="text-muted-foreground font-mono text-xs">
-                    user_id: 8923 • 2m ago
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 text-sm">
-                <div className="bg-emerald-500/10 text-emerald-600 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border border-emerald-500/20">
-                  <DollarSign className="h-3 w-3" />
-                </div>
-                <div className="grid gap-1">
-                  <p className="text-foreground font-medium leading-none">
-                    Payment received
-                  </p>
-                  <p className="text-muted-foreground font-mono text-xs">
-                    inv_2930 • $49.00 • 5m ago
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 text-sm">
-                <div className="bg-blue-500/10 text-blue-600 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border border-blue-500/20">
-                  <Zap className="h-3 w-3" />
-                </div>
-                <div className="grid gap-1">
-                  <p className="text-foreground font-medium leading-none">
-                    Feature deployed
-                  </p>
-                  <p className="text-muted-foreground font-mono text-xs">
-                    v2.4.0 • main_branch • 1h ago
-                  </p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      {/* 生成记录 */}
+      <div className="mb-8">
+        <div className="mb-4 flex items-center justify-between">
+          <div>
+            <h2 className="text-foreground text-xl font-semibold">Recent Generations</h2>
+            <p className="text-muted-foreground text-sm">
+              Your latest AI headshot generations
+            </p>
+          </div>
+          {/* <Link href="/dashboard/generations">
+            <Button variant="outline" size="sm">
+              View All
+            </Button>
+          </Link> */}
+        </div>
 
-        <Card className="shadow-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="text-primary h-5 w-5" />
-              Quick Actions
-            </CardTitle>
-            <CardDescription>Common administrative tasks</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid gap-2">
-              <Button
-                variant="outline"
-                className="justify-start gap-2 shadow-xs"
-              >
-                <ArrowUpRight className="h-4 w-4" />
-                Upgrade Plan
-              </Button>
-              <Button
-                variant="outline"
-                className="justify-start gap-2 shadow-xs"
-              >
-                <Users className="h-4 w-4" />
-                Manage Team
-              </Button>
-              <Button
-                variant="outline"
-                className="justify-start gap-2 shadow-xs"
-              >
-                <CheckCircle2 className="h-4 w-4" />
-                Verify Domain
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        {generations.length === 0 ? (
+          <Card className="shadow-sm">
+            <CardContent className="flex min-h-[200px] flex-col items-center justify-center p-6">
+              <ImageIcon className="text-muted-foreground mb-4 h-12 w-12" />
+              <h3 className="text-foreground mb-2 text-lg font-semibold">No generations yet</h3>
+              <p className="text-muted-foreground mb-4 text-center text-sm">
+                Create your first AI headshot to see it here
+              </p>
+              <Link href="/generator">
+                <Button>Create Headshot</Button>
+              </Link>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {generations.map((generation) => (
+              <Card key={generation.id} className="shadow-sm overflow-hidden">
+                <div className="bg-muted aspect-square relative flex items-center justify-center">
+                  {generation.outputImageUrl ? (
+                    <Image
+                      src={generation.outputImageUrl}
+                      alt={`Generation ${generation.id}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                  ) : (
+                    <ImageIcon className="text-muted-foreground h-12 w-12" />
+                  )}
+                  <div className="absolute right-2 top-2">
+                    <GenerationStatusBadge status={generation.status} />
+                  </div>
+                </div>
+                <CardContent className="p-3">
+                  <div className="flex items-center justify-between">
+                    <p className="text-muted-foreground text-xs">
+                      {formatDistanceToNow(new Date(generation.createdAt), {
+                        addSuffix: true,
+                      })}
+                    </p>
+                    {generation.styleId && (
+                      <Badge variant="secondary" className="text-xs">
+                        {generation.styleId}
+                      </Badge>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* 积分交易历史 */}
+      <div>
+        <div className="mb-4">
+          <h2 className="text-foreground text-xl font-semibold">Credit History</h2>
+          <p className="text-muted-foreground text-sm">
+            Your recent credit transactions
+          </p>
+        </div>
+
+        {transactions.length === 0 ? (
+          <Card className="shadow-sm">
+            <CardContent className="flex min-h-[150px] flex-col items-center justify-center p-6">
+              <Coins className="text-muted-foreground mb-4 h-12 w-12" />
+              <h3 className="text-foreground mb-2 text-lg font-semibold">No credit history</h3>
+              <p className="text-muted-foreground text-center text-sm">
+                Your credit transactions will appear here
+              </p>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card className="shadow-sm">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Description</TableHead>
+                  <TableHead className="text-right">Amount</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {transactions.map((transaction) => (
+                  <TableRow key={transaction.id}>
+                    <TableCell className="text-muted-foreground text-sm">
+                      {formatDistanceToNow(new Date(transaction.createdAt), {
+                        addSuffix: true,
+                      })}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        {transaction.type === "payment_refill" && transaction.description?.includes("Welcome") ? (
+                          <Gift className="text-primary h-4 w-4" />
+                        ) : transaction.amount > 0 ? (
+                          <Plus className="text-emerald-600 h-4 w-4" />
+                        ) : (
+                          <Minus className="text-destructive h-4 w-4" />
+                        )}
+                        <span className="text-sm">{transaction.description ?? "Credit transaction"}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell className={`text-right font-mono text-sm font-medium ${
+                      transaction.amount > 0
+                        ? "text-emerald-600"
+                        : "text-destructive"
+                    }`} data-lingo-skip>
+                      {transaction.amount > 0 ? "+" : ""}
+                      {transaction.amount}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Card>
+        )}
       </div>
     </DashboardPageWrapper>
   );
+}
+
+// 生成状态徽章组件
+function GenerationStatusBadge({ status }: { status: string }) {
+  switch (status) {
+    case "completed":
+      return (
+        <Badge variant="default" className="bg-emerald-600">
+          <CheckCircle2 className="mr-1 h-3 w-3" />
+          Done
+        </Badge>
+      );
+    case "processing":
+      return (
+        <Badge variant="secondary">
+          <Clock className="mr-1 h-3 w-3 animate-pulse" />
+          Processing
+        </Badge>
+      );
+    case "pending":
+      return (
+        <Badge variant="outline">
+          <Clock className="mr-1 h-3 w-3" />
+          Pending
+        </Badge>
+      );
+    case "failed":
+      return (
+        <Badge variant="destructive">Failed</Badge>
+      );
+    default:
+      return <Badge variant="outline">{status}</Badge>;
+  }
 }

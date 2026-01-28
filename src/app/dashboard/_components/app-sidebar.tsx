@@ -50,13 +50,13 @@ const navigation: {
     icon: Home,
     matchMode: "exact",
   },
-  {
-    key: "Upload",
-    title: <>Upload</>,
-    url: "/dashboard/upload",
-    icon: Upload,
-    matchMode: "exact",
-  },
+  // {
+  //   key: "Upload",
+  //   title: <>Upload</>,
+  //   url: "/dashboard/upload",
+  //   icon: Upload,
+  //   matchMode: "exact",
+  // },
   {
     key: "Settings",
     title: <>Settings</>,
