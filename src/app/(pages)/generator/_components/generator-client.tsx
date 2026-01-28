@@ -24,18 +24,125 @@ import {
   Loader2,
   Sparkles,
   Coins,
+  Palette,
 } from "lucide-react";
 import { toast } from "sonner";
 import { generateAvatar, getGenerationStatus } from "@/lib/actions/generate";
 import { FileUploader, type UploadedFile } from "@/components/ui/file-uploader";
 
-// 生成步骤
 const GENERATION_STEPS = [
-  { id: "upload", label: "Upload Photo" },
-  { id: "select-style", label: "Select Style" },
-  { id: "generate", label: "Generate" },
-  { id: "download", label: "Download" },
-];
+  { id: "upload", label: "Upload Photo", icon: Upload },
+  { id: "select-style", label: "Select Style", icon: Palette },
+  { id: "generate", label: "Generate", icon: Sparkles },
+  { id: "download", label: "Download", icon: Download },
+] as const;
+
+type StepStatus = "completed" | "current" | "upcoming";
+
+interface StepItemProps {
+  step: typeof GENERATION_STEPS[number];
+  index: number;
+  status: StepStatus;
+  onClick?: () => void;
+}
+
+function ProgressStep({ step, index, status, onClick }: StepItemProps) {
+  const Icon = step.icon;
+  const isClickable = status === "completed";
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={!isClickable}
+      className={cn(
+        "group relative flex items-start gap-4 w-full text-left transition-all duration-300",
+        "p-3 rounded-lg",
+        isClickable && "hover:bg-muted/50 cursor-pointer",
+        !isClickable && "cursor-default"
+      )}
+    >
+      {/* 左侧连接线 */}
+      {index > 0 && (
+        <div
+          className={cn(
+            "absolute left-[27px] -top-6 w-0.5 h-6",
+            status === "upcoming" ? "bg-border" : "bg-primary"
+          )}
+        />
+      )}
+
+      {/* 步骤图标圆点 */}
+      <div className="relative flex-shrink-0">
+        {status === "completed" ? (
+          <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+            <Check className="w-4 h-4" />
+          </div>
+        ) : status === "current" ? (
+          <div className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center">
+            <Icon className="w-5 h-5 text-primary" />
+          </div>
+        ) : (
+          <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center">
+            <div className="w-2 h-2 rounded-full bg-muted-foreground/50" />
+          </div>
+        )}
+      </div>
+
+      {/* 步骤文字 */}
+      <div className="flex-1 min-w-0 pt-1">
+        <p
+          className={cn(
+            "font-medium text-sm transition-colors",
+            status === "completed" && "text-foreground",
+            status === "current" && "text-primary font-semibold",
+            status === "upcoming" && "text-muted-foreground"
+          )}
+        >
+          {step.label}
+        </p>
+      </div>
+
+      {/* 当前步骤右侧图标 */}
+      {status === "current" && (
+        <div className="flex-shrink-0 pt-1">
+          <Icon className="w-5 h-5 text-primary" />
+        </div>
+      )}
+    </button>
+  );
+}
+
+interface CompactProgressProps {
+  steps: typeof GENERATION_STEPS;
+  currentStep: number;
+}
+
+function CompactProgressIndicator({ steps, currentStep }: CompactProgressProps) {
+  const currentStepInfo = steps[currentStep];
+
+  return (
+    <div className="space-y-3">
+      {/* 进度条 */}
+      <div className="flex items-center gap-2">
+        <Progress value={(currentStep / (steps.length - 1)) * 100} className="flex-1 h-2" />
+        <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">
+          {currentStep + 1}/{steps.length}
+        </span>
+      </div>
+
+      {/* 当前步骤信息 */}
+      {currentStepInfo && (
+        <div className="flex items-center gap-2 text-sm">
+          {(() => {
+            const Icon = currentStepInfo.icon;
+            return <Icon className="w-4 h-4 text-primary" />;
+          })()}
+          <span className="font-medium">{currentStepInfo.label}</span>
+        </div>
+      )}
+    </div>
+  );
+}
 
 interface GenerationResult {
   id: string;
@@ -191,6 +298,21 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
     }
   }, [generationResult]);
 
+  // 获取步骤状态
+  const getStepStatus = useCallback((index: number): StepStatus => {
+    if (index < currentStep) return "completed";
+    if (index === currentStep) return "current";
+    return "upcoming";
+  }, [currentStep]);
+
+  // 处理步骤点击（仅允许返回已完成步骤）
+  const handleStepClick = useCallback((index: number) => {
+    const status = getStepStatus(index);
+    if (status === "completed") {
+      setCurrentStep(index);
+    }
+  }, [getStepStatus]);
+
   return (
     <div className="container max-w-6xl mx-auto px-4 py-8">
       {/* Page Header */}
@@ -211,51 +333,33 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
         </div>
       </div>
 
-      {/* Progress Steps */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between max-w-2xl mx-auto">
-          {GENERATION_STEPS.map((step, index) => (
-            <div key={step.id} className="flex items-center">
-              <div
-                className={cn(
-                  "flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium transition-colors",
-                  index < currentStep
-                    ? "bg-primary text-primary-foreground"
-                    : index === currentStep
-                    ? "bg-primary/20 text-primary border-2 border-primary"
-                    : "bg-muted text-muted-foreground",
-                )}
-              >
-                {index < currentStep ? (
-                  <Check className="w-4 h-4" />
-                ) : (
-                  <span>{index + 1}</span>
-                )}
-              </div>
-              <span
-                className={cn(
-                  "ml-2 text-sm hidden sm:inline",
-                  index <= currentStep
-                    ? "text-foreground font-medium"
-                    : "text-muted-foreground",
-                )}
-              >
-                {step.label}
-              </span>
-              {index < GENERATION_STEPS.length - 1 && (
-                <div
-                  className={cn(
-                    "w-12 sm:w-24 h-0.5 mx-2 sm:mx-4",
-                    index < currentStep ? "bg-primary" : "bg-muted",
-                  )}
-                />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Progress Navigation */}
+      <div className="grid lg:grid-cols-[240px_1fr] gap-6 lg:gap-8 mb-8">
+        {/* Desktop Vertical Progress */}
+        <aside className="hidden lg:block">
+          <nav className="sticky top-8 space-y-1">
+            {GENERATION_STEPS.map((step, index) => (
+              <ProgressStep
+                key={step.id}
+                step={step}
+                index={index}
+                status={getStepStatus(index)}
+                onClick={() => handleStepClick(index)}
+              />
+            ))}
+          </nav>
+        </aside>
 
-      <div className="grid lg:grid-cols-2 gap-8">
+        {/* Mobile/Tablet Compact Progress */}
+        <div className="lg:hidden">
+          <CompactProgressIndicator
+            steps={GENERATION_STEPS}
+            currentStep={currentStep}
+          />
+        </div>
+
+        {/* Main Content Area */}
+        <div className="grid lg:grid-cols-2 gap-8">
         {/* Left Column - Upload & Preview */}
         <div className="space-y-6">
           <Card>
@@ -363,40 +467,50 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
                     onValueChange={handleStyleSelect}
                     className="grid grid-cols-2 gap-4"
                   >
-                    {AVATAR_STYLES.map((style) => (
-                      <Label
-                        key={style.id}
-                        className={cn(
-                          "cursor-pointer relative rounded-lg border-2 p-4 transition-all hover:border-primary/50",
-                          selectedStyle === style.id
-                            ? "border-primary bg-primary/5"
-                            : "border-border",
-                        )}
-                      >
-                        <RadioGroupItem value={style.id} className="sr-only" />
-                        <div className="aspect-video rounded-md overflow-hidden bg-muted mb-3">
-                          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center">
-                            <span className="text-sm text-muted-foreground">
-                              {style.name}
-                            </span>
+                    {AVATAR_STYLES.map((style) => {
+                      const Icon = style.icon;
+                      return (
+                        <Label
+                          key={style.id}
+                          className={cn(
+                            "cursor-pointer relative rounded-lg border-2 p-4 transition-all hover:border-primary/50 hover:shadow-lg",
+                            selectedStyle === style.id
+                              ? "border-primary bg-primary/5 shadow-md"
+                              : "border-border",
+                          )}
+                        >
+                          <RadioGroupItem value={style.id} className="sr-only" />
+                          <div
+                            className="aspect-video rounded-md overflow-hidden mb-3 relative transition-transform duration-200 hover:scale-[1.02]"
+                            style={{ background: style.gradient }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-br from-black/5 to-black/10" />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <Icon className="w-12 h-12 transition-transform duration-200 group-hover:scale-110" />
+                            </div>
+                            <div className="absolute bottom-2 left-2">
+                              <Badge variant="secondary" className="text-xs">
+                                {style.category}
+                              </Badge>
+                            </div>
                           </div>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="font-medium text-sm">{style.name}</p>
-                          <p className="text-xs text-muted-foreground line-clamp-2">
-                            {style.description}
-                          </p>
-                        </div>
-                        {selectedStyle === style.id && (
-                          <div className="absolute top-2 right-2">
-                            <Badge variant="default" className="bg-primary">
-                              <Check className="w-3 h-3 mr-1" />
-                              Selected
-                            </Badge>
+                          <div className="space-y-1">
+                            <p className="font-medium text-sm">{style.name}</p>
+                            <p className="text-xs text-muted-foreground line-clamp-2">
+                              {style.description}
+                            </p>
                           </div>
-                        )}
-                      </Label>
-                    ))}
+                          {selectedStyle === style.id && (
+                            <div className="absolute top-2 right-2">
+                              <Badge variant="default" className="bg-primary">
+                                <Check className="w-3 h-3 mr-1" />
+                                Selected
+                              </Badge>
+                            </div>
+                          )}
+                        </Label>
+                      );
+                    })}
                   </RadioGroup>
                 </CardContent>
               </Card>
@@ -453,6 +567,7 @@ export function GeneratorClient({ userId: _userId }: GeneratorClientProps) {
               </Card>
             </>
           )}
+        </div>
         </div>
       </div>
     </div>
