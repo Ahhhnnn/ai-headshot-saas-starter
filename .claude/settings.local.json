@@ -39,7 +39,8 @@
       "Bash(pnpm test:*)",
       "Bash(pnpm dev:*)",
       "Bash(sed:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(tree:*)"
     ],
     "deny": []
   }
