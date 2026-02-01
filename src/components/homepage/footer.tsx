@@ -41,22 +41,22 @@ const footerSections: FooterSection[] = [
     links: [
       { id: "foot-features", name: <>Features</>, href: "/#features" },
       { id: "foot-pricing", name: <>Pricing</>, href: "/pricing" },
-      { id: "foot-docs", name: <>Documentation</>, href: "/docs" },
-      { id: "foot-changelog", name: <>Changelog</>, href: "/changelog" },
+      // { id: "foot-docs", name: <>Documentation</>, href: "/docs" },
+      // { id: "foot-changelog", name: <>Changelog</>, href: "/changelog" },
     ],
   },
-  {
-    id: "foot-other-products",
-    title: <>Other Products</>,
-    links: [
-      {
-        id: "indiehackertool",
-        name: "Indiehackertool",
-        href: "https://www.indiehackertool.com/",
-        external: true,
-      }
-    ],
-  },
+  // {
+  //   id: "foot-other-products",
+  //   title: <>Other Products</>,
+  //   links: [
+  //     {
+  //       id: "indiehackertool",
+  //       name: "Indiehackertool",
+  //       href: "https://www.indiehackertool.com/",
+  //       external: true,
+  //     }
+  //   ],
+  // },
   {
     id: "foot-company",
     title: <>Company</>,
@@ -67,16 +67,16 @@ const footerSections: FooterSection[] = [
       // { id: "foot-careers", name: <>Careers</>, href: "/careers" },
     ],
   },
-  {
-    id: "foot-resources",
-    title: <>Resources</>,
-    links: [
-      { id: "foot-help", name: <>Help Center</>, href: "/help" },
-      { id: "foot-community", name: <>Community</>, href: "/community" },
-      { id: "foot-tutorials", name: <>Tutorials</>, href: "/tutorials" },
-      { id: "foot-templates", name: <>Templates</>, href: "/templates" },
-    ],
-  },
+  // {
+  //   id: "foot-resources",
+  //   title: <>Resources</>,
+  //   links: [
+  //     { id: "foot-help", name: <>Help Center</>, href: "/help" },
+  //     { id: "foot-community", name: <>Community</>, href: "/community" },
+  //     { id: "foot-tutorials", name: <>Tutorials</>, href: "/tutorials" },
+  //     { id: "foot-templates", name: <>Templates</>, href: "/templates" },
+  //   ],
+  // },
   {
     id: "foot-legal",
     title: <>Legal</>,
